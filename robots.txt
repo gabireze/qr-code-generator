@@ -1,0 +1,10 @@
+# robots.txt para qr-code.gabireze.cloud
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://qr-code.gabireze.cloud/sitemap.xml
+
+# Crawl-delay (opcional, para evitar sobrecarga)
+Crawl-delay: 1
