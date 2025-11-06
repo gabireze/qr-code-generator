@@ -11,8 +11,11 @@
 <body class="bg-slate-950 text-slate-100">
   <!-- Header -->
   <header class="sticky top-0 z-10 border-b border-slate-800 bg-[linear-gradient(180deg,#111522,#0f1115)]">
-    <div class="mx-auto max-w-6xl px-4 py-5 text-center">
-      <h1 class="m-0 text-xl font-bold">Gerador de QR Code • PNG, JPG, SVG, PDF</h1>
+    <div class="mx-auto max-w-6xl px-4 py-3 sm:py-5 text-center">
+      <h1 class="m-0 text-base sm:text-xl font-bold">
+        <span class="hidden sm:inline">Gerador de QR Code • PNG, JPG, SVG, PDF</span>
+        <span class="sm:hidden">Gerador de QR Code</span>
+      </h1>
     </div>
   </header>
 
@@ -21,15 +24,15 @@
     <section class="rounded-2xl border border-slate-800 bg-slate-900 p-4 shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
       <h2 class="mb-3 text-base font-semibold">Configurações</h2>
 
-      <!-- Seletor de Layout -->
-      <div class="mb-3">
+      <!-- Seletor de Layout (apenas desktop) -->
+      <div class="mb-3 hidden sm:block">
         <label class="mb-1 block text-xs text-slate-400">Layout da prévia</label>
         <div class="flex gap-2">
-          <button type="button" id="layoutSide" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-blue-500 text-white text-sm" title="QR Code ao lado (fixo 512px)">
+          <button type="button" id="layoutSide" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-blue-500 text-white text-sm justify-start" title="QR Code ao lado (fixo 512px)">
             <i class="fa-solid fa-table-columns"></i>
             <span>Lado a lado</span>
           </button>
-          <button type="button" id="layoutVertical" class="flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="QR Code abaixo (responsivo)">
+          <button type="button" id="layoutVertical" class="flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-start" title="QR Code abaixo (responsivo)">
             <i class="fa-solid fa-bars"></i>
             <span>Vertical</span>
           </button>
@@ -42,130 +45,111 @@
         <!-- Hidden input kept so existing JS can use #contentType.value and change events -->
         <input id="contentType" type="hidden" value="free" />
         
-        <!-- Icon toolbar (icon + text buttons) organized by categories -->
-        <div id="contentTypeGroup" class="space-y-3">
-          
+        <!-- Icon toolbar (icon + text buttons) -->
+        <div id="contentTypeGroup" class="flex flex-wrap gap-2">
           <!-- Geral -->
-          <div>
-            <div class="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">Geral</div>
-            <div class="flex flex-wrap gap-2">
-              <button type="button" data-value="free" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl bg-blue-500 text-white text-sm" title="Texto livre">
-                <i class="fa-solid fa-font"></i>
-                <span>Texto</span>
-              </button>
-              <button type="button" data-value="url" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="URL">
-                <i class="fa-solid fa-link"></i>
-                <span>URL</span>
-              </button>
-            </div>
-          </div>
-
+          <button type="button" data-value="free" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl bg-blue-500 text-white text-sm justify-center sm:justify-start" title="Texto livre">
+            <i class="fa-solid fa-font"></i>
+            <span>Texto</span>
+          </button>
+          <button type="button" data-value="url" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="URL">
+            <i class="fa-solid fa-link"></i>
+            <span>URL</span>
+          </button>
+          
+          <!-- Separador visual discreto -->
+          <div class="w-px h-8 bg-slate-800 self-center hidden sm:block"></div>
+          
           <!-- Comunicação -->
-          <div>
-            <div class="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">Comunicação</div>
-            <div class="flex flex-wrap gap-2">
-              <button type="button" data-value="tel" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Telefone">
-                <i class="fa-solid fa-phone"></i>
-                <span>Telefone</span>
-              </button>
-              <button type="button" data-value="sms" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="SMS">
-                <i class="fa-solid fa-message"></i>
-                <span>SMS</span>
-              </button>
-              <button type="button" data-value="email" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="E-mail">
-                <i class="fa-solid fa-envelope"></i>
-                <span>E-mail</span>
-              </button>
-              <button type="button" data-value="whatsapp" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="WhatsApp">
-                <i class="fa-brands fa-whatsapp"></i>
-                <span>WhatsApp</span>
-              </button>
-            </div>
-          </div>
-
+          <button type="button" data-value="tel" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="Telefone">
+            <i class="fa-solid fa-phone"></i>
+            <span>Telefone</span>
+          </button>
+          <button type="button" data-value="sms" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="SMS">
+            <i class="fa-solid fa-message"></i>
+            <span>SMS</span>
+          </button>
+          <button type="button" data-value="email" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="E-mail">
+            <i class="fa-solid fa-envelope"></i>
+            <span>E-mail</span>
+          </button>
+          <button type="button" data-value="whatsapp" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>WhatsApp</span>
+          </button>
+          
+          <!-- Separador visual discreto -->
+          <div class="w-px h-8 bg-slate-800 self-center hidden sm:block"></div>
+          
           <!-- Dados Pessoais -->
-          <div>
-            <div class="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">Dados Pessoais</div>
-            <div class="flex flex-wrap gap-2">
-              <button type="button" data-value="vcard" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="vCard">
-                <i class="fa-solid fa-id-card"></i>
-                <span>vCard</span>
-              </button>
-              <button type="button" data-value="mecard" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="MeCard">
-                <i class="fa-solid fa-address-card"></i>
-                <span>MeCard</span>
-              </button>
-            </div>
-          </div>
-
+          <button type="button" data-value="vcard" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="vCard">
+            <i class="fa-solid fa-id-card"></i>
+            <span>vCard</span>
+          </button>
+          <button type="button" data-value="mecard" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="MeCard">
+            <i class="fa-solid fa-address-card"></i>
+            <span>MeCard</span>
+          </button>
+          
+          <!-- Separador visual discreto -->
+          <div class="w-px h-8 bg-slate-800 self-center hidden sm:block"></div>
+          
           <!-- Localização & Eventos -->
-          <div>
-            <div class="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">Localização & Eventos</div>
-            <div class="flex flex-wrap gap-2">
-              <button type="button" data-value="geo" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Localização">
-                <i class="fa-solid fa-location-dot"></i>
-                <span>Local</span>
-              </button>
-              <button type="button" data-value="event" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Evento">
-                <i class="fa-solid fa-calendar"></i>
-                <span>Evento</span>
-              </button>
-            </div>
-          </div>
-
+          <button type="button" data-value="geo" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="Localização">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Local</span>
+          </button>
+          <button type="button" data-value="event" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="Evento">
+            <i class="fa-solid fa-calendar"></i>
+            <span>Evento</span>
+          </button>
+          
+          <!-- Separador visual discreto -->
+          <div class="w-px h-8 bg-slate-800 self-center hidden sm:block"></div>
+          
           <!-- Conectividade -->
-          <div>
-            <div class="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">Conectividade</div>
-            <div class="flex flex-wrap gap-2">
-              <button type="button" data-value="wifi" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Wi‑Fi">
-                <i class="fa-solid fa-wifi"></i>
-                <span>Wi-Fi</span>
-              </button>
-            </div>
-          </div>
-
+          <button type="button" data-value="wifi" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="Wi‑Fi">
+            <i class="fa-solid fa-wifi"></i>
+            <span>Wi-Fi</span>
+          </button>
+          
+          <!-- Separador visual discreto -->
+          <div class="w-px h-8 bg-slate-800 self-center hidden sm:block"></div>
+          
           <!-- Pagamentos -->
-          <div>
-            <div class="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">Pagamentos</div>
-            <div class="flex flex-wrap gap-2">
-              <button type="button" data-value="pix" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="PIX">
-                <i class="fa-solid fa-qrcode"></i>
-                <span>PIX</span>
-              </button>
-            </div>
-          </div>
-
+          <button type="button" data-value="pix" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="PIX">
+            <i class="fa-solid fa-qrcode"></i>
+            <span>PIX</span>
+          </button>
+          
+          <!-- Separador visual discreto -->
+          <div class="w-px h-8 bg-slate-800 self-center hidden sm:block"></div>
+          
           <!-- Criptomoedas -->
-          <div>
-            <div class="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">Criptomoedas</div>
-            <div class="flex flex-wrap gap-2">
-              <button type="button" data-value="bitcoin" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Bitcoin">
-                <i class="fa-brands fa-bitcoin"></i>
-                <span>Bitcoin</span>
-              </button>
-              <button type="button" data-value="ethereum" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Ethereum">
-                <i class="fa-brands fa-ethereum"></i>
-                <span>Ethereum</span>
-              </button>
-              <button type="button" data-value="litecoin" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Litecoin">
-                <i class="fa-solid fa-coins"></i>
-                <span>Litecoin</span>
-              </button>
-              <button type="button" data-value="bitcoincash" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Bitcoin Cash">
-                <i class="fa-solid fa-money-bill-transfer"></i>
-                <span>Bitcoin Cash</span>
-              </button>
-              <button type="button" data-value="dogecoin" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Dogecoin">
-                <i class="fa-solid fa-dog"></i>
-                <span>Dogecoin</span>
-              </button>
-              <button type="button" data-value="monero" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Monero">
-                <i class="fa-solid fa-shield-halved"></i>
-                <span>Monero</span>
-              </button>
-            </div>
-          </div>
-
+          <button type="button" data-value="bitcoin" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="Bitcoin">
+            <i class="fa-brands fa-bitcoin"></i>
+            <span>Bitcoin</span>
+          </button>
+          <button type="button" data-value="ethereum" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="Ethereum">
+            <i class="fa-brands fa-ethereum"></i>
+            <span>Ethereum</span>
+          </button>
+          <button type="button" data-value="litecoin" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="Litecoin">
+            <i class="fa-solid fa-coins"></i>
+            <span>Litecoin</span>
+          </button>
+          <button type="button" data-value="bitcoincash" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="Bitcoin Cash">
+            <i class="fa-solid fa-money-bill-transfer"></i>
+            <span>BCH</span>
+          </button>
+          <button type="button" data-value="dogecoin" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="Dogecoin">
+            <i class="fa-solid fa-dog"></i>
+            <span>Dogecoin</span>
+          </button>
+          <button type="button" data-value="monero" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="Monero">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Monero</span>
+          </button>
         </div>
       </div>
 
@@ -184,9 +168,9 @@
         <div class="col-span-12 sm:col-span-4">
           <label for="presetSize" class="mb-1 block text-xs text-slate-400">Tamanho predefinido</label>
           <select id="presetSize" class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none">
-            <option value="256">256 px</option>
+            <option value="256" selected>256 px</option>
             <option value="384">384 px</option>
-            <option value="512" selected>512 px</option>
+            <option value="512">512 px</option>
             <option value="640">640 px</option>
             <option value="768">768 px</option>
             <option value="1024">1024 px</option>
@@ -194,11 +178,11 @@
         </div>
         <div class="col-span-12 sm:col-span-4">
           <label for="customW" class="mb-1 block text-xs text-slate-400">Largura personalizada (px)</label>
-          <input id="customW" type="number" min="64" step="1" placeholder="ex.: 600" class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none" />
+          <input id="customW" type="number" min="41" step="1" placeholder="ex.: 600" class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none" />
         </div>
         <div class="col-span-12 sm:col-span-4">
           <label for="margin" class="mb-1 block text-xs text-slate-400">Margem (quiet zone, px)</label>
-          <input id="margin" type="number" min="0" step="1" value="16" class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none" />
+          <input id="margin" type="number" step="1" value="0" class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none" />
         </div>
       </div>
 
@@ -253,23 +237,35 @@
 
       <div class="h-1.5"></div>
 
-      <div class="flex flex-wrap items-center gap-2">
-        <button id="btnGenerate" class="rounded-xl border border-transparent bg-blue-400 px-4 py-2 font-semibold text-slate-900 transition active:translate-y-px hover:brightness-105">Gerar</button>
-        <button id="btnClear" class="rounded-xl border border-slate-800 bg-slate-950 px-4 py-2 font-semibold transition hover:bg-slate-900 active:translate-y-px">Limpar</button>
-        <span id="stats" class="inline-block rounded-full border border-slate-800 px-2 py-1 text-xs text-slate-400">0 caracteres</span>
+      <div class="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2">
+        <span id="stats" class="inline-block rounded-full border border-slate-800 px-3 py-2 text-xs text-slate-400 text-center sm:text-left">0 caracteres</span>
+        <button id="btnClear" class="rounded-xl border border-slate-800 bg-slate-950 px-4 py-2.5 sm:py-2 font-semibold transition hover:bg-slate-900 active:translate-y-px text-center sm:ml-auto">Limpar</button>
       </div>
     </section>
 
     <!-- Prévia e Exportação -->
     <section class="rounded-2xl border border-slate-800 bg-slate-900 p-4 shadow-[0_10px_30px_rgba(0,0,0,0.15)]" id="previewSection">
       <h2 class="mb-3 text-base font-semibold">Prévia e exportação</h2>
-      <div id="preview" class="grid place-items-center rounded-xl border border-dashed border-slate-700 bg-slate-950" style="min-height: 420px;"></div>
+      <div id="previewInfo" class="mb-2 text-xs text-slate-400"></div>
+      <div id="preview" class="grid place-items-center rounded-xl border border-dashed border-slate-700 bg-slate-950 w-full max-w-full" style="min-height: 280px;"></div>
       <div class="h-1.5"></div>
-      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <button id="dlPng" class="rounded-xl border border-slate-800 bg-slate-950 px-4 py-2 font-semibold transition hover:bg-slate-900 active:translate-y-px">Baixar PNG</button>
-        <button id="dlJpg" class="rounded-xl border border-slate-800 bg-slate-950 px-4 py-2 font-semibold transition hover:bg-slate-900 active:translate-y-px">Baixar JPG</button>
-        <button id="dlSvg" class="rounded-xl border border-slate-800 bg-slate-950 px-4 py-2 font-semibold transition hover:bg-slate-900 active:translate-y-px">Baixar SVG</button>
-        <button id="dlPdf" class="rounded-xl border border-slate-800 bg-slate-950 px-4 py-2 font-semibold transition hover:bg-slate-900 active:translate-y-px">Baixar PDF</button>
+      <div class="grid grid-cols-2 gap-2 sm:gap-3">
+        <button id="dlPng" class="rounded-xl border border-slate-800 bg-slate-950 px-3 sm:px-4 py-2.5 sm:py-2 font-semibold transition hover:bg-slate-900 active:translate-y-px text-sm flex items-center justify-center gap-2">
+          <i class="fa-solid fa-download"></i>
+          <span>PNG</span>
+        </button>
+        <button id="dlJpg" class="rounded-xl border border-slate-800 bg-slate-950 px-3 sm:px-4 py-2.5 sm:py-2 font-semibold transition hover:bg-slate-900 active:translate-y-px text-sm flex items-center justify-center gap-2">
+          <i class="fa-solid fa-download"></i>
+          <span>JPG</span>
+        </button>
+        <button id="dlSvg" class="rounded-xl border border-slate-800 bg-slate-950 px-3 sm:px-4 py-2.5 sm:py-2 font-semibold transition hover:bg-slate-900 active:translate-y-px text-sm flex items-center justify-center gap-2">
+          <i class="fa-solid fa-download"></i>
+          <span>SVG</span>
+        </button>
+        <button id="dlPdf" class="rounded-xl border border-slate-800 bg-slate-950 px-3 sm:px-4 py-2.5 sm:py-2 font-semibold transition hover:bg-slate-900 active:translate-y-px text-sm flex items-center justify-center gap-2">
+          <i class="fa-solid fa-download"></i>
+          <span>PDF</span>
+        </button>
       </div>
     </section>
   </main>
@@ -320,32 +316,48 @@
   const previewSection = el('previewSection');
   const layoutSide = el('layoutSide');
   const layoutVertical = el('layoutVertical');
-  let currentLayout = 'side'; // 'side' or 'vertical'
+  let userPreferredLayout = 'side'; // Preferência do usuário ('side' or 'vertical')
+  let currentLayout = 'side'; // Layout atual aplicado
   
-  function setLayout(layout){
+  // Detecta se é mobile (largura < 640px, que é o breakpoint 'sm' do Tailwind)
+  function isMobile() {
+    return window.innerWidth < 640;
+  }
+  
+  function applyLayout(layout){
     currentLayout = layout;
     if (layout === 'side'){
-      // Layout lado a lado (padrão)
+      // Layout lado a lado (padrão desktop)
       mainGrid.className = 'mx-auto my-6 max-w-6xl px-4 grid grid-cols-1 gap-4 lg:[grid-template-columns:1.4fr_1fr]';
-      preview.style.minHeight = '420px';
       layoutSide.classList.remove('border','border-slate-800','bg-slate-950','text-slate-200');
       layoutSide.classList.add('bg-blue-500','text-white');
       layoutVertical.classList.remove('bg-blue-500','text-white');
       layoutVertical.classList.add('border','border-slate-800','bg-slate-950','text-slate-200');
     } else {
-      // Layout vertical (QR code abaixo)
+      // Layout vertical (QR code abaixo - responsivo)
       mainGrid.className = 'mx-auto my-6 max-w-6xl px-4 grid grid-cols-1 gap-4';
-      preview.style.minHeight = 'auto';
       layoutVertical.classList.remove('border','border-slate-800','bg-slate-950','text-slate-200');
       layoutVertical.classList.add('bg-blue-500','text-white');
       layoutSide.classList.remove('bg-blue-500','text-white');
       layoutSide.classList.add('border','border-slate-800','bg-slate-950','text-slate-200');
     }
-    createOrUpdate(); // Recria o QR para ajustar ao novo layout
+    // Aguarda o DOM atualizar antes de recriar o QR
+    setTimeout(() => createOrUpdate(), 100);
+  }
+  
+  function setLayout(layout){
+    userPreferredLayout = layout;
+    // Em mobile, sempre aplica vertical independente da preferência
+    // Em desktop, aplica a preferência do usuário
+    const effectiveLayout = isMobile() ? 'vertical' : userPreferredLayout;
+    applyLayout(effectiveLayout);
   }
   
   layoutSide.addEventListener('click', () => setLayout('side'));
   layoutVertical.addEventListener('click', () => setLayout('vertical'));
+  
+  // Aplica layout inicial
+  setLayout('side');
 
     const content = el('content');
     const presetSize = el('presetSize');
@@ -361,8 +373,8 @@
     const stats = el('stats');
     const sizeHint = el('sizeHint');
     const preview = el('preview');
+    const previewInfo = el('previewInfo');
 
-    const btnGenerate = el('btnGenerate');
     const btnClear = el('btnClear');
     const dlPng = el('dlPng');
     const dlJpg = el('dlJpg');
@@ -376,7 +388,14 @@
 
     function getSizePx(){
       const custom = parseInt(customW.value, 10);
-      if (!isNaN(custom) && custom > 0) return custom;
+      if (!isNaN(custom) && custom > 0) {
+        // Se for menor que 41, ajusta para 41
+        if (custom < 41) {
+          customW.value = '41';
+          return 41;
+        }
+        return custom;
+      }
       return parseInt(presetSize.value, 10);
     }
 
@@ -403,8 +422,24 @@
       const modulesStyle = SHAPES[shape.value] || SHAPES.square;
       const data = content.value || '';
 
-      // No layout lado a lado, força preview em 512px (mas download mantém o tamanho selecionado)
-      const previewSize = (currentLayout === 'side') ? 512 : size;
+      // Calcula tamanho responsivo
+      let previewSize;
+      if (currentLayout === 'side') {
+        // Desktop lado a lado: fixa em 256px
+        previewSize = 256;
+        preview.style.minHeight = '256px';
+      } else {
+        // Mobile/vertical: usa largura do container
+        const previewWidth = preview.offsetWidth;
+        // Subtrai padding da section (p-4 = 16px de cada lado = 32px total)
+        // E subtrai um pouco mais para garantir que não ultrapasse
+        const maxSize = Math.max(256, previewWidth - 48);
+        previewSize = Math.min(maxSize, size); // Não ultrapassa o tamanho configurado
+        preview.style.minHeight = `${previewSize + 40}px`;
+      }
+
+      // Atualiza info do preview
+      previewInfo.textContent = `Preview: ${previewSize}×${previewSize} px • Download: ${size}×${size} px`;
 
       const opts = {
         width: previewSize,
@@ -423,7 +458,8 @@
         qr = new QRCodeStyling(opts);
         preview.innerHTML = '';
         const holder = document.createElement('div');
-        holder.className = 'p-4';
+        holder.className = 'w-full flex items-center justify-center';
+        holder.style.padding = '20px';
         preview.appendChild(holder);
         qr.append(holder);
       } else {
@@ -708,6 +744,12 @@
       const t = contentType.value;
       // When using builder forms (not 'free'), lock manual editing of the content textarea
       content.readOnly = (t !== 'free');
+      
+      // Se mudou de tipo, limpa o conteúdo
+      if (t === 'free') {
+        content.value = '';
+      }
+      
       if (t === 'free'){ renderFields([]); return; }
       const F = [];
       if (t === 'url') F.push({id:'url_input', label:'URL', placeholder:'https://exemplo.com'});
@@ -715,7 +757,14 @@
       if (t === 'sms') F.push({id:'sms_number', label:'Telefone', placeholder:'+55XXXXXXXXXXX'},{id:'sms_text', label:'Mensagem', placeholder:'Texto da SMS'});
       if (t === 'email') F.push({id:'mail_to', label:'Para', placeholder:'usuario@dominio.com'},{id:'mail_subject', label:'Assunto'},{id:'mail_body', label:'Corpo'});
       if (t === 'wifi') F.push(
-        {id:'wifi_auth', label:'Autenticação', type:'select', options:[{value:'WPA',label:'WPA/WPA2'},{value:'WEP',label:'WEP'},{value:'nopass',label:'Sem senha'}], col:'col-span-12 sm:col-span-4'},
+        {id:'wifi_auth', label:'Autenticação', type:'select', options:[
+          {value:'WPA',label:'WPA/WPA2/WPA3'},
+          {value:'WPA2',label:'WPA2'},
+          {value:'WPA3',label:'WPA3'},
+          {value:'WEP',label:'WEP'},
+          {value:'SAE',label:'SAE (WPA3)'},
+          {value:'nopass',label:'Sem senha (Aberta)'}
+        ], col:'col-span-12 sm:col-span-4'},
         {id:'wifi_ssid', label:'SSID', col:'col-span-12 sm:col-span-4'},
         {id:'wifi_pwd', label:'Senha', col:'col-span-12 sm:col-span-4'},
         {id:'wifi_hidden', label:'Rede oculta', type:'checkbox', col:'col-span-12 sm:col-span-3'}
@@ -763,17 +812,53 @@
     }
 
     // Eventos
-    ;['input','keyup','change'].forEach(evt => { content.addEventListener(evt, () => { updateHints(); }); });
+    ;['input','keyup','change'].forEach(evt => { 
+      content.addEventListener(evt, () => { 
+        updateHints(); 
+        // Se estiver em modo texto livre, gera automaticamente
+        if (contentType.value === 'free') {
+          createOrUpdate();
+        }
+      }); 
+    });
     contentType.addEventListener('change', renderBuilderByType);
   // no manual lock option anymore; form builder always sets the content when in a form type
 
-    ;[presetSize, customW, margin, ecc, shape, fg, bg, transparentBg].forEach(elm => {
+    // Se mudar o tamanho predefinido, limpa a largura personalizada
+    presetSize.addEventListener('change', () => {
+      customW.value = '';
+      createOrUpdate();
+      updateHints();
+    });
+
+    ;[customW, margin, ecc, shape, fg, bg, transparentBg].forEach(elm => {
       elm.addEventListener('change', () => { createOrUpdate(); updateHints(); });
       elm.addEventListener('input', () => { createOrUpdate(); updateHints(); });
     });
 
+    // Redimensiona o QR Code quando a janela é redimensionada (apenas em modo vertical/mobile)
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        const mobile = isMobile();
+        
+        // Aplica layout adequado baseado no tamanho da tela
+        // Mobile: sempre vertical | Desktop: usa preferência do usuário
+        const effectiveLayout = mobile ? 'vertical' : userPreferredLayout;
+        
+        // Se o layout efetivo mudou, reaplicar
+        if (effectiveLayout !== currentLayout) {
+          applyLayout(effectiveLayout);
+        }
+        // Se está em vertical, recalcula o QR mesmo que não tenha mudado o layout
+        else if (currentLayout === 'vertical') {
+          createOrUpdate();
+        }
+      }, 250);
+    });
+
     jpgBg.addEventListener('input', () => {});
-    btnGenerate.addEventListener('click', () => createOrUpdate());
     btnClear.addEventListener('click', () => { content.value = ''; updateHints(); createOrUpdate(); });
     dlPng.addEventListener('click', () => download('png'));
     dlJpg.addEventListener('click', () => download('jpg'));
