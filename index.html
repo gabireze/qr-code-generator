@@ -221,6 +221,24 @@
       }
     }
 
+    async function blobToDataURL(blob){
+      return new Promise((resolve) => { const r = new FileReader(); r.onload = () => resolve(r.result); r.readAsDataURL(blob); });
+    }
+
+    async function pngBlobToJpegDataUrl(pngBlob, bgColor = '#ffffff', quality = 0.95){
+      const pngUrl = URL.createObjectURL(pngBlob);
+      const img = new Image();
+      img.src = pngUrl; await img.decode();
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width; canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = bgColor; ctx.fillRect(0,0,canvas.width,canvas.height);
+      ctx.drawImage(img, 0, 0);
+      const jpegUrl = canvas.toDataURL('image/jpeg', quality);
+      URL.revokeObjectURL(pngUrl);
+      return jpegUrl;
+    }
+
     async function download(type){
       if (!qr) createOrUpdate();
       const name = (fileName.value || 'qrcode').trim();
@@ -228,37 +246,40 @@
       if (type === 'svg'){
         const blob = await qr.getRawData('svg');
         const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url; a.download = `${name}.svg`; a.click();
+        const a = document.createElement('a'); a.href = url; a.download = `${name}.svg`; a.click();
         URL.revokeObjectURL(url);
         return;
       }
 
-      // Para bitmap, renderizamos em um nodo e usamos dom-to-image-more
-      const node = preview.querySelector('div');
-      const size = getSizePx();
+      // Gere a imagem diretamente da lib para evitar capturar bordas/gradientes do preview
+      // Mantém o mesmo tamanho configurado
+      const pngBlob = await qr.getRawData('png');
 
       if (type === 'png'){
-        const dataUrl = await domtoimage.toPng(node, { bgcolor: transparentBg.checked ? 'transparent' : bg.value, width: size + 32, height: size + 32, style: { transform: 'scale(1)', transformOrigin: 'top left' } });
-        const a = document.createElement('a');
-        a.href = dataUrl; a.download = `${name}.png`; a.click();
+        const url = URL.createObjectURL(pngBlob);
+        const a = document.createElement('a'); a.href = url; a.download = `${name}.png`; a.click();
+        URL.revokeObjectURL(url);
         return;
       }
 
       if (type === 'jpg'){
-        const dataUrl = await domtoimage.toJpeg(node, { quality: 0.95, bgcolor: jpgBg.value || '#ffffff', width: size + 32, height: size + 32 });
-        const a = document.createElement('a');
-        a.href = dataUrl; a.download = `${name}.jpg`; a.click();
+        const dataUrl = await pngBlobToJpegDataUrl(pngBlob, jpgBg.value || '#ffffff', 0.95);
+        const a = document.createElement('a'); a.href = dataUrl; a.download = `${name}.jpg`; a.click();
         return;
       }
 
       if (type === 'pdf'){
-        const dataUrl = await domtoimage.toPng(node, { bgcolor: jpgBg.value || '#ffffff', width: size + 32, height: size + 32 });
-        const img = new Image();
-        img.src = dataUrl; await img.decode();
+        // Converte o PNG gerado pela lib para PDF, com fundo controlado
+        const pngDataUrl = await blobToDataURL(pngBlob);
+        const img = new Image(); img.src = pngDataUrl; await img.decode();
         if (!jsPDF || typeof jsPDF !== 'function') { alert('Export para PDF indisponível: jsPDF não foi carregado corretamente. Atualize a página e tente novamente.'); return; }
-        const pdf = new jsPDF({ orientation: 'p', unit: 'px', format: [img.width + 32, img.height + 32] });
-        pdf.addImage(dataUrl, 'PNG', 16, 16, img.width, img.height);
+        const marginPx = 16; // margem visual no PDF
+        const pdfW = img.width + marginPx * 2; const pdfH = img.height + marginPx * 2;
+        const pdf = new jsPDF({ orientation: 'p', unit: 'px', format: [pdfW, pdfH] });
+        // pinta o fundo
+        pdf.setFillColor(jpgBg.value || '#ffffff');
+        pdf.rect(0, 0, pdfW, pdfH, 'F');
+        pdf.addImage(pngDataUrl, 'PNG', marginPx, marginPx, img.width, img.height);
         pdf.save(`${name}.pdf`);
         return;
       }
