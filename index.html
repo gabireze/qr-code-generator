@@ -4,80 +4,33 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gerador de QR Code</title>
-  <style>
-    :root {
-      --bg: #0f1115;
-      --card: #151924;
-      --muted: #9aa3b2;
-      --text: #e6e9ef;
-      --accent: #6aa9ff;
-      --border: #23293a;
-    }
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; background: var(--bg); color: var(--text); }
-    header { padding: 20px; text-align: center; border-bottom: 1px solid var(--border); background: linear-gradient(180deg, #111522, #0f1115); position: sticky; top: 0; z-index: 10; }
-    header h1 { margin: 0; font-weight: 700; font-size: 20px; }
-
-    .container { max-width: 1100px; margin: 24px auto; padding: 0 16px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; }
-    @media (max-width: 980px){ .container { grid-template-columns: 1fr; } }
-
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; box-shadow: 0 10px 30px rgba(0,0,0,.15); }
-    .card h2 { margin: 0 0 12px; font-size: 16px; }
-
-    .row { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; align-items: end; }
-    .field { display: flex; flex-direction: column; gap: 6px; }
-    .field label { font-size: 12px; color: var(--muted); }
-    .field input[type="text"], .field input[type="number"], .field input[type="color"], .field select, .field textarea {
-      width: 100%; background: #0f1320; border: 1px solid var(--border); color: var(--text); border-radius: 10px; padding: 10px 12px; outline: none;
-    }
-    .field input[type="checkbox"] { transform: translateY(1px); }
-
-    textarea { resize: vertical; min-height: 120px; }
-
-    .help { font-size: 12px; color: var(--muted); }
-
-    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
-    button, .btn {
-      background: #10172a; color: var(--text); border: 1px solid var(--border); padding: 10px 14px; border-radius: 10px; cursor: pointer; font-weight: 600;
-      transition: transform .06s ease, background .2s ease, border-color .2s ease;
-    }
-    button:hover, .btn:hover { background: #0f1530; border-color: #2b3350; }
-    button:active, .btn:active { transform: translateY(1px); }
-
-    .primary { background: var(--accent); color: #0c1220; border-color: transparent; }
-    .primary:hover { filter: brightness(1.05); }
-
-    .preview { display: grid; place-items: center; min-height: 420px; background: #0d1220; border: 1px dashed #273052; border-radius: 14px; }
-
-    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    @media (max-width: 580px){ .grid { grid-template-columns: 1fr; } }
-
-    .pill { display: inline-block; padding: 4px 8px; font-size: 12px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); }
-
-    .spacer { height: 6px; }
-  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <header>
-    <h1>Gerador de QR Code • PNG, JPG, SVG, PDF</h1>
+<body class="bg-slate-950 text-slate-100">
+  <!-- Header -->
+  <header class="sticky top-0 z-10 border-b border-slate-800 bg-[linear-gradient(180deg,#111522,#0f1115)]">
+    <div class="mx-auto max-w-6xl px-4 py-5 text-center">
+      <h1 class="m-0 text-xl font-bold">Gerador de QR Code • PNG, JPG, SVG, PDF</h1>
+    </div>
   </header>
 
-  <main class="container">
+  <main class="mx-auto my-6 max-w-6xl px-4 grid grid-cols-1 gap-4 lg:[grid-template-columns:1.4fr_1fr]">
     <!-- Configurações -->
-    <section class="card">
-      <h2>Configurações</h2>
-      <div class="row" style="margin-bottom:14px;">
-        <div class="field" style="grid-column: span 12;">
-          <label for="content">Conteúdo</label>
-          <textarea id="content" placeholder="Texto, URL, vCard, Wi‑Fi, etc."></textarea>
-          <div class="help" id="sizeHint">Tamanho sugerido: 256 px • ECC M</div>
+    <section class="rounded-2xl border border-slate-800 bg-slate-900 p-4 shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
+      <h2 class="mb-3 text-base font-semibold">Configurações</h2>
+
+      <div class="mb-3 grid grid-cols-12 gap-3 items-end">
+        <div class="col-span-12">
+          <label for="content" class="mb-1 block text-xs text-slate-400">Conteúdo</label>
+          <textarea id="content" placeholder="Texto, URL, vCard, Wi‑Fi, etc." class="min-h-[120px] w-full resize-y rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none"></textarea>
+          <div id="sizeHint" class="mt-1 text-xs text-slate-400">Tamanho sugerido: 256 px • ECC M</div>
         </div>
       </div>
 
-      <div class="row">
-        <div class="field" style="grid-column: span 4;">
-          <label for="presetSize">Tamanho predefinido</label>
-          <select id="presetSize">
+      <div class="grid grid-cols-12 gap-3 items-end">
+        <div class="col-span-12 sm:col-span-4">
+          <label for="presetSize" class="mb-1 block text-xs text-slate-400">Tamanho predefinido</label>
+          <select id="presetSize" class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none">
             <option value="256">256 px</option>
             <option value="384">384 px</option>
             <option value="512" selected>512 px</option>
@@ -86,84 +39,84 @@
             <option value="1024">1024 px</option>
           </select>
         </div>
-        <div class="field" style="grid-column: span 4;">
-          <label for="customW">Largura personalizada (px)</label>
-          <input id="customW" type="number" min="64" step="1" placeholder="ex.: 600" />
+        <div class="col-span-12 sm:col-span-4">
+          <label for="customW" class="mb-1 block text-xs text-slate-400">Largura personalizada (px)</label>
+          <input id="customW" type="number" min="64" step="1" placeholder="ex.: 600" class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none" />
         </div>
-        <div class="field" style="grid-column: span 4;">
-          <label for="margin">Margem (quiet zone, px)</label>
-          <input id="margin" type="number" min="0" step="1" value="16" />
+        <div class="col-span-12 sm:col-span-4">
+          <label for="margin" class="mb-1 block text-xs text-slate-400">Margem (quiet zone, px)</label>
+          <input id="margin" type="number" min="0" step="1" value="16" class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none" />
         </div>
       </div>
 
-      <div class="spacer"></div>
+      <div class="h-1.5"></div>
 
-      <div class="row">
-        <div class="field" style="grid-column: span 3;">
-          <label for="ecc">Correção de erro</label>
-          <select id="ecc">
+      <div class="grid grid-cols-12 gap-3 items-end">
+        <div class="col-span-6 sm:col-span-3">
+          <label for="ecc" class="mb-1 block text-xs text-slate-400">Correção de erro</label>
+          <select id="ecc" class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none">
             <option value="L">L (Baixa)</option>
             <option value="M" selected>M (Média)</option>
             <option value="Q">Q (Alta)</option>
             <option value="H">H (Máxima)</option>
           </select>
         </div>
-        <div class="field" style="grid-column: span 3;">
-          <label>Forma dos módulos</label>
-          <select id="shape">
+        <div class="col-span-6 sm:col-span-3">
+          <label class="mb-1 block text-xs text-slate-400">Forma dos módulos</label>
+          <select id="shape" class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none">
             <option value="square" selected>Quadrados</option>
             <option value="dots">Pontos</option>
             <option value="rounded">Arredondado</option>
           </select>
         </div>
-        <div class="field" style="grid-column: span 3;">
-          <label for="fg">Cor do QR</label>
-          <input id="fg" type="color" value="#000000" />
+        <div class="col-span-6 sm:col-span-3">
+          <label for="fg" class="mb-1 block text-xs text-slate-400">Cor do QR</label>
+          <input id="fg" type="color" value="#000000" class="h-10 w-full rounded-xl border border-slate-800 bg-slate-950 px-2 py-2" />
         </div>
-        <div class="field" style="grid-column: span 3;">
-          <label for="bg">Cor de fundo</label>
-          <input id="bg" type="color" value="#ffffff" />
+        <div class="col-span-6 sm:col-span-3">
+          <label for="bg" class="mb-1 block text-xs text-slate-400">Cor de fundo</label>
+          <input id="bg" type="color" value="#ffffff" class="h-10 w-full rounded-xl border border-slate-800 bg-slate-950 px-2 py-2" />
         </div>
       </div>
 
-      <div class="spacer"></div>
+      <div class="h-1.5"></div>
 
-      <div class="row">
-        <div class="field" style="grid-column: span 4;">
-          <label for="fileName">Nome do arquivo</label>
-          <input id="fileName" type="text" placeholder="qrcode" value="qrcode" />
+      <div class="grid grid-cols-12 gap-3 items-end">
+        <div class="col-span-12 sm:col-span-4">
+          <label for="fileName" class="mb-1 block text-xs text-slate-400">Nome do arquivo</label>
+          <input id="fileName" type="text" placeholder="qrcode" value="qrcode" class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none" />
         </div>
-        <div class="field" style="grid-column: span 4;">
-          <label for="transparentBg">Fundo transparente (PNG/SVG)</label>
+        <div class="col-span-12 sm:col-span-4">
+          <label for="transparentBg" class="mb-1 block text-xs text-slate-400">Fundo transparente (PNG/SVG)</label>
           <div>
-            <input id="transparentBg" type="checkbox" />
+            <input id="transparentBg" type="checkbox" class="h-4 w-4 align-middle" />
           </div>
         </div>
-        <div class="field" style="grid-column: span 4;">
-          <label for="jpgBg">Fundo do JPG/PDF</label>
-          <input id="jpgBg" type="color" value="#ffffff" />
+        <div class="col-span-12 sm:col-span-4">
+          <label for="jpgBg" class="mb-1 block text-xs text-slate-400">Fundo do JPG/PDF</label>
+          <input id="jpgBg" type="color" value="#ffffff" class="h-10 w-full rounded-xl border border-slate-800 bg-slate-950 px-2 py-2" />
         </div>
       </div>
 
-      <div class="spacer"></div>
+      <div class="h-1.5"></div>
 
-      <div class="actions">
-        <button class="primary" id="btnGenerate">Gerar</button>
-        <button id="btnClear">Limpar</button>
-        <span class="pill" id="stats">0 caracteres</span>
+      <div class="flex flex-wrap items-center gap-2">
+        <button id="btnGenerate" class="rounded-xl border border-transparent bg-blue-400 px-4 py-2 font-semibold text-slate-900 transition active:translate-y-px hover:brightness-105">Gerar</button>
+        <button id="btnClear" class="rounded-xl border border-slate-800 bg-slate-950 px-4 py-2 font-semibold transition hover:bg-slate-900 active:translate-y-px">Limpar</button>
+        <span id="stats" class="inline-block rounded-full border border-slate-800 px-2 py-1 text-xs text-slate-400">0 caracteres</span>
       </div>
     </section>
 
     <!-- Prévia e Exportação -->
-    <section class="card">
-      <h2>Prévia e exportação</h2>
-      <div class="preview" id="preview"></div>
-      <div class="spacer"></div>
-      <div class="grid">
-        <button id="dlPng" class="btn">Baixar PNG</button>
-        <button id="dlJpg" class="btn">Baixar JPG</button>
-        <button id="dlSvg" class="btn">Baixar SVG</button>
-        <button id="dlPdf" class="btn">Baixar PDF</button>
+    <section class="rounded-2xl border border-slate-800 bg-slate-900 p-4 shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
+      <h2 class="mb-3 text-base font-semibold">Prévia e exportação</h2>
+      <div id="preview" class="grid min-h-[420px] place-items-center rounded-xl border border-dashed border-slate-700 bg-slate-950"></div>
+      <div class="h-1.5"></div>
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <button id="dlPng" class="rounded-xl border border-slate-800 bg-slate-950 px-4 py-2 font-semibold transition hover:bg-slate-900 active:translate-y-px">Baixar PNG</button>
+        <button id="dlJpg" class="rounded-xl border border-slate-800 bg-slate-950 px-4 py-2 font-semibold transition hover:bg-slate-900 active:translate-y-px">Baixar JPG</button>
+        <button id="dlSvg" class="rounded-xl border border-slate-800 bg-slate-950 px-4 py-2 font-semibold transition hover:bg-slate-900 active:translate-y-px">Baixar SVG</button>
+        <button id="dlPdf" class="rounded-xl border border-slate-800 bg-slate-950 px-4 py-2 font-semibold transition hover:bg-slate-900 active:translate-y-px">Baixar PDF</button>
       </div>
     </section>
   </main>
@@ -172,32 +125,15 @@
   <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0/lib/qr-code-styling.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@3.5.0/dist/dom-to-image-more.min.js"></script>
   <script>
-    // jsPDF via ESM UMD loader
+    // jsPDF via ESM/UMD loader
     let jsPDF;
     (async () => {
       try {
         const mod = await import('https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js');
-        // UMD/ESM builds can expose the constructor in different places depending on loader:
-        // - mod.jsPDF
-        // - mod.default.jsPDF
-        // - window.jspdf.jsPDF (UMD attached to window)
-        // - window.jsPDF
         jsPDF = (mod && (mod.jsPDF || (mod.default && mod.default.jsPDF))) || (window.jspdf && window.jspdf.jsPDF) || window.jsPDF || window.jspdf;
-
-        // Some bundles export an object with a default function property
-        if (jsPDF && typeof jsPDF !== 'function' && jsPDF.default && typeof jsPDF.default === 'function') {
-          jsPDF = jsPDF.default;
-        }
-
-        if (!jsPDF || typeof jsPDF !== 'function') {
-          // Keep jsPDF falsy so callers can detect availability
-          console.warn('jsPDF did not expose a constructor. PDF export will be disabled.');
-          jsPDF = null;
-        }
-      } catch (err) {
-        console.warn('Failed to load jsPDF:', err);
-        jsPDF = null;
-      }
+        if (jsPDF && typeof jsPDF !== 'function' && jsPDF.default && typeof jsPDF.default === 'function') jsPDF = jsPDF.default;
+        if (!jsPDF || typeof jsPDF !== 'function') { console.warn('jsPDF não expôs o construtor. PDF será desabilitado.'); jsPDF = null; }
+      } catch (err) { console.warn('Falha ao carregar jsPDF:', err); jsPDF = null; }
     })();
   </script>
 
@@ -229,11 +165,7 @@
     // Estado do QR
     let qr; // instância do QRCodeStyling
 
-    const SHAPES = {
-      square: { type: 'square' },
-      dots: { type: 'dots' },
-      rounded: { type: 'rounded' }
-    };
+    const SHAPES = { square: { type: 'square' }, dots: { type: 'dots' }, rounded: { type: 'rounded' } };
 
     function getSizePx(){
       const custom = parseInt(customW.value, 10);
@@ -242,8 +174,6 @@
     }
 
     function suggestSize(textLen){
-      // Heurística simples baseada no comprimento do conteúdo
-      // Até 60 chars: 256, até 120: 384, até 200: 512, até 350: 640, acima: 768
       if (textLen <= 60) return 256;
       if (textLen <= 120) return 384;
       if (textLen <= 200) return 512;
@@ -269,7 +199,7 @@
       const opts = {
         width: size,
         height: size,
-        type: 'svg', // manter SVG como base para nítidez
+        type: 'svg',
         data: data,
         margin: quietZone,
         qrOptions: { errorCorrectionLevel: ecc.value },
@@ -283,22 +213,12 @@
         qr = new QRCodeStyling(opts);
         preview.innerHTML = '';
         const holder = document.createElement('div');
-        holder.style.padding = '16px';
+        holder.className = 'p-4';
         preview.appendChild(holder);
         qr.append(holder);
       } else {
         qr.update(opts);
       }
-    }
-
-    function dataUrlToBlob(dataUrl){
-      const [meta, base64] = dataUrl.split(',');
-      const mime = /data:(.*?);base64/.exec(meta)[1];
-      const bin = atob(base64);
-      const len = bin.length;
-      const buffer = new Uint8Array(len);
-      for (let i=0;i<len;i++) buffer[i] = bin.charCodeAt(i);
-      return new Blob([buffer], { type: mime });
     }
 
     async function download(type){
@@ -333,17 +253,10 @@
       }
 
       if (type === 'pdf'){
-        // Gera PNG e insere no PDF no mesmo tamanho em pontos (1 px ~ 0.75 pt, mas vamos mapear 1:1 via jsPDF com unidade px)
         const dataUrl = await domtoimage.toPng(node, { bgcolor: jpgBg.value || '#ffffff', width: size + 32, height: size + 32 });
         const img = new Image();
-        img.src = dataUrl;
-        await img.decode();
-
-        if (!jsPDF || typeof jsPDF !== 'function') {
-          alert('Export para PDF indisponível: jsPDF não foi carregado corretamente. Por favor atualize a página e tente novamente.');
-          return;
-        }
-
+        img.src = dataUrl; await img.decode();
+        if (!jsPDF || typeof jsPDF !== 'function') { alert('Export para PDF indisponível: jsPDF não foi carregado corretamente. Atualize a página e tente novamente.'); return; }
         const pdf = new jsPDF({ orientation: 'p', unit: 'px', format: [img.width + 32, img.height + 32] });
         pdf.addImage(dataUrl, 'PNG', 16, 16, img.width, img.height);
         pdf.save(`${name}.pdf`);
@@ -352,24 +265,15 @@
     }
 
     // Eventos
-    ;['input','keyup','change'].forEach(evt => {
-      content.addEventListener(evt, () => { updateHints(); });
-    });
-
+    ;['input','keyup','change'].forEach(evt => { content.addEventListener(evt, () => { updateHints(); }); });
     ;[presetSize, customW, margin, ecc, shape, fg, bg, transparentBg].forEach(elm => {
       elm.addEventListener('change', () => { createOrUpdate(); updateHints(); });
       elm.addEventListener('input', () => { createOrUpdate(); updateHints(); });
     });
 
-    jpgBg.addEventListener('input', () => { /* apenas exportação */ });
-
+    jpgBg.addEventListener('input', () => {});
     btnGenerate.addEventListener('click', () => createOrUpdate());
-    btnClear.addEventListener('click', () => {
-      content.value = '';
-      updateHints();
-      createOrUpdate();
-    });
-
+    btnClear.addEventListener('click', () => { content.value = ''; updateHints(); createOrUpdate(); });
     dlPng.addEventListener('click', () => download('png'));
     dlJpg.addEventListener('click', () => download('jpg'));
     dlSvg.addEventListener('click', () => download('svg'));
