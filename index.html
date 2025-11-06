@@ -175,8 +175,29 @@
     // jsPDF via ESM UMD loader
     let jsPDF;
     (async () => {
-      const mod = await import('https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js');
-      jsPDF = mod.jsPDF;
+      try {
+        const mod = await import('https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js');
+        // UMD/ESM builds can expose the constructor in different places depending on loader:
+        // - mod.jsPDF
+        // - mod.default.jsPDF
+        // - window.jspdf.jsPDF (UMD attached to window)
+        // - window.jsPDF
+        jsPDF = (mod && (mod.jsPDF || (mod.default && mod.default.jsPDF))) || (window.jspdf && window.jspdf.jsPDF) || window.jsPDF || window.jspdf;
+
+        // Some bundles export an object with a default function property
+        if (jsPDF && typeof jsPDF !== 'function' && jsPDF.default && typeof jsPDF.default === 'function') {
+          jsPDF = jsPDF.default;
+        }
+
+        if (!jsPDF || typeof jsPDF !== 'function') {
+          // Keep jsPDF falsy so callers can detect availability
+          console.warn('jsPDF did not expose a constructor. PDF export will be disabled.');
+          jsPDF = null;
+        }
+      } catch (err) {
+        console.warn('Failed to load jsPDF:', err);
+        jsPDF = null;
+      }
     })();
   </script>
 
@@ -317,6 +338,11 @@
         const img = new Image();
         img.src = dataUrl;
         await img.decode();
+
+        if (!jsPDF || typeof jsPDF !== 'function') {
+          alert('Export para PDF indisponível: jsPDF não foi carregado corretamente. Por favor atualize a página e tente novamente.');
+          return;
+        }
 
         const pdf = new jsPDF({ orientation: 'p', unit: 'px', format: [img.width + 32, img.height + 32] });
         pdf.addImage(dataUrl, 'PNG', 16, 16, img.width, img.height);
