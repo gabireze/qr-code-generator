@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Gerar Ícones PWA</title>
+</head>
+<body>
+  <h1>Gerador de Ícones PWA</h1>
+  <p>Clique nos botões abaixo para baixar os ícones:</p>
+  <button id="gen192">Baixar icon-192x192.png</button>
+  <button id="gen512">Baixar icon-512x512.png</button>
+  <br><br>
+  <canvas id="canvas" style="border: 1px solid #ccc;"></canvas>
+
+  <script>
+    const svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" fill="#0f172a" rx="80"/>
+  <g transform="translate(82, 82) scale(0.75)">
+    <path fill="#3b82f6" d="M0 80C0 53.5 21.5 32 48 32h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V80zM64 96v64h64V96H64zM0 336c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V336zm64 16v64h64V352H64zM304 32h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H304c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48zm80 64H320v64h64V96zM256 304c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s7.2-16 16-16s16 7.2 16 16v96c0 8.8-7.2 16-16 16H368c-8.8 0-16-7.2-16-16s-7.2-16-16-16s-16 7.2-16 16v64c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V304zM368 480a16 16 0 1 1 0-32 16 16 0 1 1 0 32zm64 0a16 16 0 1 1 0-32 16 16 0 1 1 0 32z"/>
+  </g>
+</svg>`;
+
+    function downloadIcon(size, filename) {
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = size;
+      canvas.height = size;
+
+      const img = new Image();
+      const blob = new Blob([svgString], { type: 'image/svg+xml' });
+      const url = URL.createObjectURL(blob);
+
+      img.onload = function() {
+        ctx.drawImage(img, 0, 0, size, size);
+        canvas.toBlob(function(blob) {
+          const a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = filename;
+          a.click();
+          URL.revokeObjectURL(url);
+        }, 'image/png');
+      };
+
+      img.src = url;
+    }
+
+    document.getElementById('gen192').addEventListener('click', () => {
+      downloadIcon(192, 'icon-192x192.png');
+    });
+
+    document.getElementById('gen512').addEventListener('click', () => {
+      downloadIcon(512, 'icon-512x512.png');
+    });
+
+    // Auto-gerar na abertura da página
+    setTimeout(() => {
+      console.log('Use os botões acima para gerar os ícones');
+    }, 100);
+  </script>
+</body>
+</html>
