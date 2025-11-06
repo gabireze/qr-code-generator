@@ -19,10 +19,35 @@
     <section class="rounded-2xl border border-slate-800 bg-slate-900 p-4 shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
       <h2 class="mb-3 text-base font-semibold">Configurações</h2>
 
+      <!-- Tipo de conteúdo -->
+      <div class="mb-3 grid grid-cols-12 gap-3 items-end">
+        <div class="col-span-12 sm:col-span-6">
+          <label for="contentType" class="mb-1 block text-xs text-slate-400">Tipo de conteúdo</label>
+          <select id="contentType" class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none">
+            <option value="free" selected>Texto livre</option>
+            <option value="url">URL</option>
+            <option value="tel">Telefone</option>
+            <option value="sms">SMS</option>
+            <option value="email">E-mail</option>
+            <option value="wifi">Wi-Fi</option>
+            <option value="vcard">vCard</option>
+            <option value="mecard">MeCard</option>
+            <option value="geo">Localização (geo:)</option>
+            <option value="event">Evento (iCalendar)</option>
+            <option value="whatsapp">WhatsApp</option>
+            <option value="pix">PIX (BR Code)</option>
+          </select>
+        </div>
+        
+      </div>
+
+      <!-- Builder dinâmico -->
+      <div id="builder" class="mb-3 hidden"></div>
+
       <div class="mb-3 grid grid-cols-12 gap-3 items-end">
         <div class="col-span-12">
           <label for="content" class="mb-1 block text-xs text-slate-400">Conteúdo</label>
-          <textarea id="content" placeholder="Texto, URL, vCard, Wi‑Fi, etc." class="min-h-[120px] w-full resize-y rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none"></textarea>
+          <textarea id="content" placeholder="Texto, URL, vCard, Wi-Fi, etc." class="min-h-[120px] w-full resize-y rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none"></textarea>
           <div id="sizeHint" class="mt-1 text-xs text-slate-400">Tamanho sugerido: 256 px • ECC M</div>
         </div>
       </div>
@@ -140,6 +165,9 @@
   <script>
     // UI Elements
     const el = (id) => document.getElementById(id);
+  const contentType = el('contentType');
+  const builder = el('builder');
+
     const content = el('content');
     const presetSize = el('presetSize');
     const customW = el('customW');
@@ -200,7 +228,7 @@
         width: size,
         height: size,
         type: 'svg',
-        data: data,
+        data,
         margin: quietZone,
         qrOptions: { errorCorrectionLevel: ecc.value },
         backgroundOptions: { color: background },
@@ -285,8 +313,166 @@
       }
     }
 
+    // ====== Builders ======
+    function esc(s=''){ return String(s ?? '').trim(); }
+
+    function renderFields(fields){
+      if (!fields || !fields.length){ builder.classList.add('hidden'); builder.innerHTML=''; return; }
+      builder.classList.remove('hidden');
+      const rows = fields.map(f => {
+        const base = 'w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none';
+        const col = f.col || 'col-span-12 sm:col-span-6';
+        let input='';
+        if (f.type === 'select'){
+          input = `<select id="${f.id}" class="${base}">${f.options.map(o=>`<option value="${o.value}">${o.label}</option>`).join('')}</select>`;
+        } else if (f.type === 'checkbox'){
+          input = `<input id="${f.id}" type="checkbox" class="h-4 w-4 align-middle" ${f.value? 'checked':''} />`;
+        } else if (f.type === 'datetime-local'){
+          input = `<input id="${f.id}" type="datetime-local" class="${base}" />`;
+        } else {
+          input = `<input id="${f.id}" type="${f.type||'text'}" placeholder="${f.placeholder||''}" class="${base}" />`;
+        }
+        return `<div class="${col}"><label class="mb-1 block text-xs text-slate-400" for="${f.id}">${f.label}</label>${input}</div>`;
+      }).join('');
+      builder.innerHTML = `<div class="grid grid-cols-12 gap-3 items-end">${rows}</div>`;
+    }
+
+    function addListenersTo(ids, onChange){ ids.forEach(id => { const x = el(id); if (!x) return; ['input','change'].forEach(evt => x.addEventListener(evt, onChange)); }); }
+
+  function setPayload(payload){ content.value = payload; updateHints(); createOrUpdate(); }
+
+    function buildByType(){
+      const t = contentType.value;
+      if (t === 'free'){ builder.classList.add('hidden'); return; }
+      const get = (id) => el(id)?.value;
+      const getChecked = (id) => !!el(id)?.checked;
+      let payload='';
+      switch(t){
+        case 'url': payload = esc(get('url_input')); break;
+        case 'tel': payload = `tel:${esc(get('tel_number'))}`; break;
+        case 'sms': {
+          const n = esc(get('sms_number')); const m = esc(get('sms_text'));
+          payload = m ? `SMSTO:${n}:${m}` : `SMSTO:${n}`; break;
+        }
+        case 'email': {
+          const to = esc(get('mail_to')); const subj = encodeURIComponent(esc(get('mail_subject')));
+          const body = encodeURIComponent(esc(get('mail_body')));
+          const qs = (subj||body)?`?${subj?`subject=${subj}`:''}${subj&&body?'&':''}${body?`body=${body}`:''}`:'';
+          payload = `mailto:${to}${qs}`; break;
+        }
+        case 'wifi': {
+          const ssid = esc(get('wifi_ssid')); const pwd = esc(get('wifi_pwd'));
+          const auth = esc(get('wifi_auth')) || 'WPA';
+          const hidden = getChecked('wifi_hidden') ? 'true' : '';
+          payload = `WIFI:T:${auth};S:${ssid};${pwd?`P:${pwd};`:''}${hidden?`H:${hidden};`:''};`;
+          break;
+        }
+        case 'vcard': {
+          const n = esc(get('vc_name')); const org = esc(get('vc_org')); const title = esc(get('vc_title'));
+          const tel = esc(get('vc_tel')); const email = esc(get('vc_email'));
+          const url = esc(get('vc_url')); const addr = esc(get('vc_addr'));
+          payload = [
+            'BEGIN:VCARD','VERSION:3.0',
+            n?`FN:${n}`:'', org?`ORG:${org}`:'', title?`TITLE:${title}`:'',
+            tel?`TEL;TYPE=CELL:${tel}`:'', email?`EMAIL:${email}`:'', url?`URL:${url}`:'', addr?`ADR;TYPE=WORK:${addr}`:'',
+            'END:VCARD'
+          ].filter(Boolean).join('\n');
+          break;
+        }
+        case 'mecard': {
+          const n = esc(get('mc_name')); const tel = esc(get('mc_tel')); const email = esc(get('mc_email')); const url = esc(get('mc_url'));
+          const addr = esc(get('mc_addr'));
+          payload = `MECARD:${n?`N:${n};`:''}${tel?`TEL:${tel};`:''}${email?`EMAIL:${email};`:''}${url?`URL:${url};`:''}${addr?`ADR:${addr};`:''};`;
+          break;
+        }
+        case 'geo': {
+          const lat = esc(get('geo_lat')); const lng = esc(get('geo_lng')); const q = esc(get('geo_q')); const z = esc(get('geo_z'));
+          const base = `geo:${lat},${lng}`; const qs = q||z ? `?${q?`q=${encodeURIComponent(q)}`:''}${q&&z?'&':''}${z?`z=${z}`:''}` : '';
+          payload = base + qs; break;
+        }
+        case 'event': {
+          const summary = esc(get('ev_summary')); const loc = esc(get('ev_loc')); const desc = esc(get('ev_desc'));
+          const start = esc(get('ev_start')); const end = esc(get('ev_end'));
+          const dt = (s)=> s? s.replace(/[-:]/g, '').replace('.000','').replace('T','T')+'Z' : '';
+          payload = [
+            'BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT',
+            start?`DTSTART:${dt(start)}`:'', end?`DTEND:${dt(end)}`:'',
+            summary?`SUMMARY:${summary}`:'', loc?`LOCATION:${loc}`:'', desc?`DESCRIPTION:${desc}`:'',
+            'END:VEVENT','END:VCALENDAR'
+          ].filter(Boolean).join('\n');
+          break;
+        }
+        case 'whatsapp': {
+          const n = esc(get('wa_number')).replace(/\D/g,''); const m = encodeURIComponent(esc(get('wa_text')));
+          payload = `https://wa.me/${n}${m?`?text=${m}`:''}`; break;
+        }
+        case 'pix': {
+          const chave = esc(get('pix_chave')); const nome = esc(get('pix_nome')); const cidade = esc(get('pix_cidade')) || 'SAO PAULO';
+          const valor = esc(get('pix_valor')); const ref = esc(get('pix_ref')); const msg = esc(get('pix_msg'));
+          payload = buildPix({ chave, nome, cidade, valor, ref, msg });
+          break;
+        }
+      }
+  setPayload(payload);
+    }
+
+    // PIX EMV builder
+    function emv(tag, value){ const val = String(value ?? ''); const len = String(val.length).padStart(2,'0'); return `${tag}${len}${val}`; }
+    function crc16(payload){
+      let crc = 0xFFFF; for (let i=0;i<payload.length;i++){ crc ^= payload.charCodeAt(i) << 8; for (let j=0;j<8;j++){ crc = (crc & 0x8000) ? ((crc << 1) ^ 0x1021) : (crc << 1); crc &= 0xFFFF; } }
+      return crc.toString(16).toUpperCase().padStart(4,'0');
+    }
+    function buildPix({ chave, nome, cidade, valor, ref, msg }){
+      const gui = emv('00','br.gov.bcb.pix');
+      const k = emv('01', chave);
+      const d = msg ? emv('02', msg.substring(0,50)) : '';
+      const mai = emv('26', gui + k + d);
+      const pfi = emv('00','01');
+      const pim = emv('01','11'); // estático
+      const mcc = emv('52','0000');
+      const curr = emv('53','986');
+      const amt = valor ? emv('54', String(Number(valor)).replace(',', '.')) : '';
+      const ccode = emv('58','BR');
+      const mname = emv('59', (nome||'RECEBEDOR').substring(0,25));
+      const mcity = emv('60', (cidade||'SAO PAULO').substring(0,15).toUpperCase());
+      const addData = emv('62', (ref? emv('05', ref.substring(0,25)) : emv('05','***')));
+      let base = pfi + pim + mai + mcc + curr + amt + ccode + mname + mcity + addData + '6304';
+      const crc = crc16(base);
+      return base + crc;
+    }
+
+    function renderBuilderByType(){
+      const t = contentType.value;
+      // When using builder forms (not 'free'), lock manual editing of the content textarea
+      content.readOnly = (t !== 'free');
+      if (t === 'free'){ renderFields([]); return; }
+      const F = [];
+      if (t === 'url') F.push({id:'url_input', label:'URL', placeholder:'https://exemplo.com'});
+      if (t === 'tel') F.push({id:'tel_number', label:'Telefone', placeholder:'+55XXXXXXXXXXX'});
+      if (t === 'sms') F.push({id:'sms_number', label:'Telefone', placeholder:'+55XXXXXXXXXXX'},{id:'sms_text', label:'Mensagem', placeholder:'Texto da SMS'});
+      if (t === 'email') F.push({id:'mail_to', label:'Para', placeholder:'usuario@dominio.com'},{id:'mail_subject', label:'Assunto'},{id:'mail_body', label:'Corpo'});
+      if (t === 'wifi') F.push(
+        {id:'wifi_auth', label:'Autenticação', type:'select', options:[{value:'WPA',label:'WPA/WPA2'},{value:'WEP',label:'WEP'},{value:'nopass',label:'Sem senha'}], col:'col-span-12 sm:col-span-4'},
+        {id:'wifi_ssid', label:'SSID', col:'col-span-12 sm:col-span-4'},
+        {id:'wifi_pwd', label:'Senha', col:'col-span-12 sm:col-span-4'},
+        {id:'wifi_hidden', label:'Rede oculta', type:'checkbox', col:'col-span-12 sm:col-span-3'}
+      );
+      if (t === 'vcard') F.push({id:'vc_name', label:'Nome completo'},{id:'vc_org', label:'Empresa'},{id:'vc_title', label:'Cargo'},{id:'vc_tel', label:'Telefone'},{id:'vc_email', label:'E-mail'},{id:'vc_url', label:'Site/URL'},{id:'vc_addr', label:'Endereço'});
+      if (t === 'mecard') F.push({id:'mc_name', label:'Nome'},{id:'mc_tel', label:'Telefone'},{id:'mc_email', label:'E-mail'},{id:'mc_url', label:'URL'},{id:'mc_addr', label:'Endereço'});
+      if (t === 'geo') F.push({id:'geo_lat', label:'Latitude'},{id:'geo_lng', label:'Longitude'},{id:'geo_q', label:'Busca/label (opcional)'},{id:'geo_z', label:'Zoom (1-20, opcional)'});
+      if (t === 'event') F.push({id:'ev_summary', label:'Título'},{id:'ev_loc', label:'Local'},{id:'ev_desc', label:'Descrição'},{id:'ev_start', label:'Início (UTC)', type:'datetime-local'},{id:'ev_end', label:'Fim (UTC)', type:'datetime-local'});
+      if (t === 'whatsapp') F.push({id:'wa_number', label:'Número (com DDI)', placeholder:'55XXXXXXXXXXX'},{id:'wa_text', label:'Mensagem'});
+      if (t === 'pix') F.push({id:'pix_chave', label:'Chave PIX'},{id:'pix_nome', label:'Nome do recebedor'},{id:'pix_cidade', label:'Cidade'},{id:'pix_valor', label:'Valor (opcional)', placeholder:'0.00'},{id:'pix_ref', label:'Identificador (opcional)'},{id:'pix_msg', label:'Mensagem (opcional)'});
+      renderFields(F);
+      addListenersTo(F.map(x=>x.id), buildByType);
+      buildByType();
+    }
+
     // Eventos
     ;['input','keyup','change'].forEach(evt => { content.addEventListener(evt, () => { updateHints(); }); });
+    contentType.addEventListener('change', renderBuilderByType);
+  // no manual lock option anymore; form builder always sets the content when in a form type
+
     ;[presetSize, customW, margin, ecc, shape, fg, bg, transparentBg].forEach(elm => {
       elm.addEventListener('change', () => { createOrUpdate(); updateHints(); });
       elm.addEventListener('input', () => { createOrUpdate(); updateHints(); });
@@ -303,6 +489,7 @@
     // Inicialização
     content.value = 'https://example.com';
     updateHints();
+    renderBuilderByType();
     createOrUpdate();
   </script>
 </body>
