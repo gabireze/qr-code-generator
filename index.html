@@ -131,7 +131,7 @@
       <div class="mb-3 hidden sm:block">
         <label class="mb-1 block text-xs text-slate-400">Layout da prévia</label>
         <div class="flex gap-2">
-          <button type="button" id="layoutSide" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-blue-500 text-white text-sm justify-start" title="QR Code ao lado (fixo 512px)">
+          <button type="button" id="layoutSide" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-blue-600 text-white text-sm justify-start" title="QR Code ao lado (fixo 512px)">
             <i class="fa-solid fa-table-columns"></i>
             <span>Lado a lado</span>
           </button>
@@ -151,7 +151,7 @@
         <!-- Icon toolbar (icon + text buttons) -->
         <div id="contentTypeGroup" class="flex flex-wrap gap-2">
           <!-- Geral -->
-          <button type="button" data-value="free" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl bg-blue-500 text-white text-sm justify-center sm:justify-start" title="Texto livre">
+          <button type="button" data-value="free" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl bg-blue-600 text-white text-sm justify-center sm:justify-start" title="Texto livre">
             <i class="fa-solid fa-font"></i>
             <span>Texto</span>
           </button>
@@ -302,7 +302,7 @@
           </select>
         </div>
         <div class="col-span-6 sm:col-span-3">
-          <label class="mb-1 block text-xs text-slate-400">Forma dos módulos</label>
+          <label for="shape" class="mb-1 block text-xs text-slate-400">Forma dos módulos</label>
           <select id="shape" class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none">
             <option value="square" selected>Quadrados</option>
             <option value="dots">Pontos</option>
@@ -499,7 +499,7 @@
               Crie QR Codes para sites, páginas de redes sociais, portfólios online ou qualquer URL. Perfeito para 
               cartões de visita digitais, materiais impressos e campanhas de marketing.
             </p>
-            <ul class="text-slate-500 text-xs space-y-1">
+            <ul class="text-slate-400 text-xs space-y-1">
               <li>✓ Sites e landing pages</li>
               <li>✓ Redes sociais (Instagram, LinkedIn, Twitter)</li>
               <li>✓ YouTube e plataformas de vídeo</li>
@@ -516,7 +516,7 @@
               Facilite o contato com QR Codes para WhatsApp, SMS, telefone e e-mail. Clientes podem entrar em 
               contato instantaneamente sem precisar digitar números ou endereços.
             </p>
-            <ul class="text-slate-500 text-xs space-y-1">
+            <ul class="text-slate-400 text-xs space-y-1">
               <li>✓ WhatsApp com mensagem pré-definida</li>
               <li>✓ SMS e ligações telefônicas</li>
               <li>✓ E-mail com assunto e corpo</li>
@@ -533,7 +533,7 @@
               Gere QR Codes PIX compatíveis com o padrão brasileiro de pagamentos instantâneos. Ideal para 
               comerciantes, freelancers e vendas online.
             </p>
-            <ul class="text-slate-500 text-xs space-y-1">
+            <ul class="text-slate-400 text-xs space-y-1">
               <li>✓ PIX estático e dinâmico</li>
               <li>✓ Valor fixo ou aberto</li>
               <li>✓ Identificador personalizado</li>
@@ -550,7 +550,7 @@
               Compartilhe informações de contato completas que podem ser salvas diretamente na agenda do smartphone. 
               Perfeito para networking e eventos.
             </p>
-            <ul class="text-slate-500 text-xs space-y-1">
+            <ul class="text-slate-400 text-xs space-y-1">
               <li>✓ Nome, empresa e cargo</li>
               <li>✓ Telefone, e-mail e site</li>
               <li>✓ Endereço completo</li>
@@ -567,7 +567,7 @@
               Permita que visitantes se conectem à sua rede Wi-Fi instantaneamente, sem precisar digitar senhas 
               complicadas. Ideal para cafés, restaurantes e escritórios.
             </p>
-            <ul class="text-slate-500 text-xs space-y-1">
+            <ul class="text-slate-400 text-xs space-y-1">
               <li>✓ Suporte WPA/WPA2/WPA3</li>
               <li>✓ Redes abertas e ocultas</li>
               <li>✓ Conexão automática</li>
@@ -584,7 +584,7 @@
               Receba pagamentos em Bitcoin, Ethereum, Litecoin, Dogecoin e outras criptomoedas. Simplifique 
               transações com endereços em formato QR Code.
             </p>
-            <ul class="text-slate-500 text-xs space-y-1">
+            <ul class="text-slate-400 text-xs space-y-1">
               <li>✓ Bitcoin, Ethereum, Litecoin</li>
               <li>✓ Bitcoin Cash, Dogecoin, Monero</li>
               <li>✓ Valor e mensagem opcionais</li>
@@ -912,7 +912,7 @@
       <div class="border-t border-slate-800 pt-6 text-center">
         <p class="text-xs text-slate-500">
           © 2025 Gerador de QR Code - Desenvolvido por 
-          <a href="https://gabireze.com.br/" class="text-blue-400 hover:text-blue-300 transition" target="_blank" rel="noopener">@gabireze</a>
+          <a href="https://gabireze.com.br/" class="text-blue-400 hover:text-blue-300 underline transition" target="_blank" rel="noopener">@gabireze</a>
         </p>
         <p class="text-xs text-slate-600 mt-2">
           QR Code Generator | Gerador de Código QR Online | Criar QR Code Grátis
@@ -952,9 +952,9 @@
     contentTypeButtons.forEach(b => {
       if (b.dataset.value === v){
         b.classList.remove('border','border-slate-800','bg-slate-950','text-slate-200');
-        b.classList.add('bg-blue-500','text-white');
+        b.classList.add('bg-blue-600','text-white');
       } else {
-        b.classList.remove('bg-blue-500','text-white');
+        b.classList.remove('bg-blue-600','text-white');
         b.classList.add('border','border-slate-800','bg-slate-950','text-slate-200');
       }
     });
@@ -981,15 +981,15 @@
       // Layout lado a lado (padrão desktop)
       mainGrid.className = 'mx-auto my-6 max-w-6xl px-4 grid grid-cols-1 gap-4 lg:[grid-template-columns:1.4fr_1fr]';
       layoutSide.classList.remove('border','border-slate-800','bg-slate-950','text-slate-200');
-      layoutSide.classList.add('bg-blue-500','text-white');
-      layoutVertical.classList.remove('bg-blue-500','text-white');
+      layoutSide.classList.add('bg-blue-600','text-white');
+      layoutVertical.classList.remove('bg-blue-600','text-white');
       layoutVertical.classList.add('border','border-slate-800','bg-slate-950','text-slate-200');
     } else {
       // Layout vertical (QR code abaixo - responsivo)
       mainGrid.className = 'mx-auto my-6 max-w-6xl px-4 grid grid-cols-1 gap-4';
       layoutVertical.classList.remove('border','border-slate-800','bg-slate-950','text-slate-200');
-      layoutVertical.classList.add('bg-blue-500','text-white');
-      layoutSide.classList.remove('bg-blue-500','text-white');
+      layoutVertical.classList.add('bg-blue-600','text-white');
+      layoutSide.classList.remove('bg-blue-600','text-white');
       layoutSide.classList.add('border','border-slate-800','bg-slate-950','text-slate-200');
     }
     // Aguarda o DOM atualizar antes de recriar o QR
