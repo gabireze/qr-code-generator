@@ -41,57 +41,131 @@
         <label class="mb-1 block text-xs text-slate-400">Tipo de conteúdo</label>
         <!-- Hidden input kept so existing JS can use #contentType.value and change events -->
         <input id="contentType" type="hidden" value="free" />
-        <!-- Icon toolbar (icon + text buttons) -->
-        <div id="contentTypeGroup" class="flex flex-wrap gap-2">
-            <button type="button" data-value="free" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl bg-blue-500 text-white text-sm" title="Texto livre">
-              <i class="fa-solid fa-font"></i>
-              <span>Texto</span>
-            </button>
-            <button type="button" data-value="url" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="URL">
-              <i class="fa-solid fa-link"></i>
-              <span>URL</span>
-            </button>
-            <button type="button" data-value="tel" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Telefone">
-              <i class="fa-solid fa-phone"></i>
-              <span>Telefone</span>
-            </button>
-            <button type="button" data-value="sms" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="SMS">
-              <i class="fa-solid fa-message"></i>
-              <span>SMS</span>
-            </button>
-            <button type="button" data-value="email" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="E-mail">
-              <i class="fa-solid fa-envelope"></i>
-              <span>E-mail</span>
-            </button>
-            <button type="button" data-value="wifi" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Wi‑Fi">
-              <i class="fa-solid fa-wifi"></i>
-              <span>Wi-Fi</span>
-            </button>
-            <button type="button" data-value="vcard" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="vCard">
-              <i class="fa-solid fa-id-card"></i>
-              <span>vCard</span>
-            </button>
-            <button type="button" data-value="mecard" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="MeCard">
-              <i class="fa-solid fa-address-card"></i>
-              <span>MeCard</span>
-            </button>
-            <button type="button" data-value="geo" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Localização">
-              <i class="fa-solid fa-location-dot"></i>
-              <span>Local</span>
-            </button>
-            <button type="button" data-value="event" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Evento">
-              <i class="fa-solid fa-calendar"></i>
-              <span>Evento</span>
-            </button>
-            <button type="button" data-value="whatsapp" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="WhatsApp">
-              <i class="fa-brands fa-whatsapp"></i>
-              <span>WhatsApp</span>
-            </button>
-            <button type="button" data-value="pix" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="PIX">
-              <i class="fa-solid fa-qrcode"></i>
-              <span>PIX</span>
-            </button>
+        
+        <!-- Icon toolbar (icon + text buttons) organized by categories -->
+        <div id="contentTypeGroup" class="space-y-3">
+          
+          <!-- Geral -->
+          <div>
+            <div class="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">Geral</div>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" data-value="free" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl bg-blue-500 text-white text-sm" title="Texto livre">
+                <i class="fa-solid fa-font"></i>
+                <span>Texto</span>
+              </button>
+              <button type="button" data-value="url" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="URL">
+                <i class="fa-solid fa-link"></i>
+                <span>URL</span>
+              </button>
+            </div>
           </div>
+
+          <!-- Comunicação -->
+          <div>
+            <div class="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">Comunicação</div>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" data-value="tel" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Telefone">
+                <i class="fa-solid fa-phone"></i>
+                <span>Telefone</span>
+              </button>
+              <button type="button" data-value="sms" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="SMS">
+                <i class="fa-solid fa-message"></i>
+                <span>SMS</span>
+              </button>
+              <button type="button" data-value="email" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="E-mail">
+                <i class="fa-solid fa-envelope"></i>
+                <span>E-mail</span>
+              </button>
+              <button type="button" data-value="whatsapp" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>WhatsApp</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Dados Pessoais -->
+          <div>
+            <div class="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">Dados Pessoais</div>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" data-value="vcard" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="vCard">
+                <i class="fa-solid fa-id-card"></i>
+                <span>vCard</span>
+              </button>
+              <button type="button" data-value="mecard" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="MeCard">
+                <i class="fa-solid fa-address-card"></i>
+                <span>MeCard</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Localização & Eventos -->
+          <div>
+            <div class="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">Localização & Eventos</div>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" data-value="geo" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Localização">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Local</span>
+              </button>
+              <button type="button" data-value="event" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Evento">
+                <i class="fa-solid fa-calendar"></i>
+                <span>Evento</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Conectividade -->
+          <div>
+            <div class="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">Conectividade</div>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" data-value="wifi" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Wi‑Fi">
+                <i class="fa-solid fa-wifi"></i>
+                <span>Wi-Fi</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Pagamentos -->
+          <div>
+            <div class="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">Pagamentos</div>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" data-value="pix" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="PIX">
+                <i class="fa-solid fa-qrcode"></i>
+                <span>PIX</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Criptomoedas -->
+          <div>
+            <div class="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">Criptomoedas</div>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" data-value="bitcoin" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Bitcoin">
+                <i class="fa-brands fa-bitcoin"></i>
+                <span>Bitcoin</span>
+              </button>
+              <button type="button" data-value="ethereum" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Ethereum">
+                <i class="fa-brands fa-ethereum"></i>
+                <span>Ethereum</span>
+              </button>
+              <button type="button" data-value="litecoin" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Litecoin">
+                <i class="fa-solid fa-coins"></i>
+                <span>Litecoin</span>
+              </button>
+              <button type="button" data-value="bitcoincash" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Bitcoin Cash">
+                <i class="fa-solid fa-money-bill-transfer"></i>
+                <span>Bitcoin Cash</span>
+              </button>
+              <button type="button" data-value="dogecoin" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Dogecoin">
+                <i class="fa-solid fa-dog"></i>
+                <span>Dogecoin</span>
+              </button>
+              <button type="button" data-value="monero" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm" title="Monero">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Monero</span>
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -542,6 +616,65 @@
           payload = buildPix({ chave, nome, cidade, valor, ref, msg });
           break;
         }
+        case 'bitcoin': {
+          const addr = esc(get('btc_address'));
+          const amount = esc(get('btc_amount'));
+          const label = esc(get('btc_label'));
+          const message = esc(get('btc_message'));
+          const params = [];
+          if (amount) params.push(`amount=${amount}`);
+          if (label) params.push(`label=${encodeURIComponent(label)}`);
+          if (message) params.push(`message=${encodeURIComponent(message)}`);
+          payload = `bitcoin:${addr}${params.length ? '?' + params.join('&') : ''}`;
+          break;
+        }
+        case 'ethereum': {
+          const addr = esc(get('eth_address'));
+          const value = esc(get('eth_value'));
+          const chainId = esc(get('eth_chainid')) || '1';
+          payload = `ethereum:${addr}@${chainId}${value ? `?value=${value}` : ''}`;
+          break;
+        }
+        case 'litecoin': {
+          const addr = esc(get('ltc_address'));
+          const amount = esc(get('ltc_amount'));
+          const label = esc(get('ltc_label'));
+          const params = [];
+          if (amount) params.push(`amount=${amount}`);
+          if (label) params.push(`label=${encodeURIComponent(label)}`);
+          payload = `litecoin:${addr}${params.length ? '?' + params.join('&') : ''}`;
+          break;
+        }
+        case 'bitcoincash': {
+          const addr = esc(get('bch_address'));
+          const amount = esc(get('bch_amount'));
+          const label = esc(get('bch_label'));
+          const params = [];
+          if (amount) params.push(`amount=${amount}`);
+          if (label) params.push(`label=${encodeURIComponent(label)}`);
+          payload = `bitcoincash:${addr}${params.length ? '?' + params.join('&') : ''}`;
+          break;
+        }
+        case 'dogecoin': {
+          const addr = esc(get('doge_address'));
+          const amount = esc(get('doge_amount'));
+          const label = esc(get('doge_label'));
+          const params = [];
+          if (amount) params.push(`amount=${amount}`);
+          if (label) params.push(`label=${encodeURIComponent(label)}`);
+          payload = `dogecoin:${addr}${params.length ? '?' + params.join('&') : ''}`;
+          break;
+        }
+        case 'monero': {
+          const addr = esc(get('xmr_address'));
+          const amount = esc(get('xmr_amount'));
+          const desc = esc(get('xmr_desc'));
+          const params = [];
+          if (amount) params.push(`tx_amount=${amount}`);
+          if (desc) params.push(`tx_description=${encodeURIComponent(desc)}`);
+          payload = `monero:${addr}${params.length ? '?' + params.join('&') : ''}`;
+          break;
+        }
       }
   setPayload(payload);
     }
@@ -593,6 +726,37 @@
       if (t === 'event') F.push({id:'ev_summary', label:'Título'},{id:'ev_loc', label:'Local'},{id:'ev_desc', label:'Descrição'},{id:'ev_start', label:'Início (UTC)', type:'datetime-local'},{id:'ev_end', label:'Fim (UTC)', type:'datetime-local'});
       if (t === 'whatsapp') F.push({id:'wa_number', label:'Número (com DDI)', placeholder:'55XXXXXXXXXXX'},{id:'wa_text', label:'Mensagem'});
       if (t === 'pix') F.push({id:'pix_chave', label:'Chave PIX'},{id:'pix_nome', label:'Nome do recebedor'},{id:'pix_cidade', label:'Cidade'},{id:'pix_valor', label:'Valor (opcional)', placeholder:'0.00'},{id:'pix_ref', label:'Identificador (opcional)'},{id:'pix_msg', label:'Mensagem (opcional)'});
+      if (t === 'bitcoin') F.push(
+        {id:'btc_address', label:'Endereço Bitcoin', placeholder:'1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', col:'col-span-12'},
+        {id:'btc_amount', label:'Valor (BTC)', placeholder:'0.001'},
+        {id:'btc_label', label:'Nome/Label (opcional)', placeholder:'Doação'},
+        {id:'btc_message', label:'Mensagem (opcional)', placeholder:'Obrigado!'}
+      );
+      if (t === 'ethereum') F.push(
+        {id:'eth_address', label:'Endereço Ethereum', placeholder:'0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb', col:'col-span-12'},
+        {id:'eth_value', label:'Valor (Wei)', placeholder:'1000000000000000000'},
+        {id:'eth_chainid', label:'Chain ID', placeholder:'1 (Mainnet)'}
+      );
+      if (t === 'litecoin') F.push(
+        {id:'ltc_address', label:'Endereço Litecoin', placeholder:'LQTpS3VaYTjCr4s9Y1r6J5q3v4n8m2', col:'col-span-12'},
+        {id:'ltc_amount', label:'Valor (LTC)', placeholder:'0.5'},
+        {id:'ltc_label', label:'Nome/Label (opcional)', placeholder:'Pagamento'}
+      );
+      if (t === 'bitcoincash') F.push(
+        {id:'bch_address', label:'Endereço Bitcoin Cash', placeholder:'qr7fzmep8g7h7ymfxy74lgc0v950j3r2959lhtxxsl', col:'col-span-12'},
+        {id:'bch_amount', label:'Valor (BCH)', placeholder:'0.01'},
+        {id:'bch_label', label:'Nome/Label (opcional)', placeholder:'Compra'}
+      );
+      if (t === 'dogecoin') F.push(
+        {id:'doge_address', label:'Endereço Dogecoin', placeholder:'DH5yaieqoZN36fDVciNyRueRGvGLR3mr7L', col:'col-span-12'},
+        {id:'doge_amount', label:'Valor (DOGE)', placeholder:'100'},
+        {id:'doge_label', label:'Nome/Label (opcional)', placeholder:'Muito wow!'}
+      );
+      if (t === 'monero') F.push(
+        {id:'xmr_address', label:'Endereço Monero', placeholder:'4AdUndXHHZ6cfufTMvppY6JwXNouMBzSkbLYfpAV5Usx...', col:'col-span-12'},
+        {id:'xmr_amount', label:'Valor (XMR)', placeholder:'0.5'},
+        {id:'xmr_desc', label:'Descrição (opcional)', placeholder:'Pagamento privado'}
+      );
       renderFields(F);
       addListenersTo(F.map(x=>x.id), buildByType);
       buildByType();
