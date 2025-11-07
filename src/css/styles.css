@@ -1,0 +1,32 @@
+/* Custom styles for QR Code Generator */
+/* Tailwind classes are handled via CDN */
+
+/* Additional custom styles if needed */
+details summary {
+  cursor: pointer;
+  user-select: none;
+}
+
+details summary:hover {
+  opacity: 0.9;
+}
+
+/* Smooth transitions */
+button {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Focus states for accessibility */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Loading state */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
