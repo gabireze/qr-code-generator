@@ -111,24 +111,24 @@
         <div class="text-center sm:text-left">
           <h1 class="m-0 text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
             <i class="fa-solid fa-qrcode text-blue-500"></i>
-            Gerador de QR Code
+            <span data-i18n="header.title">Gerador de QR Code</span>
           </h1>
-          <p class="text-xs sm:text-sm text-slate-400 mt-1">
+          <p class="text-xs sm:text-sm text-slate-400 mt-1" data-i18n="header.subtitle">
             Crie QR Codes grátis em PNG, JPG, SVG e PDF
           </p>
         </div>
         <div class="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm">
           <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800 border border-slate-700">
             <i class="fa-solid fa-infinity text-green-400"></i>
-            <span class="text-slate-300 hidden sm:inline">Ilimitado</span>
+            <span class="text-slate-300 hidden sm:inline" data-i18n="header.unlimited">Ilimitado</span>
           </div>
           <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800 border border-slate-700">
             <i class="fa-solid fa-shield-halved text-blue-400"></i>
-            <span class="text-slate-300 hidden sm:inline">Privado</span>
+            <span class="text-slate-300 hidden sm:inline" data-i18n="header.private">Privado</span>
           </div>
           <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800 border border-slate-700">
             <i class="fa-solid fa-star text-yellow-400"></i>
-            <span class="text-slate-300 hidden sm:inline">Gratuito</span>
+            <span class="text-slate-300 hidden sm:inline" data-i18n="header.free">Gratuito</span>
           </div>
         </div>
       </div>
@@ -138,133 +138,133 @@
   <main class="mx-auto my-6 max-w-6xl px-4 grid grid-cols-1 gap-4 lg:[grid-template-columns:1.4fr_1fr] flex-grow" id="mainGrid" role="main">
     <!-- Configurações -->
     <section class="rounded-2xl border border-slate-800 bg-slate-900 p-4 shadow-[0_10px_30px_rgba(0,0,0,0.15)]" aria-label="Configurações do QR Code">
-      <h2 class="mb-3 text-base font-semibold">Configurações</h2>
+      <h2 class="mb-3 text-base font-semibold" data-i18n="settings.title">Configurações</h2>
 
       <!-- Seletor de Layout (apenas desktop) -->
       <div class="mb-3 hidden sm:block">
-        <label class="mb-1 block text-xs text-slate-400">Layout da prévia</label>
+        <label class="mb-1 block text-xs text-slate-400" data-i18n="settings.layout">Layout da prévia</label>
         <div class="flex gap-2">
-          <button type="button" id="layoutSide" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-blue-600 text-white text-sm justify-start" title="QR Code ao lado (fixo 512px)">
+          <button type="button" id="layoutSide" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-blue-600 text-white text-sm justify-start" data-i18n-title="tooltip.layoutSide" title="QR Code ao lado (fixo 512px)">
             <i class="fa-solid fa-table-columns"></i>
-            <span>Lado a lado</span>
+            <span data-i18n="settings.layout.side">Lado a lado</span>
           </button>
-          <button type="button" id="layoutVertical" class="flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-start" title="QR Code abaixo (responsivo)">
+          <button type="button" id="layoutVertical" class="flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-start" data-i18n-title="tooltip.layoutVertical" title="QR Code abaixo (responsivo)">
             <i class="fa-solid fa-bars"></i>
-            <span>Vertical</span>
+            <span data-i18n="settings.layout.vertical">Vertical</span>
           </button>
         </div>
       </div>
 
       <!-- Tipo de conteúdo -->
       <div class="mb-3">
-        <label class="mb-1 block text-xs text-slate-400">Tipo de conteúdo</label>
+        <label class="mb-1 block text-xs text-slate-400" data-i18n="settings.contentType">Tipo de conteúdo</label>
         <!-- Hidden input kept so existing JS can use #contentType.value and change events -->
         <input id="contentType" type="hidden" value="free" />
         
         <!-- Icon toolbar (icon + text buttons) -->
         <div id="contentTypeGroup" class="flex flex-wrap gap-2">
           <!-- Geral -->
-          <button type="button" data-value="free" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl bg-blue-600 text-white text-sm justify-center sm:justify-start" title="Texto livre">
+          <button type="button" data-value="free" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl bg-blue-600 text-white text-sm justify-center sm:justify-start" data-i18n-title="tooltip.free" title="Texto livre">
             <i class="fa-solid fa-font"></i>
-            <span>Texto</span>
+            <span data-i18n="contentType.free">Texto</span>
           </button>
-          <button type="button" data-value="url" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="URL">
+          <button type="button" data-value="url" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" data-i18n-title="tooltip.url" title="URL">
             <i class="fa-solid fa-link"></i>
-            <span>URL</span>
+            <span data-i18n="contentType.url">URL</span>
           </button>
           
           <!-- Separador visual discreto -->
           <div class="w-px h-8 bg-slate-800 self-center hidden sm:block"></div>
           
           <!-- Comunicação -->
-          <button type="button" data-value="tel" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="Telefone">
+          <button type="button" data-value="tel" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" data-i18n-title="tooltip.tel" title="Telefone">
             <i class="fa-solid fa-phone"></i>
-            <span>Telefone</span>
+            <span data-i18n="contentType.tel">Telefone</span>
           </button>
-          <button type="button" data-value="sms" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="SMS">
+          <button type="button" data-value="sms" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" data-i18n-title="tooltip.sms" title="SMS">
             <i class="fa-solid fa-message"></i>
-            <span>SMS</span>
+            <span data-i18n="contentType.sms">SMS</span>
           </button>
-          <button type="button" data-value="email" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="E-mail">
+          <button type="button" data-value="email" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" data-i18n-title="tooltip.email" title="E-mail">
             <i class="fa-solid fa-envelope"></i>
-            <span>E-mail</span>
+            <span data-i18n="contentType.email">E-mail</span>
           </button>
-          <button type="button" data-value="whatsapp" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="WhatsApp">
+          <button type="button" data-value="whatsapp" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" data-i18n-title="tooltip.whatsapp" title="WhatsApp">
             <i class="fa-brands fa-whatsapp"></i>
-            <span>WhatsApp</span>
+            <span data-i18n="contentType.whatsapp">WhatsApp</span>
           </button>
           
           <!-- Separador visual discreto -->
           <div class="w-px h-8 bg-slate-800 self-center hidden sm:block"></div>
           
           <!-- Dados Pessoais -->
-          <button type="button" data-value="vcard" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="vCard">
+          <button type="button" data-value="vcard" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" data-i18n-title="tooltip.vcard" title="vCard">
             <i class="fa-solid fa-id-card"></i>
-            <span>vCard</span>
+            <span data-i18n="contentType.vcard">vCard</span>
           </button>
-          <button type="button" data-value="mecard" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="MeCard">
+          <button type="button" data-value="mecard" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" data-i18n-title="tooltip.mecard" title="MeCard">
             <i class="fa-solid fa-address-card"></i>
-            <span>MeCard</span>
+            <span data-i18n="contentType.mecard">MeCard</span>
           </button>
           
           <!-- Separador visual discreto -->
           <div class="w-px h-8 bg-slate-800 self-center hidden sm:block"></div>
           
           <!-- Localização & Eventos -->
-          <button type="button" data-value="geo" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="Localização">
+          <button type="button" data-value="geo" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" data-i18n-title="tooltip.geo" title="Localização">
             <i class="fa-solid fa-location-dot"></i>
-            <span>Local</span>
+            <span data-i18n="contentType.geo">Local</span>
           </button>
-          <button type="button" data-value="event" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="Evento">
+          <button type="button" data-value="event" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" data-i18n-title="tooltip.event" title="Evento">
             <i class="fa-solid fa-calendar"></i>
-            <span>Evento</span>
+            <span data-i18n="contentType.event">Evento</span>
           </button>
           
           <!-- Separador visual discreto -->
           <div class="w-px h-8 bg-slate-800 self-center hidden sm:block"></div>
           
           <!-- Conectividade -->
-          <button type="button" data-value="wifi" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="Wi‑Fi">
+          <button type="button" data-value="wifi" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" data-i18n-title="tooltip.wifi" title="Wi‑Fi">
             <i class="fa-solid fa-wifi"></i>
-            <span>Wi-Fi</span>
+            <span data-i18n="contentType.wifi">Wi-Fi</span>
           </button>
           
           <!-- Separador visual discreto -->
           <div class="w-px h-8 bg-slate-800 self-center hidden sm:block"></div>
           
           <!-- Pagamentos -->
-          <button type="button" data-value="pix" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="PIX">
+          <button type="button" data-value="pix" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" data-i18n-title="tooltip.pix" title="PIX">
             <i class="fa-solid fa-qrcode"></i>
-            <span>PIX</span>
+            <span data-i18n="contentType.pix">PIX</span>
           </button>
           
           <!-- Separador visual discreto -->
           <div class="w-px h-8 bg-slate-800 self-center hidden sm:block"></div>
           
           <!-- Criptomoedas -->
-          <button type="button" data-value="bitcoin" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="Bitcoin">
+          <button type="button" data-value="bitcoin" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" data-i18n-title="tooltip.bitcoin" title="Bitcoin">
             <i class="fa-brands fa-bitcoin"></i>
-            <span>Bitcoin</span>
+            <span data-i18n="contentType.bitcoin">Bitcoin</span>
           </button>
-          <button type="button" data-value="ethereum" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="Ethereum">
+          <button type="button" data-value="ethereum" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" data-i18n-title="tooltip.ethereum" title="Ethereum">
             <i class="fa-brands fa-ethereum"></i>
-            <span>Ethereum</span>
+            <span data-i18n="contentType.ethereum">Ethereum</span>
           </button>
-          <button type="button" data-value="litecoin" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="Litecoin">
+          <button type="button" data-value="litecoin" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" data-i18n-title="tooltip.litecoin" title="Litecoin">
             <i class="fa-solid fa-coins"></i>
-            <span>Litecoin</span>
+            <span data-i18n="contentType.litecoin">Litecoin</span>
           </button>
-          <button type="button" data-value="bitcoincash" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="Bitcoin Cash">
+          <button type="button" data-value="bitcoincash" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" data-i18n-title="tooltip.bitcoincash" title="Bitcoin Cash">
             <i class="fa-solid fa-money-bill-transfer"></i>
-            <span>BCH</span>
+            <span data-i18n="contentType.bitcoincash">BCH</span>
           </button>
-          <button type="button" data-value="dogecoin" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="Dogecoin">
+          <button type="button" data-value="dogecoin" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" data-i18n-title="tooltip.dogecoin" title="Dogecoin">
             <i class="fa-solid fa-dog"></i>
-            <span>Dogecoin</span>
+            <span data-i18n="contentType.dogecoin">Dogecoin</span>
           </button>
-          <button type="button" data-value="monero" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" title="Monero">
+          <button type="button" data-value="monero" class="icon-btn flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-800 bg-slate-950 text-slate-200 text-sm justify-center sm:justify-start" data-i18n-title="tooltip.monero" title="Monero">
             <i class="fa-solid fa-shield-halved"></i>
-            <span>Monero</span>
+            <span data-i18n="contentType.monero">Monero</span>
           </button>
         </div>
       </div>
@@ -274,15 +274,15 @@
 
       <div class="mb-3 grid grid-cols-12 gap-3 items-end">
         <div class="col-span-12">
-          <label for="content" class="mb-1 block text-xs text-slate-400">Conteúdo</label>
-          <textarea id="content" placeholder="Texto, URL, vCard, Wi-Fi, etc." class="min-h-[120px] w-full resize-y rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none"></textarea>
+          <label for="content" class="mb-1 block text-xs text-slate-400" data-i18n="label.content">Conteúdo</label>
+          <textarea id="content" data-i18n-placeholder="placeholder.freeText" placeholder="Texto, URL, vCard, Wi-Fi, etc." class="min-h-[120px] w-full resize-y rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none"></textarea>
           <div id="sizeHint" class="mt-1 text-xs text-slate-400">Tamanho sugerido: 256 px • ECC M</div>
         </div>
       </div>
 
       <div class="grid grid-cols-12 gap-3 items-end">
         <div class="col-span-12 sm:col-span-4">
-          <label for="presetSize" class="mb-1 block text-xs text-slate-400">Tamanho predefinido</label>
+          <label for="presetSize" class="mb-1 block text-xs text-slate-400" data-i18n="customize.presetSize">Tamanho predefinido</label>
           <select id="presetSize" class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none">
             <option value="256" selected>256 px</option>
             <option value="384">384 px</option>
@@ -293,11 +293,11 @@
           </select>
         </div>
         <div class="col-span-12 sm:col-span-4">
-          <label for="customW" class="mb-1 block text-xs text-slate-400">Largura personalizada (px)</label>
-          <input id="customW" type="number" min="41" step="1" placeholder="ex.: 600" class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none" />
+          <label for="customW" class="mb-1 block text-xs text-slate-400" data-i18n="customize.customWidth">Largura personalizada (px)</label>
+          <input id="customW" type="number" min="41" step="1" data-i18n-placeholder="placeholder.customWidth" placeholder="ex.: 600" class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none" />
         </div>
         <div class="col-span-12 sm:col-span-4">
-          <label for="margin" class="mb-1 block text-xs text-slate-400">Margem (quiet zone, px)</label>
+          <label for="margin" class="mb-1 block text-xs text-slate-400" data-i18n="customize.margin.full">Margem (quiet zone, px)</label>
           <input id="margin" type="number" step="1" value="0" class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none" />
         </div>
       </div>
@@ -306,28 +306,28 @@
 
       <div class="grid grid-cols-12 gap-3 items-end">
         <div class="col-span-6 sm:col-span-3">
-          <label for="ecc" class="mb-1 block text-xs text-slate-400">Correção de erro</label>
+          <label for="ecc" class="mb-1 block text-xs text-slate-400" data-i18n="customize.errorCorrection">Correção de erro</label>
           <select id="ecc" class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none">
-            <option value="L">L (Baixa)</option>
-            <option value="M" selected>M (Média)</option>
-            <option value="Q">Q (Alta)</option>
-            <option value="H">H (Máxima)</option>
+            <option value="L" data-i18n="errorLevel.L">L (Baixa)</option>
+            <option value="M" selected data-i18n="errorLevel.M">M (Média)</option>
+            <option value="Q" data-i18n="errorLevel.Q">Q (Alta)</option>
+            <option value="H" data-i18n="errorLevel.H">H (Máxima)</option>
           </select>
         </div>
         <div class="col-span-6 sm:col-span-3">
-          <label for="shape" class="mb-1 block text-xs text-slate-400">Forma dos módulos</label>
+          <label for="shape" class="mb-1 block text-xs text-slate-400" data-i18n="customize.moduleShape">Forma dos módulos</label>
           <select id="shape" class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none">
-            <option value="square" selected>Quadrados</option>
-            <option value="dots">Pontos</option>
-            <option value="rounded">Arredondado</option>
+            <option value="square" selected data-i18n="shape.square">Quadrados</option>
+            <option value="dots" data-i18n="shape.dots">Pontos</option>
+            <option value="rounded" data-i18n="shape.rounded">Arredondado</option>
           </select>
         </div>
         <div class="col-span-6 sm:col-span-3">
-          <label for="fg" class="mb-1 block text-xs text-slate-400">Cor do QR</label>
+          <label for="fg" class="mb-1 block text-xs text-slate-400" data-i18n="customize.qrColor">Cor do QR</label>
           <input id="fg" type="color" value="#000000" class="h-10 w-full rounded-xl border border-slate-800 bg-slate-950 px-2 py-2" />
         </div>
         <div class="col-span-6 sm:col-span-3">
-          <label for="bg" class="mb-1 block text-xs text-slate-400">Cor de fundo</label>
+          <label for="bg" class="mb-1 block text-xs text-slate-400" data-i18n="customize.bgColor">Cor de fundo</label>
           <input id="bg" type="color" value="#ffffff" class="h-10 w-full rounded-xl border border-slate-800 bg-slate-950 px-2 py-2" />
         </div>
       </div>
@@ -336,17 +336,17 @@
 
       <div class="grid grid-cols-12 gap-3 items-end">
         <div class="col-span-12 sm:col-span-4">
-          <label for="fileName" class="mb-1 block text-xs text-slate-400">Nome do arquivo</label>
+          <label for="fileName" class="mb-1 block text-xs text-slate-400" data-i18n="customize.fileName">Nome do arquivo</label>
           <input id="fileName" type="text" placeholder="qrcode" value="qrcode" class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-sm outline-none" />
         </div>
         <div class="col-span-12 sm:col-span-4">
-          <label for="transparentBg" class="mb-1 block text-xs text-slate-400">Fundo transparente (PNG/SVG)</label>
+          <label for="transparentBg" class="mb-1 block text-xs text-slate-400" data-i18n="customize.transparentBg">Fundo transparente (PNG/SVG)</label>
           <div>
             <input id="transparentBg" type="checkbox" class="h-4 w-4 align-middle" />
           </div>
         </div>
         <div class="col-span-12 sm:col-span-4">
-          <label for="jpgBg" class="mb-1 block text-xs text-slate-400">Fundo do JPG/PDF</label>
+          <label for="jpgBg" class="mb-1 block text-xs text-slate-400" data-i18n="customize.jpgBg">Fundo do JPG/PDF</label>
           <input id="jpgBg" type="color" value="#ffffff" class="h-10 w-full rounded-xl border border-slate-800 bg-slate-950 px-2 py-2" />
         </div>
       </div>
@@ -355,32 +355,32 @@
 
       <div class="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2">
         <span id="stats" class="inline-block rounded-full border border-slate-800 px-3 py-2 text-xs text-slate-400 text-center sm:text-left">0 caracteres</span>
-        <button id="btnClear" class="rounded-xl border border-slate-800 bg-slate-950 px-4 py-2.5 sm:py-2 font-semibold transition hover:bg-slate-900 active:translate-y-px text-center sm:ml-auto">Limpar</button>
+        <button id="btnClear" class="rounded-xl border border-slate-800 bg-slate-950 px-4 py-2.5 sm:py-2 font-semibold transition hover:bg-slate-900 active:translate-y-px text-center sm:ml-auto" data-i18n="button.clear">Limpar</button>
       </div>
     </section>
 
     <!-- Prévia e Exportação -->
     <section class="rounded-2xl border border-slate-800 bg-slate-900 p-4 shadow-[0_10px_30px_rgba(0,0,0,0.15)]" id="previewSection" aria-label="Prévia e exportação do QR Code">
-      <h2 class="mb-3 text-base font-semibold">Prévia e exportação</h2>
+      <h2 class="mb-3 text-base font-semibold" data-i18n="preview.title">Prévia e exportação</h2>
       <div id="previewInfo" class="mb-2 text-xs text-slate-400"></div>
       <div id="preview" class="grid place-items-center rounded-xl border border-dashed border-slate-700 bg-slate-950 w-full max-w-full" style="min-height: 280px;"></div>
       <div class="h-1.5"></div>
       <div class="grid grid-cols-2 gap-2 sm:gap-3">
         <button id="dlPng" class="rounded-xl border border-slate-800 bg-slate-950 px-3 sm:px-4 py-2.5 sm:py-2 font-semibold transition hover:bg-slate-900 active:translate-y-px text-sm flex items-center justify-center gap-2">
           <i class="fa-solid fa-download"></i>
-          <span>PNG</span>
+          <span data-i18n="format.png">PNG</span>
         </button>
         <button id="dlJpg" class="rounded-xl border border-slate-800 bg-slate-950 px-3 sm:px-4 py-2.5 sm:py-2 font-semibold transition hover:bg-slate-900 active:translate-y-px text-sm flex items-center justify-center gap-2">
           <i class="fa-solid fa-download"></i>
-          <span>JPG</span>
+          <span data-i18n="format.jpg">JPG</span>
         </button>
         <button id="dlSvg" class="rounded-xl border border-slate-800 bg-slate-950 px-3 sm:px-4 py-2.5 sm:py-2 font-semibold transition hover:bg-slate-900 active:translate-y-px text-sm flex items-center justify-center gap-2">
           <i class="fa-solid fa-download"></i>
-          <span>SVG</span>
+          <span data-i18n="format.svg">SVG</span>
         </button>
         <button id="dlPdf" class="rounded-xl border border-slate-800 bg-slate-950 px-3 sm:px-4 py-2.5 sm:py-2 font-semibold transition hover:bg-slate-900 active:translate-y-px text-sm flex items-center justify-center gap-2">
           <i class="fa-solid fa-download"></i>
-          <span>PDF</span>
+          <span data-i18n="format.pdf">PDF</span>
         </button>
       </div>
     </section>
@@ -391,22 +391,22 @@
     <div class="mx-auto max-w-6xl px-4 py-12">
       <!-- O que é QR Code -->
       <section class="mb-12">
-        <h2 class="text-2xl font-bold mb-4 text-slate-100 flex items-center gap-3">
+        <h2 class="text-2xl font-bold mb-4 text-slate-100 flex items-center gap-3" data-i18n="seo.whatIs.title">
           <i class="fa-solid fa-circle-info text-blue-400"></i>
           O que é QR Code?
         </h2>
         <div class="space-y-4 text-slate-300 text-sm leading-relaxed">
-          <p>
+          <p data-i18n="seo.whatIs.p1">
             QR Code (Quick Response Code) é um código de barras bidimensional que pode ser facilmente escaneado usando 
             a câmera de smartphones e tablets. Criado no Japão em 1994 pela empresa Denso Wave, o QR Code revolucionou 
             a forma como compartilhamos informações digitalmente.
           </p>
-          <p>
+          <p data-i18n="seo.whatIs.p2">
             Diferente dos códigos de barras tradicionais que armazenam dados apenas horizontalmente, os QR Codes armazenam 
             informações tanto horizontal quanto verticalmente, permitindo guardar muito mais dados em um espaço menor. 
             Um QR Code pode conter até 4.296 caracteres alfanuméricos ou 7.089 caracteres numéricos.
           </p>
-          <p>
+          <p data-i18n="seo.whatIs.p3">
             Nossa <a href="https://qrcode.gabireze.cloud/" class="text-blue-400 hover:text-blue-300 underline">ferramenta de geração de QR Code online</a> permite criar códigos personalizados gratuitamente, com 
             suporte para múltiplos formatos de exportação (PNG, JPG, SVG, PDF) e diversos tipos de conteúdo, desde 
             URLs simples até configurações complexas de Wi-Fi e pagamentos PIX.
@@ -416,7 +416,7 @@
 
       <!-- Funcionalidades -->
       <section class="mb-12">
-        <h2 class="text-2xl font-bold mb-4 text-slate-100 flex items-center gap-3">
+        <h2 class="text-2xl font-bold mb-4 text-slate-100 flex items-center gap-3" data-i18n="seo.features.title">
           <i class="fa-solid fa-star text-yellow-400"></i>
           Funcionalidades do Gerador de QR Code
         </h2>
@@ -426,8 +426,8 @@
             <div class="text-blue-400 text-3xl mb-3">
               <i class="fa-solid fa-palette"></i>
             </div>
-            <h3 class="text-lg font-semibold mb-2 text-slate-100">Personalização Completa</h3>
-            <p class="text-slate-400 text-sm">
+            <h3 class="text-lg font-semibold mb-2 text-slate-100" data-i18n="seo.features.customization.title">Personalização Completa</h3>
+            <p class="text-slate-400 text-sm" data-i18n="seo.features.customization.desc">
               Customize as cores do QR Code e do fundo, escolha entre diferentes formas de módulos (quadrados, pontos, arredondados) 
               e ajuste o tamanho conforme sua necessidade.
             </p>
@@ -438,8 +438,8 @@
             <div class="text-blue-400 text-3xl mb-3">
               <i class="fa-solid fa-file-export"></i>
             </div>
-            <h3 class="text-lg font-semibold mb-2 text-slate-100">Múltiplos Formatos</h3>
-            <p class="text-slate-400 text-sm">
+            <h3 class="text-lg font-semibold mb-2 text-slate-100" data-i18n="seo.features.formats.title">Múltiplos Formatos</h3>
+            <p class="text-slate-400 text-sm" data-i18n="seo.features.formats.desc">
               Exporte seu QR Code em PNG para web, JPG para impressão, SVG para design vetorial ou PDF para documentos. 
               Todos os formatos em alta qualidade, até 1024px.
             </p>
@@ -450,8 +450,8 @@
             <div class="text-blue-400 text-3xl mb-3">
               <i class="fa-solid fa-shield-halved"></i>
             </div>
-            <h3 class="text-lg font-semibold mb-2 text-slate-100">Privacidade Garantida</h3>
-            <p class="text-slate-400 text-sm">
+            <h3 class="text-lg font-semibold mb-2 text-slate-100" data-i18n="seo.features.privacy.title">Privacidade Garantida</h3>
+            <p class="text-slate-400 text-sm" data-i18n="seo.features.privacy.desc">
               Todos os QR Codes são gerados localmente no seu navegador. Suas informações nunca são enviadas para 
               nossos servidores, garantindo total privacidade e segurança.
             </p>
@@ -462,8 +462,8 @@
             <div class="text-blue-400 text-3xl mb-3">
               <i class="fa-solid fa-infinity"></i>
             </div>
-            <h3 class="text-lg font-semibold mb-2 text-slate-100">Uso Ilimitado</h3>
-            <p class="text-slate-400 text-sm">
+            <h3 class="text-lg font-semibold mb-2 text-slate-100" data-i18n="seo.features.unlimited.title">Uso Ilimitado</h3>
+            <p class="text-slate-400 text-sm" data-i18n="seo.features.unlimited.desc">
               Crie quantos QR Codes quiser, sem limites de uso, sem registro necessário e completamente gratuito. 
               Use para projetos pessoais ou comerciais sem restrições.
             </p>
@@ -474,8 +474,8 @@
             <div class="text-blue-400 text-3xl mb-3">
               <i class="fa-solid fa-sliders"></i>
             </div>
-            <h3 class="text-lg font-semibold mb-2 text-slate-100">Controle de Qualidade</h3>
-            <p class="text-slate-400 text-sm">
+            <h3 class="text-lg font-semibold mb-2 text-slate-100" data-i18n="seo.features.quality.title">Controle de Qualidade</h3>
+            <p class="text-slate-400 text-sm" data-i18n="seo.features.quality.desc">
               Ajuste o nível de correção de erros (L, M, Q, H) para garantir que seu QR Code funcione mesmo se 
               estiver parcialmente danificado ou sujo.
             </p>
@@ -486,8 +486,8 @@
             <div class="text-blue-400 text-3xl mb-3">
               <i class="fa-solid fa-mobile-screen"></i>
             </div>
-            <h3 class="text-lg font-semibold mb-2 text-slate-100">100% Responsivo</h3>
-            <p class="text-slate-400 text-sm">
+            <h3 class="text-lg font-semibold mb-2 text-slate-100" data-i18n="seo.features.responsive.title">100% Responsivo</h3>
+            <p class="text-slate-400 text-sm" data-i18n="seo.features.responsive.desc">
               Interface otimizada para desktop, tablet e smartphone. Crie seus QR Codes em qualquer dispositivo, 
               a qualquer hora e em qualquer lugar.
             </p>
@@ -497,7 +497,7 @@
 
       <!-- Tipos de QR Code -->
       <section class="mb-12">
-        <h2 class="text-2xl font-bold mb-4 text-slate-100 flex items-center gap-3">
+        <h2 class="text-2xl font-bold mb-4 text-slate-100 flex items-center gap-3" data-i18n="seo.types.title">
           <i class="fa-solid fa-list-check text-green-400"></i>
           Tipos de QR Code Suportados
         </h2>
@@ -506,16 +506,16 @@
           <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
             <h3 class="text-lg font-semibold mb-3 text-slate-100 flex items-center gap-2">
               <i class="fa-solid fa-link text-blue-400"></i>
-              URLs e Links
+              <span data-i18n="seo.types.urls.title">URLs e Links</span>
             </h3>
-            <p class="text-slate-400 text-sm mb-3">
+            <p class="text-slate-400 text-sm mb-3" data-i18n="seo.types.urls.desc">
               Crie QR Codes para sites, páginas de redes sociais, portfólios online ou qualquer URL. Perfeito para 
               cartões de visita digitais, materiais impressos e campanhas de marketing.
             </p>
             <ul class="text-slate-400 text-xs space-y-1">
-              <li>✓ Sites e landing pages</li>
-              <li>✓ Redes sociais (Instagram, LinkedIn, Twitter)</li>
-              <li>✓ YouTube e plataformas de vídeo</li>
+              <li data-i18n="seo.types.urls.item1">✓ Sites e landing pages</li>
+              <li data-i18n="seo.types.urls.item2">✓ Redes sociais (Instagram, LinkedIn, Twitter)</li>
+              <li data-i18n="seo.types.urls.item3">✓ YouTube e plataformas de vídeo</li>
             </ul>
           </div>
 
@@ -523,16 +523,16 @@
           <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
             <h3 class="text-lg font-semibold mb-3 text-slate-100 flex items-center gap-2">
               <i class="fa-brands fa-whatsapp text-blue-400"></i>
-              Comunicação
+              <span data-i18n="seo.types.communication.title">Comunicação</span>
             </h3>
-            <p class="text-slate-400 text-sm mb-3">
+            <p class="text-slate-400 text-sm mb-3" data-i18n="seo.types.communication.desc">
               Facilite o contato com QR Codes para WhatsApp, SMS, telefone e e-mail. Clientes podem entrar em 
               contato instantaneamente sem precisar digitar números ou endereços.
             </p>
             <ul class="text-slate-400 text-xs space-y-1">
-              <li>✓ WhatsApp com mensagem pré-definida</li>
-              <li>✓ SMS e ligações telefônicas</li>
-              <li>✓ E-mail com assunto e corpo</li>
+              <li data-i18n="seo.types.communication.item1">✓ WhatsApp com mensagem pré-definida</li>
+              <li data-i18n="seo.types.communication.item2">✓ SMS e ligações telefônicas</li>
+              <li data-i18n="seo.types.communication.item3">✓ E-mail com assunto e corpo</li>
             </ul>
           </div>
 
@@ -540,16 +540,16 @@
           <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
             <h3 class="text-lg font-semibold mb-3 text-slate-100 flex items-center gap-2">
               <i class="fa-solid fa-qrcode text-blue-400"></i>
-              PIX e Pagamentos
+              <span data-i18n="seo.types.payment.title">PIX e Pagamentos</span>
             </h3>
-            <p class="text-slate-400 text-sm mb-3">
+            <p class="text-slate-400 text-sm mb-3" data-i18n="seo.types.payment.desc">
               Gere QR Codes PIX compatíveis com o padrão brasileiro de pagamentos instantâneos. Ideal para 
               comerciantes, freelancers e vendas online.
             </p>
             <ul class="text-slate-400 text-xs space-y-1">
-              <li>✓ PIX estático e dinâmico</li>
-              <li>✓ Valor fixo ou aberto</li>
-              <li>✓ Identificador personalizado</li>
+              <li data-i18n="seo.types.payment.item1">✓ PIX estático e dinâmico</li>
+              <li data-i18n="seo.types.payment.item2">✓ Valor fixo ou aberto</li>
+              <li data-i18n="seo.types.payment.item3">✓ Identificador personalizado</li>
             </ul>
           </div>
 
@@ -557,16 +557,16 @@
           <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
             <h3 class="text-lg font-semibold mb-3 text-slate-100 flex items-center gap-2">
               <i class="fa-solid fa-id-card text-blue-400"></i>
-              Contatos (vCard/MeCard)
+              <span data-i18n="seo.types.contact.title">Contatos (vCard/MeCard)</span>
             </h3>
-            <p class="text-slate-400 text-sm mb-3">
+            <p class="text-slate-400 text-sm mb-3" data-i18n="seo.types.contact.desc">
               Compartilhe informações de contato completas que podem ser salvas diretamente na agenda do smartphone. 
               Perfeito para networking e eventos.
             </p>
             <ul class="text-slate-400 text-xs space-y-1">
-              <li>✓ Nome, empresa e cargo</li>
-              <li>✓ Telefone, e-mail e site</li>
-              <li>✓ Endereço completo</li>
+              <li data-i18n="seo.types.contact.item1">✓ Nome, empresa e cargo</li>
+              <li data-i18n="seo.types.contact.item2">✓ Telefone, e-mail e site</li>
+              <li data-i18n="seo.types.contact.item3">✓ Endereço completo</li>
             </ul>
           </div>
 
@@ -574,16 +574,16 @@
           <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
             <h3 class="text-lg font-semibold mb-3 text-slate-100 flex items-center gap-2">
               <i class="fa-solid fa-wifi text-blue-400"></i>
-              Wi-Fi
+              <span data-i18n="seo.types.wifi.title">Wi-Fi</span>
             </h3>
-            <p class="text-slate-400 text-sm mb-3">
+            <p class="text-slate-400 text-sm mb-3" data-i18n="seo.types.wifi.desc">
               Permita que visitantes se conectem à sua rede Wi-Fi instantaneamente, sem precisar digitar senhas 
               complicadas. Ideal para cafés, restaurantes e escritórios.
             </p>
             <ul class="text-slate-400 text-xs space-y-1">
-              <li>✓ Suporte WPA/WPA2/WPA3</li>
-              <li>✓ Redes abertas e ocultas</li>
-              <li>✓ Conexão automática</li>
+              <li data-i18n="seo.types.wifi.item1">✓ Suporte WPA/WPA2/WPA3</li>
+              <li data-i18n="seo.types.wifi.item2">✓ Redes abertas e ocultas</li>
+              <li data-i18n="seo.types.wifi.item3">✓ Conexão automática</li>
             </ul>
           </div>
 
@@ -591,16 +591,16 @@
           <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
             <h3 class="text-lg font-semibold mb-3 text-slate-100 flex items-center gap-2">
               <i class="fa-brands fa-bitcoin text-blue-400"></i>
-              Criptomoedas
+              <span data-i18n="seo.types.crypto.title">Criptomoedas</span>
             </h3>
-            <p class="text-slate-400 text-sm mb-3">
+            <p class="text-slate-400 text-sm mb-3" data-i18n="seo.types.crypto.desc">
               Receba pagamentos em Bitcoin, Ethereum, Litecoin, Dogecoin e outras criptomoedas. Simplifique 
               transações com endereços em formato QR Code.
             </p>
             <ul class="text-slate-400 text-xs space-y-1">
-              <li>✓ Bitcoin, Ethereum, Litecoin</li>
-              <li>✓ Bitcoin Cash, Dogecoin, Monero</li>
-              <li>✓ Valor e mensagem opcionais</li>
+              <li data-i18n="seo.types.crypto.item1">✓ Bitcoin, Ethereum, Litecoin</li>
+              <li data-i18n="seo.types.crypto.item2">✓ Bitcoin Cash, Dogecoin, Monero</li>
+              <li data-i18n="seo.types.crypto.item3">✓ Valor e mensagem opcionais</li>
             </ul>
           </div>
         </div>
@@ -608,7 +608,7 @@
 
       <!-- Casos de Uso -->
       <section class="mb-12">
-        <h2 class="text-2xl font-bold mb-4 text-slate-100 flex items-center gap-3">
+        <h2 class="text-2xl font-bold mb-4 text-slate-100 flex items-center gap-3" data-i18n="seo.useCases.title">
           <i class="fa-solid fa-lightbulb text-yellow-400"></i>
           Casos de Uso do QR Code
         </h2>
@@ -617,9 +617,9 @@
           <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
             <h3 class="text-lg font-semibold mb-2 text-slate-100 flex items-center gap-2">
               <i class="fa-solid fa-bullhorn text-blue-400"></i>
-              Marketing e Publicidade
+              <span data-i18n="seo.useCases.marketing.title">Marketing e Publicidade</span>
             </h3>
-            <p class="text-slate-400 text-sm">
+            <p class="text-slate-400 text-sm" data-i18n="seo.useCases.marketing.desc">
               Use <a href="https://qrcode.gabireze.cloud/" class="text-blue-400 hover:text-blue-300 underline">QR Codes</a> em materiais impressos como flyers, cartazes, banners e embalagens para direcionar clientes 
               para seu site, promoções especiais, vídeos promocionais ou páginas de redes sociais. Meça a eficácia de 
               suas campanhas offline de forma digital.
@@ -630,9 +630,9 @@
           <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
             <h3 class="text-lg font-semibold mb-2 text-slate-100 flex items-center gap-2">
               <i class="fa-solid fa-utensils text-orange-400"></i>
-              Restaurantes e Cardápios Digitais
+              <span data-i18n="seo.useCases.restaurant.title">Restaurantes e Cardápios Digitais</span>
             </h3>
-            <p class="text-slate-400 text-sm">
+            <p class="text-slate-400 text-sm" data-i18n="seo.useCases.restaurant.desc">
               Substitua cardápios físicos por versões digitais acessíveis via QR Code. Economize em impressão, facilite 
               atualizações de menu e preços, e ofereça uma experiência moderna aos clientes. Use nosso <a href="https://qrcode.gabireze.cloud/" class="text-blue-400 hover:text-blue-300 underline">gerador gratuito</a> para criar QR Codes com links para seu cardápio online.
             </p>
@@ -642,9 +642,9 @@
           <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
             <h3 class="text-lg font-semibold mb-2 text-slate-100 flex items-center gap-2">
               <i class="fa-solid fa-ticket text-purple-400"></i>
-              Eventos e Check-in
+              <span data-i18n="seo.useCases.events.title">Eventos e Check-in</span>
             </h3>
-            <p class="text-slate-400 text-sm">
+            <p class="text-slate-400 text-sm" data-i18n="seo.useCases.events.desc">
               Facilite o check-in de participantes em eventos, conferências e festas. Use QR Codes em ingressos eletrônicos, 
               crachás e convites. Compartilhe programações, mapas do evento e informações importantes instantaneamente.
             </p>
@@ -654,9 +654,9 @@
           <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
             <h3 class="text-lg font-semibold mb-2 text-slate-100 flex items-center gap-2">
               <i class="fa-solid fa-graduation-cap text-green-400"></i>
-              Educação e Treinamento
+              <span data-i18n="seo.useCases.education.title">Educação e Treinamento</span>
             </h3>
-            <p class="text-slate-400 text-sm">
+            <p class="text-slate-400 text-sm" data-i18n="seo.useCases.education.desc">
               Professores e instrutores podem usar QR Codes para compartilhar materiais de estudo, links para vídeos 
               educacionais, questionários online e recursos adicionais. Torne o aprendizado mais interativo e acessível.
             </p>
@@ -666,9 +666,9 @@
           <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
             <h3 class="text-lg font-semibold mb-2 text-slate-100 flex items-center gap-2">
               <i class="fa-solid fa-shopping-cart text-pink-400"></i>
-              Varejo e E-commerce
+              <span data-i18n="seo.useCases.retail.title">Varejo e E-commerce</span>
             </h3>
-            <p class="text-slate-400 text-sm">
+            <p class="text-slate-400 text-sm" data-i18n="seo.useCases.retail.desc">
               Adicione QR Codes em produtos para informações adicionais, manuais de instruções, vídeos de demonstração 
               ou avaliações de clientes. Use em vitrines para compras diretas via smartphone, facilitando vendas omnichannel.
             </p>
@@ -678,9 +678,9 @@
           <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
             <h3 class="text-lg font-semibold mb-2 text-slate-100 flex items-center gap-2">
               <i class="fa-solid fa-house text-cyan-400"></i>
-              Imobiliário
+              <span data-i18n="seo.useCases.realestate.title">Imobiliário</span>
             </h3>
-            <p class="text-slate-400 text-sm">
+            <p class="text-slate-400 text-sm" data-i18n="seo.useCases.realestate.desc">
               Coloque QR Codes em placas de "Vende-se" ou "Aluga-se" para que interessados acessem instantaneamente fotos, 
               tours virtuais, informações completas do imóvel e formulários de contato, mesmo fora do horário comercial.
             </p>
@@ -1073,9 +1073,12 @@
 
     function updateHints(){
       const len = (content.value || '').length;
-      stats.textContent = `${len} caracteres`;
+      // Use tradução: stats.characters ou stats.character
+      const key = len === 1 ? 'stats.character' : 'stats.characters';
+      stats.textContent = i18n.t(key).replace('{count}', len);
       const s = suggestSize(len);
-      sizeHint.textContent = `Tamanho sugerido: ${s} px • ECC ${ecc.value}`;
+      // Use tradução para hint.suggestedSize
+      sizeHint.textContent = i18n.t('hint.suggestedSize').replace('{size}', s).replace('{ecc}', ecc.value);
     }
 
     function createOrUpdate(){
@@ -1416,59 +1419,59 @@
       
       if (t === 'free'){ renderFields([]); return; }
       const F = [];
-      if (t === 'url') F.push({id:'url_input', label:'URL', placeholder:'https://exemplo.com'});
-      if (t === 'tel') F.push({id:'tel_number', label:'Telefone', placeholder:'+55XXXXXXXXXXX'});
-      if (t === 'sms') F.push({id:'sms_number', label:'Telefone', placeholder:'+55XXXXXXXXXXX'},{id:'sms_text', label:'Mensagem', placeholder:'Texto da SMS'});
-      if (t === 'email') F.push({id:'mail_to', label:'Para', placeholder:'usuario@dominio.com'},{id:'mail_subject', label:'Assunto'},{id:'mail_body', label:'Corpo'});
+      if (t === 'url') F.push({id:'url_input', label: i18n.t('label.url'), placeholder: i18n.t('placeholder.url')});
+      if (t === 'tel') F.push({id:'tel_number', label: i18n.t('label.phone'), placeholder: i18n.t('placeholder.phone')});
+      if (t === 'sms') F.push({id:'sms_number', label: i18n.t('label.phone'), placeholder: i18n.t('placeholder.phone')},{id:'sms_text', label: i18n.t('label.message'), placeholder: i18n.t('placeholder.smsText')});
+      if (t === 'email') F.push({id:'mail_to', label: i18n.t('label.to'), placeholder: i18n.t('placeholder.email')},{id:'mail_subject', label: i18n.t('label.subject')},{id:'mail_body', label: i18n.t('label.body')});
       if (t === 'wifi') F.push(
-        {id:'wifi_auth', label:'Autenticação', type:'select', options:[
-          {value:'WPA',label:'WPA/WPA2/WPA3'},
-          {value:'WPA2',label:'WPA2'},
-          {value:'WPA3',label:'WPA3'},
-          {value:'WEP',label:'WEP'},
-          {value:'SAE',label:'SAE (WPA3)'},
-          {value:'nopass',label:'Sem senha (Aberta)'}
+        {id:'wifi_auth', label: i18n.t('label.authentication'), type:'select', options:[
+          {value:'WPA', label: i18n.t('security.wpa')},
+          {value:'WPA2', label: i18n.t('security.wpa2')},
+          {value:'WPA3', label: i18n.t('security.wpa3')},
+          {value:'WEP', label: i18n.t('security.wep')},
+          {value:'SAE', label: i18n.t('security.sae')},
+          {value:'nopass', label: i18n.t('security.nopass')}
         ], col:'col-span-12 sm:col-span-4'},
-        {id:'wifi_ssid', label:'SSID', col:'col-span-12 sm:col-span-4'},
-        {id:'wifi_pwd', label:'Senha', col:'col-span-12 sm:col-span-4'},
-        {id:'wifi_hidden', label:'Rede oculta', type:'checkbox', col:'col-span-12 sm:col-span-3'}
+        {id:'wifi_ssid', label: i18n.t('label.ssid'), col:'col-span-12 sm:col-span-4'},
+        {id:'wifi_pwd', label: i18n.t('label.password'), col:'col-span-12 sm:col-span-4'},
+        {id:'wifi_hidden', label: i18n.t('label.hiddenNetwork'), type:'checkbox', col:'col-span-12 sm:col-span-3'}
       );
-      if (t === 'vcard') F.push({id:'vc_name', label:'Nome completo'},{id:'vc_org', label:'Empresa'},{id:'vc_title', label:'Cargo'},{id:'vc_tel', label:'Telefone'},{id:'vc_email', label:'E-mail'},{id:'vc_url', label:'Site/URL'},{id:'vc_addr', label:'Endereço'});
-      if (t === 'mecard') F.push({id:'mc_name', label:'Nome'},{id:'mc_tel', label:'Telefone'},{id:'mc_email', label:'E-mail'},{id:'mc_url', label:'URL'},{id:'mc_addr', label:'Endereço'});
-      if (t === 'geo') F.push({id:'geo_lat', label:'Latitude'},{id:'geo_lng', label:'Longitude'},{id:'geo_q', label:'Busca/label (opcional)'},{id:'geo_z', label:'Zoom (1-20, opcional)'});
-      if (t === 'event') F.push({id:'ev_summary', label:'Título'},{id:'ev_loc', label:'Local'},{id:'ev_desc', label:'Descrição'},{id:'ev_start', label:'Início (UTC)', type:'datetime-local'},{id:'ev_end', label:'Fim (UTC)', type:'datetime-local'});
-      if (t === 'whatsapp') F.push({id:'wa_number', label:'Número (com DDI)', placeholder:'55XXXXXXXXXXX'},{id:'wa_text', label:'Mensagem'});
-      if (t === 'pix') F.push({id:'pix_chave', label:'Chave PIX'},{id:'pix_nome', label:'Nome do recebedor'},{id:'pix_cidade', label:'Cidade'},{id:'pix_valor', label:'Valor (opcional)', placeholder:'0.00'},{id:'pix_ref', label:'Identificador (opcional)'},{id:'pix_msg', label:'Mensagem (opcional)'});
+      if (t === 'vcard') F.push({id:'vc_name', label: i18n.t('label.fullName')},{id:'vc_org', label: i18n.t('label.company')},{id:'vc_title', label: i18n.t('label.position')},{id:'vc_tel', label: i18n.t('label.phone')},{id:'vc_email', label: i18n.t('label.email')},{id:'vc_url', label: i18n.t('label.siteUrl')},{id:'vc_addr', label: i18n.t('label.address')});
+      if (t === 'mecard') F.push({id:'mc_name', label: i18n.t('label.name')},{id:'mc_tel', label: i18n.t('label.phone')},{id:'mc_email', label: i18n.t('label.email')},{id:'mc_url', label: i18n.t('label.url')},{id:'mc_addr', label: i18n.t('label.address')});
+      if (t === 'geo') F.push({id:'geo_lat', label: i18n.t('label.latitude')},{id:'geo_lng', label: i18n.t('label.longitude')},{id:'geo_q', label: i18n.t('label.search')},{id:'geo_z', label: i18n.t('label.zoom')});
+      if (t === 'event') F.push({id:'ev_summary', label: i18n.t('label.eventTitle')},{id:'ev_loc', label: i18n.t('label.location')},{id:'ev_desc', label: i18n.t('label.description')},{id:'ev_start', label: i18n.t('label.startDate'), type:'datetime-local'},{id:'ev_end', label: i18n.t('label.endDate'), type:'datetime-local'});
+      if (t === 'whatsapp') F.push({id:'wa_number', label: i18n.t('label.whatsappPhone'), placeholder: i18n.t('placeholder.whatsappPhone')},{id:'wa_text', label: i18n.t('label.whatsappMessage')});
+      if (t === 'pix') F.push({id:'pix_chave', label: i18n.t('label.pixKey')},{id:'pix_nome', label: i18n.t('label.pixName')},{id:'pix_cidade', label: i18n.t('label.pixCity')},{id:'pix_valor', label: i18n.t('label.pixValue'), placeholder: i18n.t('placeholder.pixValue')},{id:'pix_ref', label: i18n.t('label.pixIdentifier')},{id:'pix_msg', label: i18n.t('label.pixMessage')});
       if (t === 'bitcoin') F.push(
-        {id:'btc_address', label:'Endereço Bitcoin', placeholder:'1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', col:'col-span-12'},
-        {id:'btc_amount', label:'Valor (BTC)', placeholder:'0.001'},
-        {id:'btc_label', label:'Nome/Label (opcional)', placeholder:'Doação'},
-        {id:'btc_message', label:'Mensagem (opcional)', placeholder:'Obrigado!'}
+        {id:'btc_address', label: i18n.t('label.btcAddress'), placeholder: i18n.t('placeholder.btcAddress'), col:'col-span-12'},
+        {id:'btc_amount', label: i18n.t('label.btcAmount'), placeholder: i18n.t('placeholder.btcAmount')},
+        {id:'btc_label', label: i18n.t('label.cryptoLabel'), placeholder: i18n.t('placeholder.btcLabel')},
+        {id:'btc_message', label: i18n.t('label.cryptoMessage'), placeholder: i18n.t('placeholder.btcMessage')}
       );
       if (t === 'ethereum') F.push(
-        {id:'eth_address', label:'Endereço Ethereum', placeholder:'0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb', col:'col-span-12'},
-        {id:'eth_value', label:'Valor (Wei)', placeholder:'1000000000000000000'},
-        {id:'eth_chainid', label:'Chain ID', placeholder:'1 (Mainnet)'}
+        {id:'eth_address', label: i18n.t('label.ethAddress'), placeholder: i18n.t('placeholder.ethAddress'), col:'col-span-12'},
+        {id:'eth_value', label: i18n.t('label.ethValue'), placeholder: i18n.t('placeholder.ethValue')},
+        {id:'eth_chainid', label: i18n.t('label.ethChainId'), placeholder: i18n.t('placeholder.ethChainId')}
       );
       if (t === 'litecoin') F.push(
-        {id:'ltc_address', label:'Endereço Litecoin', placeholder:'LQTpS3VaYTjCr4s9Y1r6J5q3v4n8m2', col:'col-span-12'},
-        {id:'ltc_amount', label:'Valor (LTC)', placeholder:'0.5'},
-        {id:'ltc_label', label:'Nome/Label (opcional)', placeholder:'Pagamento'}
+        {id:'ltc_address', label: i18n.t('label.ltcAddress'), placeholder: i18n.t('placeholder.ltcAddress'), col:'col-span-12'},
+        {id:'ltc_amount', label: i18n.t('label.ltcAmount'), placeholder: i18n.t('placeholder.ltcAmount')},
+        {id:'ltc_label', label: i18n.t('label.cryptoLabel'), placeholder: i18n.t('placeholder.ltcLabel')}
       );
       if (t === 'bitcoincash') F.push(
-        {id:'bch_address', label:'Endereço Bitcoin Cash', placeholder:'qr7fzmep8g7h7ymfxy74lgc0v950j3r2959lhtxxsl', col:'col-span-12'},
-        {id:'bch_amount', label:'Valor (BCH)', placeholder:'0.01'},
-        {id:'bch_label', label:'Nome/Label (opcional)', placeholder:'Compra'}
+        {id:'bch_address', label: i18n.t('label.bchAddress'), placeholder: i18n.t('placeholder.bchAddress'), col:'col-span-12'},
+        {id:'bch_amount', label: i18n.t('label.bchAmount'), placeholder: i18n.t('placeholder.bchAmount')},
+        {id:'bch_label', label: i18n.t('label.cryptoLabel'), placeholder: i18n.t('placeholder.bchLabel')}
       );
       if (t === 'dogecoin') F.push(
-        {id:'doge_address', label:'Endereço Dogecoin', placeholder:'DH5yaieqoZN36fDVciNyRueRGvGLR3mr7L', col:'col-span-12'},
-        {id:'doge_amount', label:'Valor (DOGE)', placeholder:'100'},
-        {id:'doge_label', label:'Nome/Label (opcional)', placeholder:'Muito wow!'}
+        {id:'doge_address', label: i18n.t('label.dogeAddress'), placeholder: i18n.t('placeholder.dogeAddress'), col:'col-span-12'},
+        {id:'doge_amount', label: i18n.t('label.dogeAmount'), placeholder: i18n.t('placeholder.dogeAmount')},
+        {id:'doge_label', label: i18n.t('label.cryptoLabel'), placeholder: i18n.t('placeholder.dogeLabel')}
       );
       if (t === 'monero') F.push(
-        {id:'xmr_address', label:'Endereço Monero', placeholder:'4AdUndXHHZ6cfufTMvppY6JwXNouMBzSkbLYfpAV5Usx...', col:'col-span-12'},
-        {id:'xmr_amount', label:'Valor (XMR)', placeholder:'0.5'},
-        {id:'xmr_desc', label:'Descrição (opcional)', placeholder:'Pagamento privado'}
+        {id:'xmr_address', label: i18n.t('label.xmrAddress'), placeholder: i18n.t('placeholder.xmrAddress'), col:'col-span-12'},
+        {id:'xmr_amount', label: i18n.t('label.xmrAmount'), placeholder: i18n.t('placeholder.xmrAmount')},
+        {id:'xmr_desc', label: i18n.t('label.xmrDesc'), placeholder: i18n.t('placeholder.xmrDesc')}
       );
       renderFields(F);
       addListenersTo(F.map(x=>x.id), buildByType);
@@ -1486,6 +1489,15 @@
       }); 
     });
     contentType.addEventListener('change', renderBuilderByType);
+    
+    // Atualiza formulários quando o idioma mudar
+    window.addEventListener('languageChanged', () => {
+      if (contentType.value !== 'free') {
+        renderBuilderByType();
+      }
+      // Atualiza os hints (caracteres e tamanho sugerido)
+      updateHints();
+    });
   // no manual lock option anymore; form builder always sets the content when in a form type
 
     // Se mudar o tamanho predefinido, limpa a largura personalizada
@@ -1535,5 +1547,8 @@
     renderBuilderByType();
     createOrUpdate();
   </script>
+  
+  <!-- i18n - Internationalization -->
+  <script src="/src/js/i18n.js"></script>
 </body>
 </html>
