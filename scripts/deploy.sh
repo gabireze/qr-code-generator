@@ -1,101 +1,85 @@
 #!/bin/bash
 
-# Script de deploy para qrcode.gabireze.cloud
-# Execute com: bash deploy.sh
+# Script de deploy automatizado para qrcode.gabireze.cloud
+# Execute com: sudo bash scripts/deploy.sh
 
-echo "🚀 Iniciando deploy do Gerador de QR Code..."
+echo "🚀 Iniciando deploy do QR Code Generator..."
 
 # Configurações
+PROJECT_DIR="$HOME/qr-code-generator"
 DOMAIN="qrcode.gabireze.cloud"
 WEB_ROOT="/var/www/$DOMAIN"
-NGINX_CONF="/etc/nginx/sites-available/$DOMAIN"
 
 # Cores para output
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 RED='\033[0;31m'
+BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-# Verificar se está rodando como root
-if [ "$EUID" -ne 0 ]; then 
-    echo -e "${RED}❌ Por favor, execute como root ou com sudo${NC}"
+# Verificar se está no diretório correto
+if [ ! -f "index.html" ]; then
+    echo -e "${RED}❌ Erro: Execute este script do diretório raiz do projeto${NC}"
     exit 1
 fi
 
-# Criar diretório do site
-echo -e "${YELLOW}📁 Criando diretório do site...${NC}"
-mkdir -p $WEB_ROOT
-cp index.html $WEB_ROOT/
-cp robots.txt $WEB_ROOT/
-cp sitemap.xml $WEB_ROOT/
-cp manifest.json $WEB_ROOT/
+# Atualizar código do repositório
+echo -e "${BLUE}📥 Atualizando código do repositório...${NC}"
+git pull origin main
 
-# Criar diretório para imagens (você precisa adicionar as imagens depois)
-mkdir -p $WEB_ROOT/images
-echo -e "${YELLOW}⚠️  Lembre-se de adicionar as imagens em $WEB_ROOT/:${NC}"
-echo "   - og-image.png (1200x630)"
-echo "   - favicon-16x16.png"
-echo "   - favicon-32x32.png"
-echo "   - apple-touch-icon.png"
-echo "   - icon-192x192.png"
-echo "   - icon-512x512.png"
+if [ $? -ne 0 ]; then
+    echo -e "${RED}❌ Erro ao atualizar repositório${NC}"
+    exit 1
+fi
+
+# Criar/limpar diretório do site
+echo -e "${YELLOW}📁 Preparando diretório do site...${NC}"
+sudo mkdir -p $WEB_ROOT
+sudo rm -rf $WEB_ROOT/*
+
+# Copiar arquivos da aplicação
+echo -e "${BLUE}📦 Copiando arquivos...${NC}"
+sudo cp index.html $WEB_ROOT/
+sudo cp -r src $WEB_ROOT/
+sudo cp -r public $WEB_ROOT/
 
 # Configurar permissões
 echo -e "${YELLOW}🔒 Configurando permissões...${NC}"
-chown -R www-data:www-data $WEB_ROOT
-chmod -R 755 $WEB_ROOT
+sudo chown -R www-data:www-data $WEB_ROOT
+sudo chmod -R 755 $WEB_ROOT
 
-# Configurar Nginx
-echo -e "${YELLOW}⚙️  Configurando Nginx...${NC}"
-if [ -f "nginx.conf" ]; then
-    cp nginx.conf $NGINX_CONF
-    ln -sf $NGINX_CONF /etc/nginx/sites-enabled/$DOMAIN
-    echo -e "${GREEN}✅ Configuração do Nginx copiada${NC}"
-else
-    echo -e "${RED}❌ Arquivo nginx.conf não encontrado${NC}"
-fi
-
-# Testar configuração do Nginx
-echo -e "${YELLOW}🧪 Testando configuração do Nginx...${NC}"
-nginx -t
+# Recarregar Nginx
+echo -e "${BLUE}🔄 Recarregando Nginx...${NC}"
+sudo nginx -t
 
 if [ $? -eq 0 ]; then
-    echo -e "${GREEN}✅ Configuração do Nginx válida${NC}"
-    
-    # Recarregar Nginx
-    echo -e "${YELLOW}🔄 Recarregando Nginx...${NC}"
-    systemctl reload nginx
-    echo -e "${GREEN}✅ Nginx recarregado${NC}"
+    sudo systemctl reload nginx
+    echo -e "${GREEN}✅ Nginx recarregado com sucesso${NC}"
 else
-    echo -e "${RED}❌ Erro na configuração do Nginx. Corrija os erros antes de continuar.${NC}"
+    echo -e "${RED}❌ Erro na configuração do Nginx${NC}"
     exit 1
 fi
 
-# Configurar SSL com Let's Encrypt (se certbot estiver instalado)
-if command -v certbot &> /dev/null; then
-    echo -e "${YELLOW}🔐 Deseja configurar SSL com Let's Encrypt? (s/n)${NC}"
-    read -r response
-    if [[ "$response" =~ ^[Ss]$ ]]; then
-        certbot --nginx -d $DOMAIN
-        echo -e "${GREEN}✅ SSL configurado${NC}"
-    fi
-else
-    echo -e "${YELLOW}⚠️  Certbot não encontrado. Instale para configurar SSL:${NC}"
-    echo "   sudo apt install certbot python3-certbot-nginx"
-fi
+# Limpar cache do Cloudflare (opcional)
+# Descomente se usar Cloudflare
+# echo -e "${BLUE}🧹 Limpando cache do Cloudflare...${NC}"
+# curl -X POST "https://api.cloudflare.com/client/v4/zones/YOUR_ZONE_ID/purge_cache" \
+#      -H "Authorization: Bearer YOUR_API_TOKEN" \
+#      -H "Content-Type: application/json" \
+#      --data '{"purge_everything":true}'
 
 # Resumo
 echo ""
 echo -e "${GREEN}================================================${NC}"
-echo -e "${GREEN}🎉 Deploy concluído com sucesso!${NC}"
+echo -e "${GREEN}   🎉 Deploy concluído com sucesso!${NC}"
 echo -e "${GREEN}================================================${NC}"
 echo ""
 echo -e "📍 Site: ${GREEN}https://$DOMAIN${NC}"
 echo -e "📂 Diretório: ${YELLOW}$WEB_ROOT${NC}"
-echo -e "⚙️  Nginx config: ${YELLOW}$NGINX_CONF${NC}"
+echo -e "⏰ Data: ${BLUE}$(date '+%Y-%m-%d %H:%M:%S')${NC}"
 echo ""
-echo -e "${YELLOW}📋 Próximos passos:${NC}"
-echo "1. Adicionar as imagens necessárias em $WEB_ROOT/"
+echo -e "${GREEN}✨ Acesse: https://$DOMAIN${NC}"
+echo ""
 echo "2. Verificar o site em https://$DOMAIN"
 echo "3. Adicionar o site no Google Search Console"
 echo "4. Enviar o sitemap: https://$DOMAIN/sitemap.xml"
