@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Script de deploy para qr-code.gabireze.cloud
+# Script de deploy para qrcode.gabireze.cloud
 # Execute com: bash deploy.sh
 
 echo "🚀 Iniciando deploy do Gerador de QR Code..."
 
 # Configurações
-DOMAIN="qr-code.gabireze.cloud"
+DOMAIN="qrcode.gabireze.cloud"
 WEB_ROOT="/var/www/$DOMAIN"
 NGINX_CONF="/etc/nginx/sites-available/$DOMAIN"
 

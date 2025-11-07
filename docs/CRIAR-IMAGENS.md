@@ -17,7 +17,7 @@
 |                                                  |
 |  📱 WhatsApp | 💰 PIX | 📧 E-mail | 📍 GPS      |
 |                                                  |
-|           qr-code.gabireze.cloud                 |
+|           qrcode.gabireze.cloud                 |
 |                                                  |
 +--------------------------------------------------+
 ```
@@ -182,7 +182,7 @@ Linha 1: [Ícone de QR Code centralizado]
 Linha 2: "Gerador de QR Code"
 Linha 3: "Online • Grátis • Ilimitado"
 Linha 4: 📱 💰 📧 📍 🌐 ₿
-Linha 5: "qr-code.gabireze.cloud"
+Linha 5: "qrcode.gabireze.cloud"
 
 Fundo: Gradiente azul escuro
 Estilo: Moderno e minimalista
@@ -228,18 +228,18 @@ https://tinypng.com
 ### 2. Upload no Servidor
 ```bash
 # Coloque os arquivos na raiz do site:
-/var/www/qr-code.gabireze.cloud/og-image.png
-/var/www/qr-code.gabireze.cloud/favicon-16x16.png
-/var/www/qr-code.gabireze.cloud/favicon-32x32.png
-/var/www/qr-code.gabireze.cloud/apple-touch-icon.png
-/var/www/qr-code.gabireze.cloud/icon-192x192.png
-/var/www/qr-code.gabireze.cloud/icon-512x512.png
+/var/www/qrcode.gabireze.cloud/og-image.png
+/var/www/qrcode.gabireze.cloud/favicon-16x16.png
+/var/www/qrcode.gabireze.cloud/favicon-32x32.png
+/var/www/qrcode.gabireze.cloud/apple-touch-icon.png
+/var/www/qrcode.gabireze.cloud/icon-192x192.png
+/var/www/qrcode.gabireze.cloud/icon-512x512.png
 ```
 
 ### 3. Testar
 ```
 # Teste o og-image:
-https://developers.facebook.com/tools/debug/?q=https://qr-code.gabireze.cloud
+https://developers.facebook.com/tools/debug/?q=https://qrcode.gabireze.cloud
 
 # Teste os favicons:
 Abra o site e verifique a aba do navegador
@@ -256,7 +256,7 @@ Se quiser usar IA para gerar imagens:
 for a QR Code generator website. Dark blue background (#0f172a), 
 large QR code icon in the center, white text saying 'Free QR Code 
 Generator', icons for WhatsApp, PIX, Email, and WiFi below, website 
-URL 'qr-code.gabireze.cloud' at bottom. Professional, clean design."
+URL 'qrcode.gabireze.cloud' at bottom. Professional, clean design."
 ```
 
 ---

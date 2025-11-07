@@ -5,7 +5,7 @@
 
 > Gerador de QR Code gratuito, completo e sem limites. Suporte para múltiplos formatos incluindo URLs, WhatsApp, PIX, vCard, Wi-Fi, criptomoedas e muito mais.
 
-🌐 **[Acesse aqui: qr-code.gabireze.cloud](https://qr-code.gabireze.cloud/)**
+🌐 **[Acesse aqui: qrcode.gabireze.cloud](https://qrcode.gabireze.cloud/)**
 
 ## ✨ Funcionalidades
 

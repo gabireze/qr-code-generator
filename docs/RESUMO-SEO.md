@@ -8,7 +8,7 @@
 ✅ **Title otimizado**: "Gerador de QR Code Online Grátis - PNG, JPG, SVG, PDF | QR Code Generator"
 ✅ **Meta description**: 160 caracteres com palavras-chave relevantes
 ✅ **Meta keywords**: 15+ palavras-chave principais
-✅ **Canonical URL**: https://qr-code.gabireze.cloud/
+✅ **Canonical URL**: https://qrcode.gabireze.cloud/
 ✅ **Language**: pt-BR
 ✅ **Robots**: index, follow
 
@@ -174,12 +174,12 @@
 sudo bash deploy.sh
 
 # Opção 2: Manual
-scp -r * usuario@servidor:/var/www/qr-code.gabireze.cloud/
+scp -r * usuario@servidor:/var/www/qrcode.gabireze.cloud/
 ```
 
 ### 3. Configurar SSL
 ```bash
-sudo certbot --nginx -d qr-code.gabireze.cloud
+sudo certbot --nginx -d qrcode.gabireze.cloud
 ```
 
 ### 4. Google Search Console
@@ -295,19 +295,19 @@ Se tiver dúvidas:
 # Ver CRIAR-IMAGENS.md
 
 # 2. Upload dos arquivos
-scp -r * servidor:/var/www/qr-code.gabireze.cloud/
+scp -r * servidor:/var/www/qrcode.gabireze.cloud/
 
 # 3. Configurar Nginx (se aplicável)
-sudo cp nginx.conf /etc/nginx/sites-available/qr-code.gabireze.cloud
-sudo ln -s /etc/nginx/sites-available/qr-code.gabireze.cloud /etc/nginx/sites-enabled/
+sudo cp nginx.conf /etc/nginx/sites-available/qrcode.gabireze.cloud
+sudo ln -s /etc/nginx/sites-available/qrcode.gabireze.cloud /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 
 # 4. SSL
-sudo certbot --nginx -d qr-code.gabireze.cloud
+sudo certbot --nginx -d qrcode.gabireze.cloud
 
 # 5. Testar
-curl -I https://qr-code.gabireze.cloud
+curl -I https://qrcode.gabireze.cloud
 
 # 6. Google Search Console
 # Adicionar propriedade e enviar sitemap
@@ -347,7 +347,7 @@ curl -I https://qr-code.gabireze.cloud
 ---
 
 **Desenvolvido por**: Gabriel Reze  
-**Domínio**: qr-code.gabireze.cloud  
+**Domínio**: qrcode.gabireze.cloud  
 **Data**: 06/11/2025  
 **Status**: ✅ Pronto para deploy
 

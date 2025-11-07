@@ -6,7 +6,7 @@
 1. Acesse: https://search.google.com/search-console
 2. Clique em "Adicionar propriedade"
 3. Escolha "Prefixo de URL"
-4. Digite: `https://qr-code.gabireze.cloud`
+4. Digite: `https://qrcode.gabireze.cloud`
 
 ### Métodos de Verificação
 
@@ -19,7 +19,7 @@ Adicione no `<head>` do index.html:
 #### Opção 2: Arquivo HTML
 1. Baixe o arquivo fornecido pelo Google
 2. Faça upload na raiz do site
-3. Acesse: `https://qr-code.gabireze.cloud/google[código].html`
+3. Acesse: `https://qrcode.gabireze.cloud/google[código].html`
 
 #### Opção 3: Google Analytics
 Se já tiver GA instalado, pode usar esse método.
@@ -39,7 +39,7 @@ Após verificação aprovada:
 
 Para indexação rápida da homepage:
 1. Use a ferramenta de inspeção de URL
-2. Digite: `https://qr-code.gabireze.cloud`
+2. Digite: `https://qrcode.gabireze.cloud`
 3. Clique em "Solicitar indexação"
 
 ## 4️⃣ Verificações Importantes
@@ -69,32 +69,32 @@ Para indexação rápida da homepage:
 ### Google Tools
 ```
 # Rich Results Test
-https://search.google.com/test/rich-results?url=https://qr-code.gabireze.cloud
+https://search.google.com/test/rich-results?url=https://qrcode.gabireze.cloud
 
 # Mobile-Friendly Test
-https://search.google.com/test/mobile-friendly?url=https://qr-code.gabireze.cloud
+https://search.google.com/test/mobile-friendly?url=https://qrcode.gabireze.cloud
 
 # PageSpeed Insights
-https://pagespeed.web.dev/analysis?url=https://qr-code.gabireze.cloud
+https://pagespeed.web.dev/analysis?url=https://qrcode.gabireze.cloud
 ```
 
 ### Social Media Debuggers
 ```
 # Facebook Sharing Debugger
-https://developers.facebook.com/tools/debug/?q=https://qr-code.gabireze.cloud
+https://developers.facebook.com/tools/debug/?q=https://qrcode.gabireze.cloud
 
 # Twitter Card Validator
 https://cards-dev.twitter.com/validator
 
 # LinkedIn Post Inspector
-https://www.linkedin.com/post-inspector/inspect/https://qr-code.gabireze.cloud
+https://www.linkedin.com/post-inspector/inspect/https://qrcode.gabireze.cloud
 ```
 
 ## 6️⃣ Comandos de Busca Úteis
 
 ### Verificar Indexação
 ```
-site:qr-code.gabireze.cloud
+site:qrcode.gabireze.cloud
 ```
 
 ### Buscar por Título
@@ -104,19 +104,19 @@ intitle:"Gerador de QR Code"
 
 ### Verificar Backlinks
 ```
-link:qr-code.gabireze.cloud
+link:qrcode.gabireze.cloud
 ```
 
 ### Buscar Conteúdo Específico
 ```
-site:qr-code.gabireze.cloud "qr code pix"
+site:qrcode.gabireze.cloud "qr code pix"
 ```
 
 ## 7️⃣ Schema.org Validation
 
 Valide o structured data:
 ```
-https://validator.schema.org/#url=https://qr-code.gabireze.cloud
+https://validator.schema.org/#url=https://qrcode.gabireze.cloud
 ```
 
 ## 8️⃣ Robots.txt Tester

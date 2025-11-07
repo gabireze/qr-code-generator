@@ -107,7 +107,7 @@
 
 ### Indexação
 - [ ] Solicitar indexação no GSC
-- [ ] Verificar indexação: site:qr-code.gabireze.cloud
+- [ ] Verificar indexação: site:qrcode.gabireze.cloud
 - [ ] Verificar cache do Google
 - [ ] Verificar snippets nos resultados
 

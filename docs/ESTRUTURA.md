@@ -136,7 +136,7 @@ Ao fazer deploy, certifique-se de:
 ```nginx
 server {
     listen 80;
-    server_name qr-code.gabireze.cloud;
+    server_name qrcode.gabireze.cloud;
     root /var/www/qr-code-generator;
     index index.html;
 

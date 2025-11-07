@@ -53,7 +53,7 @@ Para completar o SEO, crie as seguintes imagens:
 2. **Fazer upload de todos os arquivos para o servidor**
 3. **Verificar no Google Search Console**:
    - https://search.google.com/search-console
-   - Adicionar propriedade: qr-code.gabireze.cloud
+   - Adicionar propriedade: qrcode.gabireze.cloud
    - Enviar sitemap.xml
 
 4. **Testar SEO**:
@@ -108,13 +108,13 @@ Se estiver usando **Nginx** em vez de Apache, use esta configuração em vez do 
 # Redirecionar HTTP para HTTPS
 server {
     listen 80;
-    server_name qr-code.gabireze.cloud;
+    server_name qrcode.gabireze.cloud;
     return 301 https://$server_name$request_uri;
 }
 
 server {
     listen 443 ssl http2;
-    server_name qr-code.gabireze.cloud;
+    server_name qrcode.gabireze.cloud;
 
     # Gzip compression
     gzip on;
