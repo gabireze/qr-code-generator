@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Imagens para Redes Sociais - QR Code Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #1e293b;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .preview-section {
+            margin-bottom: 40px;
+        }
+
+        .preview-title {
+            font-size: 1.5em;
+            color: #1e293b;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .badge {
+            background: #3b82f6;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            font-weight: 600;
+        }
+
+        canvas {
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .control-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #475569;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        input[type="text"],
+        input[type="color"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        input[type="color"] {
+            height: 50px;
+            cursor: pointer;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .download-btn:hover {
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .info-box h3 {
+            color: #1e40af;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            color: #1e40af;
+        }
+
+        .info-box li {
+            margin-bottom: 5px;
+        }
+
+        .template-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .template-btn {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .template-btn:hover {
+            border-color: #3b82f6;
+            background: #f8fafc;
+            transform: translateY(-2px);
+        }
+
+        .template-btn.active {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+
+        .template-preview {
+            width: 100%;
+            height: 80px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Gerador de Imagens para Redes Sociais</h1>
+        <p class="subtitle">Crie imagens otimizadas para Open Graph (Facebook, LinkedIn) e Twitter Cards</p>
+
+        <div class="info-box">
+            <h3>📐 Especificações das Imagens</h3>
+            <ul>
+                <li><strong>Open Graph:</strong> 1200x630 pixels - Ideal para Facebook, LinkedIn, WhatsApp</li>
+                <li><strong>Twitter Card:</strong> 1200x675 pixels - Ideal para Twitter</li>
+                <li><strong>Formato:</strong> PNG com alta qualidade</li>
+            </ul>
+        </div>
+
+        <div class="controls">
+            <h2 style="margin-bottom: 25px; color: #1e293b;">⚙️ Personalização</h2>
+
+            <div class="template-buttons" id="templates">
+                <div class="template-btn active" onclick="applyTemplate('modern')">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        Moderno
+                    </div>
+                    <div>Gradiente Roxo</div>
+                </div>
+                <div class="template-btn" onclick="applyTemplate('blue')">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);">
+                        Azul
+                    </div>
+                    <div>Profissional</div>
+                </div>
+                <div class="template-btn" onclick="applyTemplate('green')">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        Verde
+                    </div>
+                    <div>Tecnologia</div>
+                </div>
+                <div class="template-btn" onclick="applyTemplate('dark')">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
+                        Escuro
+                    </div>
+                    <div>Elegante</div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>📝 Título Principal</label>
+                <input type="text" id="mainTitle" value="Gerador de QR Code" oninput="drawCanvas()">
+            </div>
+
+            <div class="control-group">
+                <label>📄 Subtítulo</label>
+                <input type="text" id="subtitle" value="Online e Grátis" oninput="drawCanvas()">
+            </div>
+
+            <div class="control-group">
+                <label>💬 Descrição</label>
+                <input type="text" id="description" value="Crie QR Codes para URL, WhatsApp, PIX, Wi-Fi e muito mais!" oninput="drawCanvas()">
+            </div>
+
+            <div class="control-group">
+                <label>🌐 URL do Site</label>
+                <input type="text" id="url" value="qrcode.gabireze.cloud" oninput="drawCanvas()">
+            </div>
+
+            <div class="color-grid">
+                <div class="control-group">
+                    <label>🎨 Cor de Fundo 1</label>
+                    <input type="color" id="bgColor1" value="#667eea" oninput="drawCanvas()">
+                </div>
+                <div class="control-group">
+                    <label>🎨 Cor de Fundo 2</label>
+                    <input type="color" id="bgColor2" value="#764ba2" oninput="drawCanvas()">
+                </div>
+            </div>
+        </div>
+
+        <!-- Open Graph Image -->
+        <div class="preview-section">
+            <div class="preview-title">
+                <span>Open Graph Image</span>
+                <span class="badge">1200x630</span>
+            </div>
+            <canvas id="ogCanvas" width="1200" height="630"></canvas>
+            <div class="button-group">
+                <button class="download-btn" onclick="downloadCanvas('ogCanvas', 'og-image.png')">
+                    ⬇️ Baixar Open Graph (1200x630)
+                </button>
+            </div>
+        </div>
+
+        <!-- Twitter Card Image -->
+        <div class="preview-section">
+            <div class="preview-title">
+                <span>Twitter Card Image</span>
+                <span class="badge">1200x675</span>
+            </div>
+            <canvas id="twitterCanvas" width="1200" height="675"></canvas>
+            <div class="button-group">
+                <button class="download-btn" onclick="downloadCanvas('twitterCanvas', 'twitter-image.png')">
+                    ⬇️ Baixar Twitter Card (1200x675)
+                </button>
+            </div>
+        </div>
+
+        <div class="button-group" style="margin-top: 30px;">
+            <button onclick="downloadAll()">
+                📦 Baixar Todas as Imagens
+            </button>
+        </div>
+
+        <div class="info-box" style="margin-top: 40px;">
+            <h3>📋 Próximos Passos</h3>
+            <ul>
+                <li>Baixe as imagens geradas</li>
+                <li>Faça upload do arquivo <code>og-image.png</code> na raiz do seu servidor</li>
+                <li>Teste as imagens usando:
+                    <ul>
+                        <li><a href="https://developers.facebook.com/tools/debug/" target="_blank">Facebook Sharing Debugger</a></li>
+                        <li><a href="https://cards-dev.twitter.com/validator" target="_blank">Twitter Card Validator</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const templates = {
+            modern: { bg1: '#667eea', bg2: '#764ba2' },
+            blue: { bg1: '#3b82f6', bg2: '#1e40af' },
+            green: { bg1: '#10b981', bg2: '#059669' },
+            dark: { bg1: '#1e293b', bg2: '#0f172a' }
+        };
+
+        // Load QR code image
+        let qrImage = new Image();
+        qrImage.src = '../qrcode (1).png';
+        qrImage.onload = function() {
+            drawCanvas();
+        };
+
+        function applyTemplate(template) {
+            const colors = templates[template];
+            document.getElementById('bgColor1').value = colors.bg1;
+            document.getElementById('bgColor2').value = colors.bg2;
+            
+            // Update active state
+            document.querySelectorAll('.template-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.closest('.template-btn').classList.add('active');
+            
+            drawCanvas();
+        }
+
+        function drawImage(canvas, width, height) {
+            const ctx = canvas.getContext('2d');
+            
+            // Get values
+            const mainTitle = document.getElementById('mainTitle').value;
+            const subtitle = document.getElementById('subtitle').value;
+            const description = document.getElementById('description').value;
+            const url = document.getElementById('url').value;
+            const bgColor1 = document.getElementById('bgColor1').value;
+            const bgColor2 = document.getElementById('bgColor2').value;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, width, height);
+            
+            // Create gradient background
+            const gradient = ctx.createLinearGradient(0, 0, width, height);
+            gradient.addColorStop(0, bgColor1);
+            gradient.addColorStop(1, bgColor2);
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+            
+            // Add decorative elements
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.beginPath();
+            ctx.arc(width * 0.8, height * 0.3, 200, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(width * 0.2, height * 0.7, 150, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Draw real QR code image in bottom right corner
+            if (qrImage.complete) {
+                const qrSize = 180;
+                const qrX = width - qrSize - 60;
+                const qrY = height - qrSize - 60;
+                
+                // White background for QR code
+                ctx.fillStyle = 'white';
+                ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+                ctx.shadowBlur = 20;
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 10;
+                const padding = 15;
+                ctx.fillRect(qrX - padding, qrY - padding, qrSize + padding * 2, qrSize + padding * 2);
+                ctx.shadowColor = 'transparent';
+                
+                // Draw QR code image
+                ctx.drawImage(qrImage, qrX, qrY, qrSize, qrSize);
+            }
+            
+            // Badge "GRÁTIS" no topo esquerdo
+            const badgeText = 'GRÁTIS';
+            ctx.font = 'bold 32px -apple-system, system-ui, sans-serif';
+            const badgeMetrics = ctx.measureText(badgeText);
+            const badgeX = 60;
+            const badgeY = 50;
+            const badgePadding = 20;
+            
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
+            ctx.beginPath();
+            ctx.roundRect(badgeX, badgeY, badgeMetrics.width + badgePadding * 2, 55, 28);
+            ctx.fill();
+            
+            ctx.fillStyle = 'white';
+            ctx.fillText(badgeText, badgeX + badgePadding, badgeY + 40);
+            
+            // Text content
+            const padding = 80;
+            let currentY = padding + 150; // Mais espaço para o badge
+            
+            // Main title
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 85px -apple-system, system-ui, sans-serif';
+            ctx.fillText(mainTitle, padding, currentY);
+            currentY += 105;
+            
+            // Subtitle
+            ctx.font = 'bold 65px -apple-system, system-ui, sans-serif';
+            ctx.fillText(subtitle, padding, currentY);
+            currentY += 90;
+            
+            // Description
+            ctx.font = '38px -apple-system, system-ui, sans-serif';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+            
+            // Wrap text
+            const words = description.split(' ');
+            let line = '';
+            const maxWidth = width - padding * 2 - 280; // Espaço para QR code
+            
+            for (let word of words) {
+                const testLine = line + word + ' ';
+                const metrics = ctx.measureText(testLine);
+                
+                if (metrics.width > maxWidth && line !== '') {
+                    ctx.fillText(line, padding, currentY);
+                    line = word + ' ';
+                    currentY += 52;
+                } else {
+                    line = testLine;
+                }
+            }
+            ctx.fillText(line, padding, currentY);
+            
+            // URL at bottom left
+            ctx.font = 'bold 34px -apple-system, system-ui, sans-serif';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.fillText('🌐 ' + url, padding, height - 70);
+        }
+
+        function drawCanvas() {
+            // Draw Open Graph
+            const ogCanvas = document.getElementById('ogCanvas');
+            drawImage(ogCanvas, 1200, 630);
+            
+            // Draw Twitter Card
+            const twitterCanvas = document.getElementById('twitterCanvas');
+            drawImage(twitterCanvas, 1200, 675);
+        }
+
+        function downloadCanvas(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        function downloadAll() {
+            downloadCanvas('ogCanvas', 'og-image.png');
+            setTimeout(() => {
+                downloadCanvas('twitterCanvas', 'twitter-image.png');
+            }, 500);
+        }
+
+        // Initial draw
+        window.onload = function() {
+            drawCanvas();
+        };
+    </script>
+</body>
+</html>
