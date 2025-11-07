@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://qrcode.gabireze.cloud/public/sitemap.xml
+Sitemap: https://qrcode.gabireze.cloud/sitemap.xml
