@@ -40,6 +40,8 @@ sudo rm -rf $WEB_ROOT/*
 # Copiar arquivos da aplicação
 echo -e "${BLUE}📦 Copiando arquivos...${NC}"
 sudo cp index.html $WEB_ROOT/
+sudo cp sobre.html $WEB_ROOT/
+sudo cp privacidade.html $WEB_ROOT/
 sudo cp -r src $WEB_ROOT/
 sudo cp -r public $WEB_ROOT/
 

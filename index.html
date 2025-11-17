@@ -99,30 +99,61 @@
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
     <header class="border-b border-slate-800 bg-[linear-gradient(180deg,#111522,#0f1115)]" role="banner">
     <div class="mx-auto max-w-6xl px-4 py-4 sm:py-6">
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
-        <div class="text-center sm:text-left">
-          <h1 class="m-0 text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
-            <i class="fa-solid fa-qrcode text-blue-500"></i>
-            Gerador de QR Code
-          </h1>
-          <p class="text-xs sm:text-sm text-slate-400 mt-1">
-            Crie QR Codes grátis em PNG, JPG, SVG e PDF
-          </p>
+      <div class="flex flex-col gap-4">
+        <!-- Primeira linha: Logo e badges -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div class="text-center sm:text-left">
+            <a href="/">
+              <h1 class="m-0 text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent hover:opacity-80 transition-opacity inline-block">
+                <i class="fa-solid fa-qrcode text-blue-500"></i>
+                Gerador de QR Code
+              </h1>
+            </a>
+            <p class="text-xs sm:text-sm text-slate-400 mt-1">
+              Crie QR Codes grátis em PNG, JPG, SVG e PDF
+            </p>
+          </div>
+          <div class="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm">
+            <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800 border border-slate-700">
+              <i class="fa-solid fa-infinity text-green-400"></i>
+              <span class="text-slate-300 hidden sm:inline">Ilimitado</span>
+            </div>
+            <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800 border border-slate-700">
+              <i class="fa-solid fa-shield-halved text-blue-400"></i>
+              <span class="text-slate-300 hidden sm:inline">Privado</span>
+            </div>
+            <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800 border border-slate-700">
+              <i class="fa-solid fa-star text-yellow-400"></i>
+              <span class="text-slate-300 hidden sm:inline">Gratuito</span>
+            </div>
+          </div>
         </div>
-        <div class="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm">
-          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800 border border-slate-700">
-            <i class="fa-solid fa-infinity text-green-400"></i>
-            <span class="text-slate-300 hidden sm:inline">Ilimitado</span>
-          </div>
-          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800 border border-slate-700">
-            <i class="fa-solid fa-shield-halved text-blue-400"></i>
-            <span class="text-slate-300 hidden sm:inline">Privado</span>
-          </div>
-          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800 border border-slate-700">
-            <i class="fa-solid fa-star text-yellow-400"></i>
-            <span class="text-slate-300 hidden sm:inline">Gratuito</span>
-          </div>
-        </div>
+        
+        <!-- Segunda linha: Menu de navegação -->
+        <nav class="flex flex-wrap items-center justify-center gap-2 text-sm border-t border-slate-800 pt-3">
+          <a href="/" class="px-3 py-1.5 rounded-lg hover:bg-slate-800 transition-colors text-slate-300 hover:text-blue-400">
+            <i class="fa-solid fa-house mr-1.5"></i>Início
+          </a>
+          <a href="#como-funciona" class="px-3 py-1.5 rounded-lg hover:bg-slate-800 transition-colors text-slate-300 hover:text-blue-400">
+            <i class="fa-solid fa-info-circle mr-1.5"></i>O que é
+          </a>
+          <a href="#estrutura" class="px-3 py-1.5 rounded-lg hover:bg-slate-800 transition-colors text-slate-300 hover:text-blue-400">
+            <i class="fa-solid fa-microchip mr-1.5"></i>Estrutura
+          </a>
+          <a href="#casos-de-uso" class="px-3 py-1.5 rounded-lg hover:bg-slate-800 transition-colors text-slate-300 hover:text-blue-400">
+            <i class="fa-solid fa-lightbulb mr-1.5"></i>Usos
+          </a>
+          <a href="#faq" class="px-3 py-1.5 rounded-lg hover:bg-slate-800 transition-colors text-slate-300 hover:text-blue-400">
+            <i class="fa-solid fa-circle-question mr-1.5"></i>FAQ
+          </a>
+          <span class="text-slate-700 hidden sm:inline">•</span>
+          <a href="/sobre.html" class="px-3 py-1.5 rounded-lg hover:bg-slate-800 transition-colors text-slate-300 hover:text-blue-400">
+            <i class="fa-solid fa-heart mr-1.5"></i>Sobre
+          </a>
+          <a href="/privacidade.html" class="px-3 py-1.5 rounded-lg hover:bg-slate-800 transition-colors text-slate-300 hover:text-blue-400">
+            <i class="fa-solid fa-lock mr-1.5"></i>Privacidade
+          </a>
+        </nav>
       </div>
     </div>
   </header>
@@ -360,34 +391,163 @@
 
     <div class="bg-slate-900">
     <div class="mx-auto max-w-6xl px-4 py-12">
-            <section class="mb-12">
+            <section class="mb-12" id="como-funciona">
         <h2 class="text-2xl font-bold mb-4 text-slate-100 flex items-center gap-3">
           <i class="fa-solid fa-circle-info text-blue-400"></i>
-          O que é QR Code?
+          O que é QR Code e Como Funciona?
         </h2>
         <div class="space-y-4 text-slate-300 text-sm leading-relaxed">
           <p>
             QR Code (Quick Response Code) é um código de barras bidimensional que pode ser facilmente escaneado usando 
-            a câmera de smartphones e tablets. Criado no Japão em 1994 pela empresa Denso Wave, o QR Code revolucionou 
-            a forma como compartilhamos informações digitalmente.
+            a câmera de smartphones e tablets. Criado no Japão em 1994 pela empresa Denso Wave, subsidiária da Toyota, 
+            o QR Code revolucionou a forma como compartilhamos informações digitalmente. Inicialmente desenvolvido para 
+            rastrear peças automotivas na linha de produção, o QR Code rapidamente se expandiu para diversos setores da economia.
           </p>
           <p>
-            Diferente dos códigos de barras tradicionais que armazenam dados apenas horizontalmente, os QR Codes armazenam 
+            Diferente dos códigos de barras tradicionais (1D) que armazenam dados apenas horizontalmente, os QR Codes (2D) armazenam 
             informações tanto horizontal quanto verticalmente, permitindo guardar muito mais dados em um espaço menor. 
-            Um QR Code pode conter até 4.296 caracteres alfanuméricos ou 7.089 caracteres numéricos.
+            Um QR Code pode conter até <strong>4.296 caracteres alfanuméricos</strong> ou <strong>7.089 caracteres numéricos</strong>, 
+            aproximadamente 100 vezes mais informação que um código de barras tradicional.
+          </p>
+          <p>
+            A tecnologia QR Code utiliza <strong>correção de erros Reed-Solomon</strong>, permitindo que o código seja lido mesmo 
+            com até 30% de sua área danificada ou obscurecida. Essa característica torna os QR Codes extremamente resilientes 
+            em ambientes adversos, como impressões em superfícies irregulares, materiais dobrados ou parcialmente cobertos.
           </p>
           <p>
             Nossa <a href="https://qrcode.gabireze.cloud/" class="text-blue-400 hover:text-blue-300 underline">ferramenta de geração de QR Code online</a> permite criar códigos personalizados gratuitamente, com 
-            suporte para múltiplos formatos de exportação (PNG, JPG, SVG, PDF) e diversos tipos de conteúdo, desde 
-            URLs simples até configurações complexas de Wi-Fi e pagamentos PIX.
+            suporte para múltiplos formatos de exportação (PNG, JPG, SVG, PDF) e diversos tipos de conteúdo: URLs, WhatsApp, PIX, 
+            vCard, Wi-Fi, e-mail, eventos, geolocalização e criptomoedas. Tudo isso processado 100% no seu navegador, garantindo 
+            máxima privacidade e segurança.
           </p>
+          <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 mt-6">
+            <h3 class="text-lg font-semibold mb-3 text-slate-100 flex items-center gap-2">
+              <i class="fa-solid fa-info-circle text-blue-400"></i>
+              Por que usar QR Codes em 2025?
+            </h3>
+            <ul class="space-y-2 text-slate-400 text-sm">
+              <li><i class="fa-solid fa-check text-green-400 mr-2"></i><strong>Praticidade:</strong> Elimine digitação manual de URLs longas, senhas Wi-Fi ou informações de contato</li>
+              <li><i class="fa-solid fa-check text-green-400 mr-2"></i><strong>Velocidade:</strong> Acesso instantâneo a informações com uma simples leitura pela câmera</li>
+              <li><i class="fa-solid fa-check text-green-400 mr-2"></i><strong>Versatilidade:</strong> Funciona em qualquer smartphone moderno sem necessidade de apps específicos</li>
+              <li><i class="fa-solid fa-check text-green-400 mr-2"></i><strong>Economia:</strong> Reduza custos de impressão com menus, catálogos e materiais digitais</li>
+              <li><i class="fa-solid fa-check text-green-400 mr-2"></i><strong>Sustentabilidade:</strong> Diminua o uso de papel com soluções digitais</li>
+              <li><i class="fa-solid fa-check text-green-400 mr-2"></i><strong>Rastreabilidade:</strong> Conecte mundo físico ao digital para analytics e métricas</li>
+            </ul>
+          </div>
         </div>
       </section>
 
-            <section class="mb-12">
+      <!-- Nova Seção: Como Funcionam os QR Codes -->
+      <section class="mb-12" id="estrutura">
+        <h2 class="text-2xl font-bold mb-4 text-slate-100 flex items-center gap-3">
+          <i class="fa-solid fa-microchip text-purple-400"></i>
+          Estrutura Técnica dos QR Codes
+        </h2>
+        <div class="space-y-6">
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Um QR Code é composto por uma matriz quadrada de módulos pretos e brancos (pixels) organizados em um padrão específico. 
+            Cada elemento do código tem uma função importante na leitura e interpretação dos dados.
+          </p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
+              <div class="w-12 h-12 rounded-full bg-blue-600/20 flex items-center justify-center mb-4">
+                <i class="fa-solid fa-border-all text-blue-400 text-xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2 text-slate-100">Padrões de Posição</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">
+                Os três quadrados grandes nos cantos (superior esquerdo, superior direito e inferior esquerdo) são chamados de 
+                "padrões de posição" ou "finder patterns". Eles permitem que o leitor identifique a orientação e a posição do código, 
+                possibilitando a leitura em qualquer ângulo (0°, 90°, 180°, 270°).
+              </p>
+            </div>
+
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
+              <div class="w-12 h-12 rounded-full bg-green-600/20 flex items-center justify-center mb-4">
+                <i class="fa-solid fa-align-center text-green-400 text-xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2 text-slate-100">Padrões de Alinhamento</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">
+                Códigos maiores incluem padrões de alinhamento adicionais que ajudam a compensar distorções causadas por 
+                superfícies curvas ou ângulos de leitura não perpendiculares. Esses padrões garantem precisão mesmo em condições 
+                não ideais de escaneamento.
+              </p>
+            </div>
+
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
+              <div class="w-12 h-12 rounded-full bg-yellow-600/20 flex items-center justify-center mb-4">
+                <i class="fa-solid fa-clock text-yellow-400 text-xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2 text-slate-100">Padrão de Timing</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">
+                Linhas alternadas de módulos pretos e brancos que conectam os padrões de posição. Elas ajudam o leitor a determinar 
+                a largura dos módulos e a densidade do código, essenciais para a leitura correta dos dados, especialmente em 
+                códigos impressos ou distorcidos.
+              </p>
+            </div>
+
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
+              <div class="w-12 h-12 rounded-full bg-red-600/20 flex items-center justify-center mb-4">
+                <i class="fa-solid fa-database text-red-400 text-xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2 text-slate-100">Área de Dados</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">
+                A maior parte do código QR é dedicada ao armazenamento de dados. As informações são codificadas usando diferentes 
+                modos otimizados: numérico (para apenas números), alfanumérico (letras e números), binário (qualquer dado) ou 
+                Kanji (caracteres japoneses).
+              </p>
+            </div>
+
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
+              <div class="w-12 h-12 rounded-full bg-purple-600/20 flex items-center justify-center mb-4">
+                <i class="fa-solid fa-shield-halved text-purple-400 text-xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2 text-slate-100">Código de Correção de Erros</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">
+                Bytes adicionais são acrescentados usando o algoritmo Reed-Solomon para correção de erros. Existem 4 níveis: 
+                L (7%), M (15%), Q (25%) e H (30%). Quanto maior o nível, mais o código resiste a danos, mas ocupa mais espaço.
+              </p>
+            </div>
+
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
+              <div class="w-12 h-12 rounded-full bg-cyan-600/20 flex items-center justify-center mb-4">
+                <i class="fa-solid fa-square text-cyan-400 text-xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2 text-slate-100">Zona de Silêncio (Quiet Zone)</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">
+                Margem branca obrigatória ao redor do código, equivalente a 4 módulos de largura. Essa área garante que o leitor 
+                consiga distinguir o QR Code do fundo, evitando interferências de elementos visuais próximos. Nunca remova essa margem!
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-xl p-6 border border-blue-800/50 mt-6">
+            <h3 class="text-lg font-semibold mb-3 text-slate-100 flex items-center gap-2">
+              <i class="fa-solid fa-graduation-cap text-blue-400"></i>
+              Versões de QR Code: De 1 a 40
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed mb-4">
+              Existem 40 versões de QR Code, cada uma com dimensões específicas:
+            </p>
+            <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-slate-400 text-sm">
+              <li><strong class="text-slate-300">Versão 1:</strong> 21×21 módulos - até 25 caracteres alfanuméricos</li>
+              <li><strong class="text-slate-300">Versão 10:</strong> 57×57 módulos - até 174 caracteres alfanuméricos</li>
+              <li><strong class="text-slate-300">Versão 20:</strong> 97×97 módulos - até 858 caracteres alfanuméricos</li>
+              <li><strong class="text-slate-300">Versão 40:</strong> 177×177 módulos - até 4.296 caracteres alfanuméricos</li>
+            </ul>
+            <p class="text-slate-400 text-sm mt-4">
+              <i class="fa-solid fa-lightbulb text-yellow-400 mr-2"></i>
+              <strong>Dica:</strong> Nosso gerador seleciona automaticamente a versão ideal baseada na quantidade de dados. 
+              Para URLs curtas, geralmente usa-se versão 3-5, enquanto dados complexos como vCards requerem versões maiores.
+            </p>
+          </div>
+        </div>
+      </section>
+
+            <section class="mb-12" id="recursos">
         <h2 class="text-2xl font-bold mb-4 text-slate-100 flex items-center gap-3">
           <i class="fa-solid fa-star text-yellow-400"></i>
-          Funcionalidades do Gerador de QR Code
+          Recursos e Funcionalidades
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
@@ -562,10 +722,10 @@
         </div>
       </section>
 
-            <section class="mb-12">
+            <section class="mb-12" id="casos-de-uso">
         <h2 class="text-2xl font-bold mb-4 text-slate-100 flex items-center gap-3">
           <i class="fa-solid fa-lightbulb text-yellow-400"></i>
-          Casos de Uso do QR Code
+          Aplicações Práticas de QR Code
         </h2>
         <div class="space-y-6">
                     <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
@@ -688,7 +848,7 @@
         </div>
       </section>
 
-            <section class="mb-12">
+            <section class="mb-12" id="faq">
         <h2 class="text-2xl font-bold mb-4 text-slate-100 flex items-center gap-3">
           <i class="fa-solid fa-circle-question text-blue-400"></i>
           Perguntas Frequentes (FAQ)
@@ -770,9 +930,190 @@
             </summary>
             <div class="px-6 pb-4 text-slate-400 text-sm">
               QR Codes estáticos (gerados por esta ferramenta) não possuem rastreamento. Para rastrear escaneamentos, 
-              você pode usar um encurtador de URL com analytics (como Bitly) e criar um QR Code com essa URL encurtada.
+              você pode usar um encurtador de URL com analytics (como Bitly, TinyURL ou Google Campaign URL Builder) e criar um QR Code com essa URL encurtada. 
+              Isso permite monitorar cliques, localização geográfica, dispositivos usados e horários de acesso.
             </div>
           </details>
+
+          <details class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden">
+            <summary class="px-6 py-4 cursor-pointer font-semibold text-slate-100 hover:bg-slate-750 transition">
+              QR Codes funcionam offline?
+            </summary>
+            <div class="px-6 pb-4 text-slate-400 text-sm">
+              Depende do conteúdo. QR Codes com texto puro, contatos (vCard), configurações Wi-Fi ou eventos de calendário funcionam completamente offline. 
+              Já QR Codes com URLs requerem conexão com internet para acessar o conteúdo vinculado. Nosso gerador funciona 100% offline após carregar a página, 
+              permitindo criar QR Codes sem internet.
+            </div>
+          </details>
+
+          <details class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden">
+            <summary class="px-6 py-4 cursor-pointer font-semibold text-slate-100 hover:bg-slate-750 transition">
+              Como adicionar um logo ou imagem no centro do QR Code?
+            </summary>
+            <div class="px-6 pb-4 text-slate-400 text-sm">
+              É possível adicionar logos graças à correção de erros. Passos: (1) Use nível de correção H (30%), (2) Gere o QR Code em alta resolução (1024px+), 
+              (3) Abra em um editor de imagens (Photoshop, GIMP, Canva), (4) Sobreponha o logo no centro, limitando a 20-25% da área total, 
+              (5) Teste o código em múltiplos leitores. <strong>Importante:</strong> Logos muito grandes ou complexos podem impedir a leitura.
+            </div>
+          </details>
+
+          <details class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden">
+            <summary class="px-6 py-4 cursor-pointer font-semibold text-slate-100 hover:bg-slate-750 transition">
+              Qual a diferença entre QR Code estático e dinâmico?
+            </summary>
+            <div class="px-6 pb-4 text-slate-400 text-sm">
+              <strong>QR Code Estático:</strong> Os dados são codificados diretamente no código. Uma vez gerado, não pode ser alterado. Funciona para sempre sem custo. 
+              Ideal para URLs permanentes, contatos e informações fixas.<br><br>
+              <strong>QR Code Dinâmico:</strong> O código aponta para uma URL intermediária que redireciona para o destino final. Permite alterar o destino sem reimprimir, 
+              rastreamento de analytics e edição de conteúdo. Geralmente são serviços pagos oferecidos por plataformas especializadas.
+            </div>
+          </details>
+
+          <details class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden">
+            <summary class="px-6 py-4 cursor-pointer font-semibold text-slate-100 hover:bg-slate-750 transition">
+              Smartphones precisam de app específico para ler QR Codes?
+            </summary>
+            <div class="px-6 pb-4 text-slate-400 text-sm">
+              Não! A maioria dos smartphones modernos (iPhone com iOS 11+, Android 8+) tem leitor de QR Code integrado diretamente no aplicativo de câmera nativo. 
+              Basta abrir a câmera e apontar para o código - uma notificação aparecerá automaticamente. Para dispositivos mais antigos, existem apps gratuitos 
+              como "QR Code Reader" disponíveis nas lojas.
+            </div>
+          </details>
+
+          <details class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden">
+            <summary class="px-6 py-4 cursor-pointer font-semibold text-slate-100 hover:bg-slate-750 transition">
+              Posso usar QR Codes em materiais impressos coloridos?
+            </summary>
+            <div class="px-6 pb-4 text-slate-400 text-sm">
+              Sim, mas com cuidado! O essencial é manter <strong>alto contraste</strong> entre o código e o fundo. Evite: (1) Fundos com texturas ou padrões complexos, 
+              (2) Cores complementares (ex: vermelho sobre verde), (3) Códigos claros sobre fundos escuros, (4) Gradientes que atravessam o código. 
+              <strong>Boas práticas:</strong> Teste sempre em diferentes condições de iluminação, use fundo branco sólido quando possível, e mantenha a zona de silêncio limpa.
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Nova Seção: Segurança -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold mb-4 text-slate-100 flex items-center gap-3">
+          <i class="fa-solid fa-shield-halved text-red-400"></i>
+          Segurança e Privacidade com QR Codes
+        </h2>
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-red-900/30 to-orange-900/30 rounded-xl p-6 border border-red-800/50">
+            <h3 class="text-lg font-semibold mb-3 text-slate-100 flex items-center gap-2">
+              <i class="fa-solid fa-triangle-exclamation text-red-400"></i>
+              Riscos e Ameaças de QR Codes Maliciosos
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed mb-4">
+              Embora QR Codes sejam ferramentas extremamente úteis, eles também podem ser explorados por pessoas mal-intencionadas. 
+              Entenda os principais riscos:
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="bg-slate-900/50 rounded-lg p-4">
+                <h4 class="font-semibold text-red-300 mb-2"><i class="fa-solid fa-bug mr-2"></i>Phishing (QRishing)</h4>
+                <p class="text-slate-400 text-sm">
+                  QR Codes falsos podem redirecionar para sites fraudulentos que imitam bancos, redes sociais ou lojas, 
+                  roubando credenciais e dados pessoais.
+                </p>
+              </div>
+              <div class="bg-slate-900/50 rounded-lg p-4">
+                <h4 class="font-semibold text-red-300 mb-2"><i class="fa-solid fa-virus mr-2"></i>Malware</h4>
+                <p class="text-slate-400 text-sm">
+                  Códigos podem iniciar downloads automáticos de aplicativos maliciosos ou explorar vulnerabilidades do sistema operacional.
+                </p>
+              </div>
+              <div class="bg-slate-900/50 rounded-lg p-4">
+                <h4 class="font-semibold text-red-300 mb-2"><i class="fa-solid fa-money-bill-wave mr-2"></i>Fraudes Financeiras</h4>
+                <p class="text-slate-400 text-sm">
+                  QR Codes PIX falsos colados sobre códigos legítimos podem desviar pagamentos para contas criminosas.
+                </p>
+              </div>
+              <div class="bg-slate-900/50 rounded-lg p-4">
+                <h4 class="font-semibold text-red-300 mb-2"><i class="fa-solid fa-eye mr-2"></i>Rastreamento Invasivo</h4>
+                <p class="text-slate-400 text-sm">
+                  Códigos com URLs maliciosas podem coletar dados do dispositivo, localização e comportamento sem consentimento.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-r from-green-900/30 to-emerald-900/30 rounded-xl p-6 border border-green-800/50">
+            <h3 class="text-lg font-semibold mb-3 text-slate-100 flex items-center gap-2">
+              <i class="fa-solid fa-check-circle text-green-400"></i>
+              Como se Proteger: Práticas de Segurança
+            </h3>
+            <div class="space-y-3 text-slate-300 text-sm">
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-shield-check text-green-400 mt-1 flex-shrink-0"></i>
+                <div>
+                  <strong>Sempre visualize a URL antes de abrir:</strong> A maioria dos leitores modernos mostra uma prévia do link. 
+                  Verifique se o domínio é legítimo (ex: <code class="bg-slate-900 px-2 py-1 rounded">bancodobrasil.com.br</code> vs. 
+                  <code class="bg-red-900 px-2 py-1 rounded">bancodobrasii.com.br</code>).
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-magnifying-glass text-green-400 mt-1 flex-shrink-0"></i>
+                <div>
+                  <strong>Inspecione códigos físicos:</strong> Desconfie de QR Codes colados com adesivo sobre outros códigos, especialmente em estacionamentos, 
+                  pontos de ônibus ou estabelecimentos comerciais. Códigos legítimos geralmente são impressos diretamente no material.
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-mobile-screen text-green-400 mt-1 flex-shrink-0"></i>
+                <div>
+                  <strong>Use leitores confiáveis:</strong> Prefira o leitor integrado do sistema operacional (iOS, Android) ou apps de fontes confiáveis. 
+                  Evite leitores desconhecidos que solicitam permissões excessivas.
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-link-slash text-green-400 mt-1 flex-shrink-0"></i>
+                <div>
+                  <strong>Desconfie de promessas irreais:</strong> QR Codes prometendo "prêmios grátis", "ganhe dinheiro fácil" ou "clique urgente" 
+                  são quase sempre golpes. Sites legítimos não usam essas táticas.
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-hand text-green-400 mt-1 flex-shrink-0"></i>
+                <div>
+                  <strong>Não escaneie códigos de desconhecidos:</strong> Evite escanear QR Codes enviados por e-mail, SMS ou redes sociais de fontes não verificadas. 
+                  Golpistas usam engenharia social para criar urgência e pressão.
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-credit-card text-green-400 mt-1 flex-shrink-0"></i>
+                <div>
+                  <strong>Confirme dados de pagamento:</strong> Ao pagar via PIX com QR Code, sempre confira o nome do beneficiário, CPF/CNPJ e valor antes de confirmar. 
+                  Bancos exibem essas informações na tela de confirmação.
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-rotate-right text-green-400 mt-1 flex-shrink-0"></i>
+                <div>
+                  <strong>Mantenha software atualizado:</strong> Sistema operacional e apps atualizados contêm patches de segurança que protegem contra 
+                  vulnerabilidades conhecidas exploradas por QR Codes maliciosos.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
+            <h3 class="text-lg font-semibold mb-3 text-slate-100 flex items-center gap-2">
+              <i class="fa-solid fa-lock text-blue-400"></i>
+              Nossa Garantia de Privacidade
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed mb-3">
+              Diferente de serviços online que processam seus dados em servidores remotos, nosso gerador funciona <strong>100% no seu navegador</strong>. 
+              Isso significa:
+            </p>
+            <ul class="space-y-2 text-slate-400 text-sm">
+              <li><i class="fa-solid fa-check text-green-400 mr-2"></i>Nenhum dado é enviado para servidores externos</li>
+              <li><i class="fa-solid fa-check text-green-400 mr-2"></i>Você pode usar offline após carregar a página</li>
+              <li><i class="fa-solid fa-check text-green-400 mr-2"></i>Informações sensíveis (senhas Wi-Fi, chaves PIX) permanecem privadas</li>
+              <li><i class="fa-solid fa-check text-green-400 mr-2"></i>Sem rastreamento ou armazenamento de histórico</li>
+              <li><i class="fa-solid fa-check text-green-400 mr-2"></i>Código-fonte transparente e auditável</li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -829,55 +1170,6 @@
       </section>
     </div>
   </div>
-
-    <footer class="border-t border-slate-800 bg-slate-900 mt-auto" role="contentinfo">
-    <div class="mx-auto max-w-6xl px-4 py-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6">
-        <div>
-          <h3 class="text-sm font-semibold mb-3 text-slate-200">Sobre o Gerador de QR Code</h3>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            Ferramenta gratuita e completa para criar QR Codes personalizados online. 
-            Suporte para diversos formatos incluindo URLs, WhatsApp, PIX, vCard, Wi-Fi, 
-            criptomoedas e muito mais. Exporte em PNG, JPG, SVG ou PDF.
-          </p>
-        </div>
-        <div>
-          <h3 class="text-sm font-semibold mb-3 text-slate-200">Formatos Suportados</h3>
-          <ul class="text-xs text-slate-400 space-y-1">
-            <li>• URLs e Links</li>
-            <li>• WhatsApp e SMS</li>
-            <li>• PIX e Pagamentos</li>
-            <li>• vCard e MeCard</li>
-            <li>• Wi-Fi e Redes</li>
-            <li>• Bitcoin, Ethereum, Litecoin</li>
-            <li>• E-mail e Telefone</li>
-            <li>• Eventos e Localização</li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="text-sm font-semibold mb-3 text-slate-200">Recursos</h3>
-          <ul class="text-xs text-slate-400 space-y-1">
-            <li>✓ 100% Gratuito</li>
-            <li>✓ Sem limites de uso</li>
-            <li>✓ Personalização completa</li>
-            <li>✓ Múltiplos formatos de exportação</li>
-            <li>✓ Alta qualidade (até 1024px)</li>
-            <li>✓ Sem marca d'água</li>
-            <li>✓ Privacidade garantida</li>
-          </ul>
-        </div>
-      </div>
-      <div class="border-t border-slate-800 pt-6 text-center">
-        <p class="text-xs text-slate-300">
-          © 2025 Gerador de QR Code - Desenvolvido por 
-          <a href="https://gabireze.com.br/" class="text-blue-400 hover:text-blue-300 underline transition" target="_blank" rel="noopener">@gabireze</a>
-        </p>
-        <p class="text-xs text-slate-400 mt-2">
-          QR Code Generator | Gerador de Código QR Online | Criar QR Code Grátis
-        </p>
-      </div>
-    </div>
-  </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0/lib/qr-code-styling.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@3.5.0/dist/dom-to-image-more.min.js"></script>
@@ -1420,5 +1712,97 @@
     renderBuilderByType();
     createOrUpdate();
   </script>
+
+  <footer class="border-t border-slate-800 bg-slate-900 py-8">
+    <div class="mx-auto max-w-6xl px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6">
+        <!-- Coluna 1: Sobre -->
+        <div>
+          <h3 class="text-lg font-semibold mb-3 text-blue-400">Gerador de QR Code</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-3">
+            Ferramenta gratuita e open-source para criar QR Codes com privacidade total. 
+            Todo o processamento acontece no seu navegador.
+          </p>
+          <div class="flex gap-3">
+            <a href="https://github.com/gabireze/qr-code-generator" target="_blank" rel="noopener noreferrer" 
+               class="w-10 h-10 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 flex items-center justify-center transition-colors" 
+               title="GitHub">
+              <i class="fa-brands fa-github text-slate-300"></i>
+            </a>
+            <a href="https://gabireze.com.br" target="_blank" rel="noopener noreferrer" 
+               class="w-10 h-10 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 flex items-center justify-center transition-colors" 
+               title="Website">
+              <i class="fa-solid fa-globe text-slate-300"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Coluna 2: Links -->
+        <div>
+          <h3 class="text-lg font-semibold mb-3 text-blue-400">Links Úteis</h3>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="#como-funciona" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2">
+                <i class="fa-solid fa-chevron-right text-xs"></i>Como Funciona
+              </a>
+            </li>
+            <li>
+              <a href="#casos-de-uso" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2">
+                <i class="fa-solid fa-chevron-right text-xs"></i>Casos de Uso
+              </a>
+            </li>
+            <li>
+              <a href="#faq" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2">
+                <i class="fa-solid fa-chevron-right text-xs"></i>Perguntas Frequentes
+              </a>
+            </li>
+            <li>
+              <a href="#melhores-praticas" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2">
+                <i class="fa-solid fa-chevron-right text-xs"></i>Melhores Práticas
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Coluna 3: Legal -->
+        <div>
+          <h3 class="text-lg font-semibold mb-3 text-blue-400">Informações</h3>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="/sobre.html" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2">
+                <i class="fa-solid fa-chevron-right text-xs"></i>Sobre o Projeto
+              </a>
+            </li>
+            <li>
+              <a href="/privacidade.html" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2">
+                <i class="fa-solid fa-chevron-right text-xs"></i>Política de Privacidade
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/gabireze/qr-code-generator/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2">
+                <i class="fa-solid fa-chevron-right text-xs"></i>Licença MIT
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/gabireze/qr-code-generator" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2">
+                <i class="fa-solid fa-chevron-right text-xs"></i>Código-Fonte
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-slate-800 pt-6 text-center">
+        <p class="text-slate-400 text-sm mb-2">
+          © 2024-2025 Gerador de QR Code | Desenvolvido com <i class="fa-solid fa-heart text-red-400"></i> por 
+          <a href="https://gabireze.com.br" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 underline">@gabireze</a>
+        </p>
+        <p class="text-slate-500 text-xs">
+          Ferramenta 100% gratuita, open-source e que respeita sua privacidade
+        </p>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
