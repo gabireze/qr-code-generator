@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Open-source projects, Chrome extensions, and web tools by Gabriel de Rezende Gonçalves (@gabireze). Free tools for productivity, social media management, and more.">
+  <meta name="keywords" content="gabireze, chrome extensions, tiktok tools, instagram tools, qr code generator, open source, web tools">
+  <meta name="author" content="Gabriel de Rezende Gonçalves">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Gabriel's Cloud Projects | Open Source Tools">
+  <meta property="og:description" content="Open-source projects, Chrome extensions, and web tools built with ❤️">
+  <meta property="og:url" content="https://gabireze.cloud/">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gabriel's Cloud Projects">
+  <meta name="twitter:description" content="Open-source projects, Chrome extensions, and web tools built with ❤️">
+  
+  <title>Gabriel's Cloud Projects | @gabireze</title>
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☁️</text></svg>">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --accent: #3b82f6;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 1rem;
+      }
+    }
+    
+    /* Header */
+    header {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .social-links a {
+      color: var(--text-muted);
+      transition: color 0.2s;
+      font-size: 1.25rem;
+    }
+    
+    /* Hero */
+    .hero {
+      padding: 4rem 0 3rem;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+    
+    /* Projects */
+    .projects {
+      padding: 2rem 0 4rem;
+      flex: 1;
+    }
+    
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    @media (hover: hover) {
+      .project-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15);
+      }
+      
+      .project-card:hover .project-link {
+        color: var(--accent);
+      }
+      
+      .github-link:hover {
+        color: var(--accent);
+      }
+      
+      .social-links a:hover {
+        color: var(--accent);
+      }
+    }
+    
+    .project-card:active {
+      transform: scale(0.98);
+    }
+    
+    .project-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .project-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+    
+    .project-info {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    
+    .project-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+    }
+    
+    .project-link:hover {
+      text-decoration: underline;
+    }
+    
+    .github-link {
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      transition: color 0.2s;
+      flex-shrink: 0;
+    }
+    
+    .project-description {
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+    
+    /* Featured */
+    .featured {
+      border: 2px solid var(--accent);
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(59, 130, 246, 0.02));
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero {
+        padding: 3rem 0 2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .project-card {
+        padding: 1.25rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.75rem;
+      }
+      
+      .project-title {
+        font-size: 1.1rem;
+      }
+      
+      .project-icon {
+        font-size: 1.75rem;
+      }
+      
+      .project-link {
+        font-size: 0.8125rem;
+      }
+      
+      .github-link {
+        font-size: 1.25rem;
+      }
+      
+      header {
+        padding: 1rem 0;
+      }
+      
+      .logo {
+        font-size: 1.1rem;
+      }
+      
+      .social-links a {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">☁️ gabireze.cloud</div>
+        <div class="social-links">
+          <a href="https://github.com/gabireze" target="_blank" title="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://gabireze.com.br" target="_blank" title="Website">
+            <i class="fas fa-globe"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/gabireze/" target="_blank" title="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>Projects</h1>
+      <p>Tools and extensions by @gabireze</p>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="projects">
+    <div class="container">
+      <div class="projects-grid">
+        
+        <!-- QR Code Generator -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🔲</span>
+            <div class="project-info">
+              <h3 class="project-title">QR Code Generator</h3>
+              <a href="https://qrcode.gabireze.cloud" target="_blank" class="project-link">
+                qrcode.gabireze.cloud <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+              </a>
+            </div>
+          </div>
+          <p class="project-description">
+            Free online QR Code generator with multiple formats (PNG, JPG, SVG, PDF). Support for URLs, WhatsApp, PIX, vCard, Wi-Fi, and more. 100% privacy-first. Available in Portuguese.
+          </p>
+        </div>
+
+        <!-- NekoMoji Bot -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🐱</span>
+            <div class="project-info">
+              <h3 class="project-title">NekoMoji Bot</h3>
+              <a href="http://nekomoji.chat/" target="_blank" class="project-link">
+                nekomoji.chat <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+              </a>
+            </div>
+          </div>
+          <p class="project-description">
+            WhatsApp bot to create kawaii stickers with Mercado Pago payment integration. Convert images, videos, GIFs, and Twitter/X media into WhatsApp stickers. Portuguese only.
+          </p>
+        </div>
+
+        <!-- Bcrypt Tools -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🔐</span>
+            <div class="project-info">
+              <h3 class="project-title">Bcrypt Tools</h3>
+              <a href="https://bcrypt-tools.vercel.app/" target="_blank" class="project-link">
+                bcrypt-tools.vercel.app <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+              </a>
+            </div>
+            <a href="https://github.com/gabireze/bcrypt-tools" target="_blank" class="github-link" title="View on GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+          <p class="project-description">
+            Online platform for generating and verifying cryptographic hashes: bcrypt, Argon2, PBKDF2, HMAC, SHA, MD5, and more. All operations run locally in your browser.
+          </p>
+        </div>
+
+        <!-- TikTok Reposted Videos Remover -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🎵</span>
+            <div class="project-info">
+              <h3 class="project-title">TikTok Reposts Remover</h3>
+              <a href="https://chromewebstore.google.com/detail/tiktok-all-reposted-video/amgpfdpibiacligkkkbeonfhmonkgjhg" target="_blank" class="project-link">
+                Chrome Web Store <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+              </a>
+            </div>
+            <a href="https://github.com/gabireze/tiktok-all-reposted-videos-remover" target="_blank" class="github-link" title="View on GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+          <p class="project-description">
+            Chrome extension to automatically remove all reposted videos from your TikTok profile. Over 200,000 users.
+          </p>
+        </div>
+
+        <!-- TikTok Liked Videos Remover -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">❤️</span>
+            <div class="project-info">
+              <h3 class="project-title">TikTok Likes Remover</h3>
+              <a href="https://chromewebstore.google.com/detail/tiktok-all-liked-videos-r/eafmacjdgennnmhagdkdckgjokmnllci" target="_blank" class="project-link">
+                Chrome Web Store <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+              </a>
+            </div>
+            <a href="https://github.com/gabireze/tiktok-all-liked-videos-remover" target="_blank" class="github-link" title="View on GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+          <p class="project-description">
+            Chrome extension to unlike all videos on TikTok in bulk. Perfect for privacy-conscious users.
+          </p>
+        </div>
+
+        <!-- TikTok Favorites Remover -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">⭐</span>
+            <div class="project-info">
+              <h3 class="project-title">TikTok Favorites Remover</h3>
+              <a href="https://chromewebstore.google.com/detail/tiktok-all-favorite-video/cbjkccccmffolddklbkedlndlfokcpbn" target="_blank" class="project-link">
+                Chrome Web Store <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+              </a>
+            </div>
+            <a href="https://github.com/gabireze/tiktok-all-favorite-videos-remover" target="_blank" class="github-link" title="View on GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+          <p class="project-description">
+            Chrome extension to remove all favorite videos on TikTok quickly and easily.
+          </p>
+        </div>
+
+        <!-- Instagram Followers Manager -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">📸</span>
+            <div class="project-info">
+              <h3 class="project-title">Instagram Followers Manager</h3>
+              <a href="https://chromewebstore.google.com/detail/manage-instagram-follower/laoengmeoeboelooafhjhbfphdfoiegg" target="_blank" class="project-link">
+                Chrome Web Store <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+              </a>
+            </div>
+            <a href="https://github.com/gabireze/manage-instagram-followers" target="_blank" class="github-link" title="View on GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+          <p class="project-description">
+            Chrome extension to manage Instagram followers: follow back, unfollow non-followers, discover mutual connections.
+          </p>
+        </div>
+
+        <!-- Twitch Mass Unfollow -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🎮</span>
+            <div class="project-info">
+              <h3 class="project-title">Twitch Mass Unfollow</h3>
+              <a href="https://chromewebstore.google.com/detail/mass-unfollow-on-twitch/mgmagaekfiflfamjkogchapgmhfbkmnh" target="_blank" class="project-link">
+                Chrome Web Store <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+              </a>
+            </div>
+            <a href="https://github.com/gabireze/mass-unfollow-on-twitch" target="_blank" class="github-link" title="View on GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+          <p class="project-description">
+            Chrome extension to mass unfollow channels on Twitch with ease.
+          </p>
+        </div>
+
+        <!-- Save Image As -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🖼️</span>
+            <div class="project-info">
+              <h3 class="project-title">Save Image As</h3>
+              <a href="https://chromewebstore.google.com/detail/save-image-as/lfmnkgdmceifplfmmhjjincclbjonfpd" target="_blank" class="project-link">
+                Chrome Web Store <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+              </a>
+            </div>
+            <a href="https://github.com/gabireze/save-image-as" target="_blank" class="github-link" title="View on GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+          <p class="project-description">
+            Chrome extension to save any image as PNG, JPG or WebP directly from the right-click menu.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
