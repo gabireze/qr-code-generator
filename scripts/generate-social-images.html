@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerador de Imagens para Redes Sociais - QR Code Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -280,7 +281,7 @@
 
             <div class="control-group">
                 <label>🌐 URL do Site</label>
-                <input type="text" id="url" value="qrcode.gabireze.cloud" oninput="drawCanvas()">
+                <input type="text" id="url" value="qrcode.gabireze.cloud" oninput="onUrlChange()">
             </div>
 
             <div class="color-grid">
@@ -352,12 +353,58 @@
             dark: { bg1: '#1e293b', bg2: '#0f172a' }
         };
 
-        // Load QR code image
+        // Helper function to draw rounded rectangle
+        function roundRect(ctx, x, y, width, height, radius) {
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + width - radius, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+            ctx.lineTo(x + width, y + height - radius);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            ctx.lineTo(x + radius, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.closePath();
+        }
+
+        // QR Code image
         let qrImage = new Image();
-        qrImage.src = '../qrcode (1).png';
-        qrImage.onload = function() {
-            drawCanvas();
-        };
+        let qrCodeGenerated = false;
+
+        // Generate QR Code from URL
+        function generateQRCode(url) {
+            // Create temporary container
+            const tempDiv = document.createElement('div');
+            tempDiv.id = 'qrcode-temp';
+            tempDiv.style.display = 'none';
+            document.body.appendChild(tempDiv);
+
+            // Clear previous QR code
+            tempDiv.innerHTML = '';
+
+            // Generate QR code
+            const qr = new QRCode(tempDiv, {
+                text: 'https://' + url,
+                width: 512,
+                height: 512,
+                colorDark: '#000000',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+
+            // Wait for QR code to be generated, then convert to image
+            setTimeout(() => {
+                const canvas = tempDiv.querySelector('canvas');
+                if (canvas) {
+                    qrImage.onload = function() {
+                        qrCodeGenerated = true;
+                        drawCanvas();
+                    };
+                    qrImage.src = canvas.toDataURL('image/png');
+                }
+            }, 100);
+        }
 
         function applyTemplate(template) {
             const colors = templates[template];
@@ -371,14 +418,20 @@
             drawCanvas();
         }
 
+        // Handle URL change
+        function onUrlChange() {
+            const url = document.getElementById('url').value;
+            generateQRCode(url);
+        }
+
         function drawImage(canvas, width, height) {
             const ctx = canvas.getContext('2d');
             
             // Get values
-            const mainTitle = document.getElementById('mainTitle').value;
-            const subtitle = document.getElementById('subtitle').value;
-            const description = document.getElementById('description').value;
-            const url = document.getElementById('url').value;
+            const mainTitle = document.getElementById('mainTitle').value.trim();
+            const subtitle = document.getElementById('subtitle').value.trim();
+            const description = document.getElementById('description').value.trim();
+            const url = document.getElementById('url').value.trim();
             const bgColor1 = document.getElementById('bgColor1').value;
             const bgColor2 = document.getElementById('bgColor2').value;
             
@@ -402,84 +455,162 @@
             ctx.arc(width * 0.2, height * 0.7, 150, 0, Math.PI * 2);
             ctx.fill();
             
-            // Draw real QR code image in bottom right corner
-            if (qrImage.complete) {
-                const qrSize = 180;
-                const qrX = width - qrSize - 60;
-                const qrY = height - qrSize - 60;
+            // Calculate QR code dimensions and position
+            const hasQR = qrCodeGenerated && qrImage.complete;
+            const qrSize = hasQR ? Math.min(width * 0.15, 180) : 0;
+            const qrPadding = 15;
+            const qrMargin = 60;
+            const qrTotalWidth = hasQR ? qrSize + qrPadding * 2 + qrMargin : 0;
+            
+            // Draw QR Code in bottom right corner (if exists)
+            if (hasQR) {
+                const qrX = width - qrSize - qrMargin;
+                const qrY = height - qrSize - qrMargin;
                 
-                // White background for QR code
+                // White background for QR code with shadow
                 ctx.fillStyle = 'white';
                 ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
                 ctx.shadowBlur = 20;
                 ctx.shadowOffsetX = 0;
                 ctx.shadowOffsetY = 10;
-                const padding = 15;
-                ctx.fillRect(qrX - padding, qrY - padding, qrSize + padding * 2, qrSize + padding * 2);
+                roundRect(ctx, qrX - qrPadding, qrY - qrPadding, qrSize + qrPadding * 2, qrSize + qrPadding * 2, 10);
+                ctx.fill();
                 ctx.shadowColor = 'transparent';
                 
                 // Draw QR code image
                 ctx.drawImage(qrImage, qrX, qrY, qrSize, qrSize);
             }
             
-            // Badge "GRÁTIS" no topo esquerdo
+            // Dynamic padding
+            const leftPadding = width * 0.06;
+            const rightPadding = leftPadding + qrTotalWidth;
+            const topPadding = height * 0.08;
+            const bottomPadding = height * 0.12;
+            const maxTextWidth = width - leftPadding - rightPadding;
+            
+            // Badge "GRÁTIS" no topo esquerdo (opcional)
             const badgeText = 'GRÁTIS';
-            ctx.font = 'bold 32px -apple-system, system-ui, sans-serif';
-            const badgeMetrics = ctx.measureText(badgeText);
-            const badgeX = 60;
-            const badgeY = 50;
-            const badgePadding = 20;
+            const showBadge = true; // Pode ser controlado por input
+            let currentY = topPadding;
             
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
-            ctx.beginPath();
-            ctx.roundRect(badgeX, badgeY, badgeMetrics.width + badgePadding * 2, 55, 28);
-            ctx.fill();
-            
-            ctx.fillStyle = 'white';
-            ctx.fillText(badgeText, badgeX + badgePadding, badgeY + 40);
-            
-            // Text content
-            const padding = 80;
-            let currentY = padding + 150; // Mais espaço para o badge
-            
-            // Main title
-            ctx.fillStyle = 'white';
-            ctx.font = 'bold 85px -apple-system, system-ui, sans-serif';
-            ctx.fillText(mainTitle, padding, currentY);
-            currentY += 105;
-            
-            // Subtitle
-            ctx.font = 'bold 65px -apple-system, system-ui, sans-serif';
-            ctx.fillText(subtitle, padding, currentY);
-            currentY += 90;
-            
-            // Description
-            ctx.font = '38px -apple-system, system-ui, sans-serif';
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
-            
-            // Wrap text
-            const words = description.split(' ');
-            let line = '';
-            const maxWidth = width - padding * 2 - 280; // Espaço para QR code
-            
-            for (let word of words) {
-                const testLine = line + word + ' ';
-                const metrics = ctx.measureText(testLine);
+            if (showBadge) {
+                const badgeFontSize = Math.max(width * 0.026, 24);
+                ctx.font = `bold ${badgeFontSize}px -apple-system, system-ui, sans-serif`;
+                const badgeMetrics = ctx.measureText(badgeText);
+                const badgePaddingH = badgeFontSize * 0.6;
+                const badgePaddingV = badgeFontSize * 0.4;
+                const badgeHeight = badgeFontSize + badgePaddingV * 2;
                 
-                if (metrics.width > maxWidth && line !== '') {
-                    ctx.fillText(line, padding, currentY);
-                    line = word + ' ';
-                    currentY += 52;
-                } else {
-                    line = testLine;
-                }
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
+                roundRect(ctx, leftPadding, currentY, badgeMetrics.width + badgePaddingH * 2, badgeHeight, badgeHeight / 2);
+                ctx.fill();
+                
+                ctx.fillStyle = 'white';
+                ctx.fillText(badgeText, leftPadding + badgePaddingH, currentY + badgeFontSize + badgePaddingV * 0.5);
+                
+                currentY += badgeHeight + height * 0.06;
             }
-            ctx.fillText(line, padding, currentY);
             
-            // URL at bottom left
-            ctx.font = 'bold 34px -apple-system, system-ui, sans-serif';
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-            ctx.fillText('🌐 ' + url, padding, height - 70);
+            // Dynamic font sizes based on canvas size
+            const titleFontSize = Math.max(width * 0.07, 50);
+            const subtitleFontSize = Math.max(width * 0.054, 40);
+            const descriptionFontSize = Math.max(width * 0.032, 28);
+            const urlFontSize = Math.max(width * 0.028, 24);
+            
+            // Function to wrap and draw text
+            function wrapText(text, maxWidth, fontSize, isBold = false) {
+                if (!text) return 0;
+                
+                ctx.font = `${isBold ? 'bold' : 'normal'} ${fontSize}px -apple-system, system-ui, sans-serif`;
+                const words = text.split(' ');
+                let line = '';
+                const lines = [];
+                const lineHeight = fontSize * 1.35;
+                
+                for (let word of words) {
+                    const testLine = line + word + ' ';
+                    const metrics = ctx.measureText(testLine);
+                    
+                    if (metrics.width > maxWidth && line !== '') {
+                        lines.push(line.trim());
+                        line = word + ' ';
+                    } else {
+                        line = testLine;
+                    }
+                }
+                if (line.trim()) {
+                    lines.push(line.trim());
+                }
+                
+                return { lines, lineHeight };
+            }
+            
+            // Main title (dynamic size if too long)
+            if (mainTitle) {
+                ctx.fillStyle = 'white';
+                let adjustedTitleSize = titleFontSize;
+                ctx.font = `bold ${adjustedTitleSize}px -apple-system, system-ui, sans-serif`;
+                
+                // Reduce font size if text is too long
+                while (ctx.measureText(mainTitle).width > maxTextWidth && adjustedTitleSize > 40) {
+                    adjustedTitleSize -= 2;
+                    ctx.font = `bold ${adjustedTitleSize}px -apple-system, system-ui, sans-serif`;
+                }
+                
+                const titleWrap = wrapText(mainTitle, maxTextWidth, adjustedTitleSize, true);
+                titleWrap.lines.forEach(line => {
+                    ctx.fillText(line, leftPadding, currentY);
+                    currentY += titleWrap.lineHeight;
+                });
+                currentY += adjustedTitleSize * 0.3;
+            }
+            
+            // Subtitle (dynamic)
+            if (subtitle) {
+                ctx.fillStyle = 'white';
+                let adjustedSubtitleSize = subtitleFontSize;
+                ctx.font = `bold ${adjustedSubtitleSize}px -apple-system, system-ui, sans-serif`;
+                
+                while (ctx.measureText(subtitle).width > maxTextWidth && adjustedSubtitleSize > 32) {
+                    adjustedSubtitleSize -= 2;
+                    ctx.font = `bold ${adjustedSubtitleSize}px -apple-system, system-ui, sans-serif`;
+                }
+                
+                const subtitleWrap = wrapText(subtitle, maxTextWidth, adjustedSubtitleSize, true);
+                subtitleWrap.lines.forEach(line => {
+                    ctx.fillText(line, leftPadding, currentY);
+                    currentY += subtitleWrap.lineHeight;
+                });
+                currentY += adjustedSubtitleSize * 0.4;
+            }
+            
+            // Description (dynamic with wrapping)
+            if (description) {
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+                const descWrap = wrapText(description, maxTextWidth, descriptionFontSize, false);
+                ctx.font = `${descriptionFontSize}px -apple-system, system-ui, sans-serif`;
+                
+                descWrap.lines.forEach(line => {
+                    ctx.fillText(line, leftPadding, currentY);
+                    currentY += descWrap.lineHeight;
+                });
+            }
+            
+            // URL at bottom left (optional)
+            if (url) {
+                ctx.font = `bold ${urlFontSize}px -apple-system, system-ui, sans-serif`;
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                const urlText = '🌐 ' + url;
+                const urlY = height - bottomPadding;
+                
+                // Truncate if too long
+                let displayUrl = urlText;
+                while (ctx.measureText(displayUrl).width > maxTextWidth && displayUrl.length > 10) {
+                    displayUrl = displayUrl.slice(0, -4) + '...';
+                }
+                
+                ctx.fillText(displayUrl, leftPadding, urlY);
+            }
         }
 
         function drawCanvas() {
@@ -509,7 +640,8 @@
 
         // Initial draw
         window.onload = function() {
-            drawCanvas();
+            const url = document.getElementById('url').value;
+            generateQRCode(url);
         };
     </script>
 </body>
