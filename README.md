@@ -7,6 +7,9 @@
 
 **[Acesse aqui: qrcode.gabireze.cloud](https://qrcode.gabireze.cloud/)**
 
+## GitAds Sponsored
+[![Sponsored by GitAds](https://gitads.dev/v1/ad-serve?source=gabireze/qr-code-generator@github)](https://gitads.dev/v1/ad-track?source=gabireze/qr-code-generator@github)
+
 ## Funcionalidades
 
 - **100% Gratuito** - Sem limites de uso, sem registro necessário
