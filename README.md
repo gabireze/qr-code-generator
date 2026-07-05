@@ -223,3 +223,5 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 ---
 
 Se este projeto foi útil para você, considere dar uma estrela no repositório!
+
+<!-- GitAds-Verify: NX42DHB4NUQBQ7VXLYGKY5V3U57VEUE9 -->
