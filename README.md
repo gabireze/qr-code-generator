@@ -1,11 +1,9 @@
-# Gerador de QR Code Online
+# Gerador de QR Code
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 > Gerador de QR Code gratuito, completo e sem limites. Suporte para múltiplos formatos incluindo URLs, WhatsApp, PIX, vCard, Wi-Fi, criptomoedas e muito mais.
-
-**[Acesse aqui: qrcode.gabireze.cloud](https://qrcode.gabireze.cloud/)**
 
 ## GitAds Sponsored
 [![Sponsored by GitAds](https://gitads.dev/v1/ad-serve?source=gabireze/qr-code-generator@github)](https://gitads.dev/v1/ad-track?source=gabireze/qr-code-generator@github)
@@ -162,29 +160,6 @@ O site inclui seções educacionais completas:
 - **Funciona Offline** - Após carregar a página, pode ser usado sem internet
 - **Política de Privacidade** - Página dedicada detalhando tratamento de dados
 - **Conformidade LGPD/GDPR** - Transparência total sobre cookies e analytics
-
-## Deploy
-
-### Produção
-
-```bash
-# Execute o script de deploy (requer sudo)
-sudo bash scripts/deploy.sh
-```
-
-O script automaticamente:
-1. Atualiza o código do repositório
-2. Copia arquivos para /var/www/qrcode.gabireze.cloud
-3. Configura permissões corretas
-4. Recarrega o Nginx
-
-### Pós-Deploy
-
-1. Verificar o site em https://qrcode.gabireze.cloud
-2. Adicionar o site no Google Search Console
-3. Enviar sitemap: https://qrcode.gabireze.cloud/sitemap.xml
-4. Testar rich results: https://search.google.com/test/rich-results
-5. Validar performance com Lighthouse
 
 ## Contribuindo
 
